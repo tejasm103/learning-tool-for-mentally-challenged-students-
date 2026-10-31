@@ -1,0 +1,444 @@
+{
+  "title": "Kannada Varnamala & Kagunita",
+  "vowels": [
+    {
+      "char": "ಅ",
+      "translit": "a",
+      "word": "ಅರಸ",
+      "meaning": "King",
+      "icon": "👑",
+      "audio": "ಅ - ಅರಸ. King."
+    },
+    {
+      "char": "ಆ",
+      "translit": "aa",
+      "word": "ಆಕಾಶ",
+      "meaning": "Sky",
+      "icon": "☁️",
+      "audio": "ಆ - ಆಕಾಶ. Sky."
+    },
+    {
+      "char": "ಇ",
+      "translit": "i",
+      "word": "ಇಲಿ",
+      "meaning": "Mouse",
+      "icon": "🐭",
+      "audio": "ಇ - ಇಲಿ. Mouse."
+    },
+    {
+      "char": "ಈ",
+      "translit": "ee",
+      "word": "ಈರುಳ್ಳಿ",
+      "meaning": "Onion",
+      "icon": "🧅",
+      "audio": "ಈ - ಈರುಳ್ಳಿ. Onion."
+    },
+    {
+      "char": "ಉ",
+      "translit": "u",
+      "word": "ಉರಗ",
+      "meaning": "Serpent / Snake",
+      "icon": "🐍",
+      "audio": "ಉ - ಉರಗ. Serpent."
+    },
+    {
+      "char": "ಊ",
+      "translit": "oo",
+      "word": "ಊಟ",
+      "meaning": "Meal / Food",
+      "icon": "🍛",
+      "audio": "ಊ - ಊಟ. Meal."
+    },
+    {
+      "char": "ಋ",
+      "translit": "ru",
+      "word": "ಋಷಿ",
+      "meaning": "Sage",
+      "icon": "🧘",
+      "audio": "ಋ - ಋಷಿ. Sage."
+    },
+    {
+      "char": "ಎ",
+      "translit": "e",
+      "word": "ಎಳೆ",
+      "meaning": "Tender leaf / Thread",
+      "icon": "🌱",
+      "audio": "ಎ - ಎಳೆ. Tender."
+    },
+    {
+      "char": "ಏ",
+      "translit": "ae",
+      "word": "ಏಣಿ",
+      "meaning": "Ladder",
+      "icon": "🪜",
+      "audio": "ಏ - ಏಣಿ. Ladder."
+    },
+    {
+      "char": "ಐ",
+      "translit": "ai",
+      "word": "ಐದು",
+      "meaning": "Five (5)",
+      "icon": "🖐️",
+      "audio": "ಐ - ಐದು. Five."
+    },
+    {
+      "char": "ಒ",
+      "translit": "o",
+      "word": "ಒಂದು",
+      "meaning": "One (1)",
+      "icon": "☝️",
+      "audio": "ಒ - ಒಂದು. One."
+    },
+    {
+      "char": "ಓ",
+      "translit": "oo",
+      "word": "ಓದು",
+      "meaning": "Read / Study",
+      "icon": "📖",
+      "audio": "ಓ - ಓದು. Read."
+    },
+    {
+      "char": "ಔ",
+      "translit": "au",
+      "word": "ಔಷಧ",
+      "meaning": "Medicine",
+      "icon": "💊",
+      "audio": "ಔ - ಔಷಧ. Medicine."
+    }
+  ],
+  "consonants": [
+    {
+      "char": "ಕ",
+      "translit": "ka",
+      "word": "ಕಮಲ",
+      "meaning": "Lotus",
+      "icon": "🪷"
+    },
+    {
+      "char": "ಖ",
+      "translit": "kha",
+      "word": "ಖಗ",
+      "meaning": "Bird in flight",
+      "icon": "🕊️"
+    },
+    {
+      "char": "ಗ",
+      "translit": "ga",
+      "word": "ಗಣೇಶ",
+      "meaning": "Ganesha",
+      "icon": "🐘"
+    },
+    {
+      "char": "ಘ",
+      "translit": "gha",
+      "word": "ಗಂಟೆ",
+      "meaning": "Bell",
+      "icon": "🔔"
+    },
+    {
+      "char": "ಙ",
+      "translit": "nga",
+      "word": "ಙ",
+      "meaning": "Nasal consonant",
+      "icon": "✨"
+    },
+    {
+      "char": "ಚ",
+      "translit": "cha",
+      "word": "ಚಕ್ರ",
+      "meaning": "Wheel",
+      "icon": "☸️"
+    },
+    {
+      "char": "ಛ",
+      "translit": "chha",
+      "word": "ಛತ್ರಿ",
+      "meaning": "Umbrella",
+      "icon": "☂️"
+    },
+    {
+      "char": "ಜ",
+      "translit": "ja",
+      "word": "ಜಲ",
+      "meaning": "Water",
+      "icon": "💧"
+    },
+    {
+      "char": "ಝ",
+      "translit": "jha",
+      "word": "ಝರಿ",
+      "meaning": "Water stream",
+      "icon": "🌊"
+    },
+    {
+      "char": "ಞ",
+      "translit": "nya",
+      "word": "ಞ",
+      "meaning": "Nasal consonant",
+      "icon": "✨"
+    },
+    {
+      "char": "ಟ",
+      "translit": "ta",
+      "word": "ಟಪಾಲ",
+      "meaning": "Post / Mail",
+      "icon": "📮"
+    },
+    {
+      "char": "ಠ",
+      "translit": "tha",
+      "word": "ಠಸ್ಸೆ",
+      "meaning": "Stamp",
+      "icon": "🏷️"
+    },
+    {
+      "char": "ಡ",
+      "translit": "da",
+      "word": "ಡಮರು",
+      "meaning": "Small drum",
+      "icon": "🪘"
+    },
+    {
+      "char": "ಢ",
+      "translit": "dha",
+      "word": "ಢಕ್ಕೆ",
+      "meaning": "Large drum",
+      "icon": "🥁"
+    },
+    {
+      "char": "ಣ",
+      "translit": "na",
+      "word": "ಬಾಣ",
+      "meaning": "Arrow",
+      "icon": "🏹"
+    },
+    {
+      "char": "ತ",
+      "translit": "tha",
+      "word": "ತರಕಾರಿ",
+      "meaning": "Vegetables",
+      "icon": "🥕"
+    },
+    {
+      "char": "ಥ",
+      "translit": "thha",
+      "word": "ರಥ",
+      "meaning": "Chariot",
+      "icon": "🎠"
+    },
+    {
+      "char": "ದ",
+      "translit": "da",
+      "word": "ದನ",
+      "meaning": "Cow",
+      "icon": "🐄"
+    },
+    {
+      "char": "ಧ",
+      "translit": "dha",
+      "word": "ಧನುಸ್ಸು",
+      "meaning": "Bow",
+      "icon": "🏹"
+    },
+    {
+      "char": "ನ",
+      "translit": "na",
+      "word": "ನವಿಲು",
+      "meaning": "Peacock",
+      "icon": "🦚"
+    },
+    {
+      "char": "ಪ",
+      "translit": "pa",
+      "word": "ಪತಂಗ",
+      "meaning": "Kite / Moth",
+      "icon": "🪁"
+    },
+    {
+      "char": "ಫ",
+      "translit": "pha",
+      "word": "ಫಲ",
+      "meaning": "Fruit",
+      "icon": "🍎"
+    },
+    {
+      "char": "ಬ",
+      "translit": "ba",
+      "word": "ಬಾಳೆ",
+      "meaning": "Banana",
+      "icon": "🍌"
+    },
+    {
+      "char": "ಭ",
+      "translit": "bha",
+      "word": "ಭಾರತ",
+      "meaning": "India",
+      "icon": "🇮🇳"
+    },
+    {
+      "char": "ಮ",
+      "translit": "ma",
+      "word": "ಮನೆ",
+      "meaning": "Home",
+      "icon": "🏡"
+    },
+    {
+      "char": "ಯ",
+      "translit": "ya",
+      "word": "ಯಾನ",
+      "meaning": "Journey / Voyage",
+      "icon": "🚀"
+    },
+    {
+      "char": "ರ",
+      "translit": "ra",
+      "word": "ರಥ",
+      "meaning": "Chariot",
+      "icon": "🎠"
+    },
+    {
+      "char": "ಲ",
+      "translit": "la",
+      "word": "ಲತೆ",
+      "meaning": "Creeping vine",
+      "icon": "🌿"
+    },
+    {
+      "char": "ವ",
+      "translit": "va",
+      "word": "ವನ",
+      "meaning": "Forest / Garden",
+      "icon": "🌲"
+    },
+    {
+      "char": "ಶ",
+      "translit": "sha",
+      "word": "ಶಂಖ",
+      "meaning": "Conch shell",
+      "icon": "🐚"
+    },
+    {
+      "char": "ಷ",
+      "translit": "shha",
+      "word": "ಷಣ್ಮುಖ",
+      "meaning": "Six-faced",
+      "icon": "⭐"
+    },
+    {
+      "char": "ಸ",
+      "translit": "sa",
+      "word": "ಸೂರ್ಯ",
+      "meaning": "Sun",
+      "icon": "☀️"
+    },
+    {
+      "char": "ಹ",
+      "translit": "ha",
+      "word": "ಹಲಸು",
+      "meaning": "Jackfruit",
+      "icon": "🍈"
+    },
+    {
+      "char": "ಳ",
+      "translit": "la",
+      "word": "ಕೊಳ",
+      "meaning": "Pond",
+      "icon": "🏞️"
+    }
+  ],
+  "kagunita": {
+    "consonant": "ಕ",
+    "combinations": [
+      {
+        "char": "ಕ",
+        "matra": "",
+        "vowel": "ಅ",
+        "sound": "ka"
+      },
+      {
+        "char": "ಕಾ",
+        "matra": "ಾ",
+        "vowel": "ಆ",
+        "sound": "kaa"
+      },
+      {
+        "char": "ಕಿ",
+        "matra": "ಿ",
+        "vowel": "ಇ",
+        "sound": "ki"
+      },
+      {
+        "char": "ಕೀ",
+        "matra": "ೀ",
+        "vowel": "ಈ",
+        "sound": "kee"
+      },
+      {
+        "char": "ಕು",
+        "matra": "ು",
+        "vowel": "ಉ",
+        "sound": "ku"
+      },
+      {
+        "char": "ಕೂ",
+        "matra": "ೂ",
+        "vowel": "ಊ",
+        "sound": "koo"
+      },
+      {
+        "char": "ಕೃ",
+        "matra": "ೃ",
+        "vowel": "ಋ",
+        "sound": "kru"
+      },
+      {
+        "char": "ಕೆ",
+        "matra": "ೆ",
+        "vowel": "ಎ",
+        "sound": "ke"
+      },
+      {
+        "char": "ಕೇ",
+        "matra": "ೇ",
+        "vowel": "ಏ",
+        "sound": "kae"
+      },
+      {
+        "char": "ಕೈ",
+        "matra": "ೈ",
+        "vowel": "ಐ",
+        "sound": "kai"
+      },
+      {
+        "char": "ಕೊ",
+        "matra": "ೊ",
+        "vowel": "ಒ",
+        "sound": "ko"
+      },
+      {
+        "char": "ಕೋ",
+        "matra": "ೋ",
+        "vowel": "ಓ",
+        "sound": "koo"
+      },
+      {
+        "char": "ಕೌ",
+        "matra": "ೌ",
+        "vowel": "ಔ",
+        "sound": "kau"
+      },
+      {
+        "char": "ಕಂ",
+        "matra": "ಂ",
+        "vowel": "ಅಂ",
+        "sound": "kam"
+      },
+      {
+        "char": "ಕಃ",
+        "matra": "ಃ",
+        "vowel": "ಅಃ",
+        "sound": "kaha"
+      }
+    ]
+  }
+}

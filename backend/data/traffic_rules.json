@@ -1,0 +1,140 @@
+{
+  "title": "Traffic Rules & Road Safety",
+  "modules": [
+    {
+      "id": "lights_signs",
+      "title": "Traffic Lights & Road Signs",
+      "icon": "🚦",
+      "items": [
+        {
+          "rule": "Red Light",
+          "meaning": "Stop completely before the stop line.",
+          "icon": "🔴"
+        },
+        {
+          "rule": "Yellow Light",
+          "meaning": "Prepare to stop safely. Do not rush through.",
+          "icon": "🟡"
+        },
+        {
+          "rule": "Green Light",
+          "meaning": "Go only when the road is clear and it is safe.",
+          "icon": "🟢"
+        },
+        {
+          "rule": "Stop Sign",
+          "meaning": "Come to a complete stop and look both ways.",
+          "icon": "🛑"
+        },
+        {
+          "rule": "Pedestrian Crossing Sign",
+          "meaning": "Watch for people crossing the street.",
+          "icon": "🚸"
+        }
+      ]
+    },
+    {
+      "id": "crossing",
+      "title": "Crossing the Street Safely",
+      "icon": "🚶‍♂️",
+      "items": [
+        {
+          "rule": "Zebra Crossing",
+          "meaning": "Always use marked zebra stripes to cross.",
+          "icon": "🦓"
+        },
+        {
+          "rule": "Look Left, Right, Left",
+          "meaning": "Check traffic carefully in both directions before stepping onto the road.",
+          "icon": "👀"
+        },
+        {
+          "rule": "Walk, Never Run",
+          "meaning": "Walk calmly across the road so you do not trip or fall.",
+          "icon": "🚶"
+        },
+        {
+          "rule": "Hold an Adult's Hand",
+          "meaning": "Children should hold a parent or teacher's hand near busy traffic.",
+          "icon": "🤝"
+        }
+      ]
+    },
+    {
+      "id": "footpath",
+      "title": "Walking Safely on Roads",
+      "icon": "🛣️",
+      "items": [
+        {
+          "rule": "Use the Footpath",
+          "meaning": "Always stay on sidewalks and pedestrian footpaths away from moving cars.",
+          "icon": "🚶‍♀️"
+        },
+        {
+          "rule": "Face Traffic if No Sidewalk",
+          "meaning": "Walk facing oncoming cars so you can see them clearly.",
+          "icon": "👀"
+        },
+        {
+          "rule": "Wear Bright Colors at Dusk",
+          "meaning": "Bright and reflective clothes make you visible to drivers at night.",
+          "icon": "🦺"
+        },
+        {
+          "rule": "Never Play on Streets",
+          "meaning": "Keep ball games and running inside playgrounds or parks.",
+          "icon": "⚽"
+        }
+      ]
+    },
+    {
+      "id": "car_safety",
+      "title": "Car & Bus Passenger Safety",
+      "icon": "🚗",
+      "items": [
+        {
+          "rule": "Seat Belt Click",
+          "meaning": "Always click your seat belt securely before the car moves.",
+          "icon": "💺"
+        },
+        {
+          "rule": "Hands and Head Inside",
+          "meaning": "Never put hands, arms, or head outside moving windows.",
+          "icon": "🛡️"
+        },
+        {
+          "rule": "Kerb Side Exit",
+          "meaning": "Always step out on the footpath side of the car, away from road traffic.",
+          "icon": "🚪"
+        },
+        {
+          "rule": "Keep the Road Clean",
+          "meaning": "Never throw rubbish out of car or bus windows.",
+          "icon": "🗑️"
+        }
+      ]
+    },
+    {
+      "id": "bicycle_emergency",
+      "title": "Bicycles & Emergency Sirens",
+      "icon": "🚲",
+      "items": [
+        {
+          "rule": "Wear a Bicycle Helmet",
+          "meaning": "Protect your head with an approved, snug-fitting helmet.",
+          "icon": "⛑️"
+        },
+        {
+          "rule": "Bell and Reflectors",
+          "meaning": "Keep your bicycle bell working and reflectors clean.",
+          "icon": "🔔"
+        },
+        {
+          "rule": "Ambulance & Fire Siren",
+          "meaning": "Emergency vehicles must pass quickly. Pull to the side and wait safely.",
+          "icon": "🚑"
+        }
+      ]
+    }
+  ]
+}

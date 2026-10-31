@@ -1,0 +1,138 @@
+[
+  {
+    "id": "timmy_red_ball",
+    "title": "Timmy's Red Ball",
+    "icon": "🔴",
+    "text": "Timmy has a bright red ball. He rolls the red ball on the soft green grass. The ball bounces high near a cozy bench. Timmy laughs with joy and catches his red ball.",
+    "sentences": [
+      "Timmy has a bright red ball.",
+      "He rolls the red ball on the soft green grass.",
+      "The ball bounces high near a cozy bench.",
+      "Timmy laughs with joy and catches his red ball."
+    ],
+    "questions": [
+      {
+        "question": "What color is Timmy's ball?",
+        "options": [
+          "Red",
+          "Blue",
+          "Yellow"
+        ],
+        "correct": "Red",
+        "explanation": "Timmy has a bright red ball that rolls on the grass."
+      },
+      {
+        "question": "Where does the ball roll?",
+        "options": [
+          "On the green grass",
+          "In a swimming pool",
+          "On the roof"
+        ],
+        "correct": "On the green grass",
+        "explanation": "Timmy rolls the ball on the soft green grass."
+      }
+    ]
+  },
+  {
+    "id": "little_cat",
+    "title": "The Little Cat",
+    "icon": "🐱",
+    "text": "A small fluffy cat sits on a soft blue mat. The cat drinks sweet warm milk from a white saucer. The cat purrs softly and closes its eyes for a happy afternoon nap.",
+    "sentences": [
+      "A small fluffy cat sits on a soft blue mat.",
+      "The cat drinks sweet warm milk from a white saucer.",
+      "The cat purrs softly and closes its eyes for a happy afternoon nap."
+    ],
+    "questions": [
+      {
+        "question": "What is the cat sitting on?",
+        "options": [
+          "A soft blue mat",
+          "A wooden chair",
+          "A big box"
+        ],
+        "correct": "A soft blue mat",
+        "explanation": "The small fluffy cat sits on a soft blue mat."
+      },
+      {
+        "question": "What sound does the cat make when it is happy?",
+        "options": [
+          "It purrs softly",
+          "It roars loud",
+          "It quacks"
+        ],
+        "correct": "It purrs softly",
+        "explanation": "Cats purr gently when they feel content and safe."
+      }
+    ]
+  },
+  {
+    "id": "yellow_star",
+    "title": "The Bright Yellow Star",
+    "icon": "⭐",
+    "text": "High in the midnight sky, a little yellow star twinkles. It shines like a tiny sparkling diamond. The star smiles down on sleeping children, whispering sweet dreams.",
+    "sentences": [
+      "High in the midnight sky, a little yellow star twinkles.",
+      "It shines like a tiny sparkling diamond.",
+      "The star smiles down on sleeping children, whispering sweet dreams."
+    ],
+    "questions": [
+      {
+        "question": "What shines high in the midnight sky?",
+        "options": [
+          "A little yellow star",
+          "A red kite",
+          "A green leaf"
+        ],
+        "correct": "A little yellow star",
+        "explanation": "The bright yellow star twinkles in the sky."
+      }
+    ]
+  },
+  {
+    "id": "busy_bee",
+    "title": "The Busy Bee",
+    "icon": "🐝",
+    "text": "A cheerful bee flies from flower to flower. It collects sweet nectar to make golden honey. Buzz buzz sings the busy bee as the sunny garden blooms.",
+    "sentences": [
+      "A cheerful bee flies from flower to flower.",
+      "It collects sweet nectar to make golden honey.",
+      "Buzz buzz sings the busy bee as the sunny garden blooms."
+    ],
+    "questions": [
+      {
+        "question": "What does the busy bee make from nectar?",
+        "options": [
+          "Golden honey",
+          "Cold ice cream",
+          "Warm soup"
+        ],
+        "correct": "Golden honey",
+        "explanation": "Bees make delicious sweet honey in their hives."
+      }
+    ]
+  },
+  {
+    "id": "five_sweet_apples",
+    "title": "Five Sweet Apples",
+    "icon": "🍎",
+    "text": "Five sweet red apples hang upon a leafy tree. The wind blows gently and one apple falls down. Now four sweet apples remain on the tree, waiting for friends to share.",
+    "sentences": [
+      "Five sweet red apples hang upon a leafy tree.",
+      "The wind blows gently and one apple falls down.",
+      "Now four sweet apples remain on the tree, waiting for friends to share."
+    ],
+    "questions": [
+      {
+        "question": "How many apples were on the tree at first?",
+        "options": [
+          "Five (5)",
+          "Two (2)",
+          "Ten (10)"
+        ],
+        "correct": "Five (5)",
+        "explanation": "There were five sweet red apples on the tree."
+      }
+    ]
+  }
+]

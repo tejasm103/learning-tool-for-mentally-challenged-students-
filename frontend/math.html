@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mathematics & Numbers — MindVerse Learning Lab</title>
+  
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+  <link rel="stylesheet" href="css/games.css">
+
+  <script src="js/api.js"></script>
+  <script src="js/speech.js"></script>
+  <script src="js/accessibility.js"></script>
+  <script src="js/games.js"></script>
+  <script src="js/mindbot.js"></script>
+</head>
+<body>
+  <a href="#math-main" class="skip-link">Skip to math lesson</a>
+
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🔢</div>
+        <div class="brand-text">MindVerse <span>Mathematics Lab</span></div>
+      </a>
+      <div class="header-actions">
+        <a href="classroom_3d.html" class="btn btn-secondary">🏫 3D Classroom</a>
+        <a href="multiplication.html" class="btn btn-accent">✖️ Tables 1-20</a>
+        <button class="btn-icon" id="open-a11y-btn" title="Accessibility settings">♿</button>
+        <a href="student_dashboard.html" class="btn btn-primary">My Dashboard</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="math-main" class="content-container">
+    <div style="margin-bottom:2rem;">
+      <div class="badge badge-cyan" style="margin-bottom:0.5rem;">Visual Mathematics & Numbers</div>
+      <h1 style="font-size:2.2rem; font-weight:800;">Numbers, Counting & Shapes</h1>
+      <p style="color:var(--text-muted);">Explore numbers 0 to 100 with visual objects, addition practice, and geometric shapes.</p>
+    </div>
+
+    <!-- Visual Counting Interactive Stage -->
+    <div class="card" style="padding:2.5rem; margin-bottom:2.5rem; text-align:center;">
+      <h2 style="color:var(--primary); font-size:1.6rem; margin-bottom:0.5rem;">Interactive Object Counting</h2>
+      <p style="color:var(--text-muted); margin-bottom:1.5rem;">Click the items to count them together!</p>
+
+      <div id="counting-items-box" style="display:flex; justify-content:center; gap:1.2rem; flex-wrap:wrap; font-size:3.5rem; min-height:80px; margin-bottom:1.5rem;">
+        <!-- Visual Items -->
+      </div>
+
+      <div style="display:flex; justify-content:center; align-items:center; gap:1.5rem;">
+        <button class="btn btn-secondary btn-icon" id="count-minus-btn" style="width:48px; height:48px; font-size:1.5rem;">−</button>
+        <div style="font-size:3rem; font-weight:900; color:#fff;" id="count-number-display">3</div>
+        <button class="btn btn-secondary btn-icon" id="count-plus-btn" style="width:48px; height:48px; font-size:1.5rem;">+</button>
+      </div>
+
+      <button class="btn btn-primary btn-lg" id="count-audio-btn" style="margin-top:1.5rem;">
+        <span>🔊</span> Hear Number Pronunciation
+      </button>
+    </div>
+
+    <!-- Addition & Place Value Grid -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-bottom:2.5rem;">
+      <!-- Addition with Visual Objects -->
+      <div class="card">
+        <h3 class="card-title"><span>➕</span> Visual Addition</h3>
+        <p class="card-desc">See how groups combine to make a new total.</p>
+        
+        <div style="background:rgba(255,255,255,0.04); border-radius:var(--radius-lg); padding:1.5rem; text-align:center; margin-bottom:1rem;">
+          <div style="font-size:2.4rem; margin-bottom:0.5rem;">🍎 🍎 + 🍎 🍎 🍎 = 🍎 🍎 🍎 🍎 🍎</div>
+          <div style="font-size:1.6rem; font-weight:800; color:var(--primary);">2 + 3 = 5</div>
+        </div>
+
+        <button class="btn btn-secondary" style="width:100%;" onclick="if(typeof MindVerseAudio!=='undefined') MindVerseAudio.speak('2 apples plus 3 apples equals 5 apples.');">
+          <span>🔊</span> Read Addition Problem
+        </button>
+      </div>
+
+      <!-- Shapes Exploration -->
+      <div class="card">
+        <h3 class="card-title"><span>🔺</span> Geometric Shapes</h3>
+        <p class="card-desc">Click any shape to explore its properties.</p>
+        
+        <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:0.75rem;" id="shapes-grid">
+          <!-- Rendered via JS -->
+        </div>
+
+        <div id="shape-info-box" style="margin-top:1rem; padding:0.8rem; background:rgba(0,240,255,0.1); border-radius:var(--radius-md); font-size:0.95rem; color:#fff;">
+          Click a shape above to learn its sides and corners.
+        </div>
+      </div>
+    </div>
+
+    <!-- Numbers 1 to 20 Grid -->
+    <div class="card">
+      <h3 class="card-title"><span>🔢</span> Number Recognition Track (1 - 20)</h3>
+      <p class="card-desc">Select any number to practice recognition and sound.</p>
+      
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(70px, 1fr)); gap:0.75rem;" id="number-grid">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </main>
+
+  <script>
+    let countVal = 3;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const mathData = await MindVerseAPI.getMathematics();
+        renderCounting(countVal);
+        renderShapes(mathData.shapes || []);
+        renderNumberGrid();
+
+        document.getElementById('count-plus-btn').onclick = () => {
+          if (countVal < 10) {
+            countVal++;
+            renderCounting(countVal);
+          }
+        };
+
+        document.getElementById('count-minus-btn').onclick = () => {
+          if (countVal > 1) {
+            countVal--;
+            renderCounting(countVal);
+          }
+        };
+
+        document.getElementById('count-audio-btn').onclick = () => {
+          if (typeof MindVerseAudio !== 'undefined') {
+            MindVerseAudio.speak(`Number ${countVal}. We see ${countVal} shiny stars.`);
+          }
+        };
+      } catch (e) {
+        console.error(e);
+      }
+    });
+
+    function renderCounting(val) {
+      document.getElementById('count-number-display').textContent = val;
+      const box = document.getElementById('counting-items-box');
+      box.innerHTML = '';
+      for (let i = 0; i < val; i++) {
+        const item = document.createElement('span');
+        item.textContent = '⭐';
+        item.style.cursor = 'pointer';
+        item.onclick = () => {
+          if (typeof MindVerseAudio !== 'undefined') MindVerseAudio.playStarSound();
+        };
+        box.appendChild(item);
+      }
+      if (typeof MindVerseAudio !== 'undefined') {
+        MindVerseAudio.speak(String(val));
+      }
+    }
+
+    function renderShapes(shapes) {
+      const grid = document.getElementById('shapes-grid');
+      grid.innerHTML = '';
+      shapes.forEach(s => {
+        const btn = document.createElement('button');
+        btn.className = 'btn btn-secondary';
+        btn.style.cssText = 'flex-direction:column; padding:0.8rem 0.4rem; height:80px;';
+        btn.innerHTML = `<span style="font-size:1.8rem;">${s.icon}</span><span style="font-size:0.75rem;">${s.name}</span>`;
+        btn.onclick = () => {
+          document.getElementById('shape-info-box').textContent = `${s.name}: ${s.desc} (${s.sides} sides)`;
+          if (typeof MindVerseAudio !== 'undefined') {
+            MindVerseAudio.speak(`${s.name}. ${s.desc}`);
+          }
+        };
+        grid.appendChild(btn);
+      });
+    }
+
+    function renderNumberGrid() {
+      const grid = document.getElementById('number-grid');
+      grid.innerHTML = '';
+      for (let n = 1; n <= 20; n++) {
+        const btn = document.createElement('button');
+        btn.className = 'btn btn-secondary';
+        btn.style.cssText = 'font-size:1.25rem; font-weight:800; padding:1rem 0;';
+        btn.textContent = n;
+        btn.onclick = () => {
+          if (typeof MindVerseAudio !== 'undefined') {
+            MindVerseAudio.playClickSound();
+            MindVerseAudio.speak(`Number ${n}`);
+          }
+        };
+        grid.appendChild(btn);
+      }
+    }
+  </script>
+</body>
+</html>

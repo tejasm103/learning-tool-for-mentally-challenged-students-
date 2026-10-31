@@ -1,0 +1,94 @@
+{
+  "title": "Facial Expressions & Emotion Learning",
+  "core_message": "Expressions can give us clues, but asking kindly is the best way to understand how someone feels.",
+  "items": [
+    {
+      "emotion": "Happiness",
+      "icon": "😊",
+      "color": "#10b981",
+      "clues": "Smiling mouth, lifted cheeks, warm sparkling eyes.",
+      "example": "When you finish a fun puzzle or share a snack with a friend.",
+      "kind_response": "Smile back or say: I am glad you are happy!"
+    },
+    {
+      "emotion": "Sadness",
+      "icon": "😢",
+      "color": "#3b82f6",
+      "clues": "Downturned lips, looking down, gentle tears.",
+      "example": "When a favorite toy gets misplaced or a friend moves away.",
+      "kind_response": "Offer a gentle word: Would you like a hug or a quiet moment?"
+    },
+    {
+      "emotion": "Anger",
+      "icon": "😠",
+      "color": "#ef4444",
+      "clues": "Tight eyebrows pulled down, clenched jaw, firm lips.",
+      "example": "When something feels unfair or someone interrupts unexpectedly.",
+      "kind_response": "Give calm space: Take deep slow breaths together."
+    },
+    {
+      "emotion": "Fear",
+      "icon": "😨",
+      "color": "#8b5cf6",
+      "clues": "Wide open eyes, raised eyebrows, open mouth.",
+      "example": "When sudden loud thunder booms outside or in the dark.",
+      "kind_response": "Reassure them: You are safe here with me."
+    },
+    {
+      "emotion": "Surprise",
+      "icon": "😲",
+      "color": "#f59e0b",
+      "clues": "Round eyes, arched high eyebrows, round open mouth.",
+      "example": "When you receive an unexpected birthday gift or see a colorful rainbow.",
+      "kind_response": "Share the wonder: Wow, that was unexpected!"
+    },
+    {
+      "emotion": "Confusion",
+      "icon": "🤔",
+      "color": "#6366f1",
+      "clues": "Tilted head, one raised eyebrow, slight squint.",
+      "example": "When instructions are new or a puzzle seems tricky.",
+      "kind_response": "Encourage gently: Let us look at this step together."
+    },
+    {
+      "emotion": "Excitement",
+      "icon": "🤩",
+      "color": "#ec4899",
+      "clues": "Wide open smile, shining eyes, enthusiastic posture.",
+      "example": "When getting ready to visit the science park or play a favorite game.",
+      "kind_response": "Celebrate together: That is so exciting!"
+    },
+    {
+      "emotion": "Thoughtfulness",
+      "icon": "🧐",
+      "color": "#14b8a6",
+      "clues": "Calm focused gaze, hand gently near chin, resting expression.",
+      "example": "When planning a chess move or deciding which book to read.",
+      "kind_response": "Wait patiently: Take all the time you need to think."
+    },
+    {
+      "emotion": "Shyness",
+      "icon": "🥺",
+      "color": "#a855f7",
+      "clues": "Looking away softly, gentle small smile, tucked shoulders.",
+      "example": "When meeting a new classmate for the very first time.",
+      "kind_response": "Greet warmly: Hello! It is very nice to meet you."
+    },
+    {
+      "emotion": "Playfulness",
+      "icon": "😜",
+      "color": "#f97316",
+      "clues": "Winking eye, cheerful grin, energetic tilt.",
+      "example": "When playing tag or telling a silly riddle.",
+      "kind_response": "Laugh and enjoy: You are funny!"
+    },
+    {
+      "emotion": "Disgust",
+      "icon": "😣",
+      "color": "#84cc16",
+      "clues": "Wrinkled nose, curled upper lip, turning away.",
+      "example": "When smelling spoiled food or touching sticky mud.",
+      "kind_response": "Wash hands and find clean fresh air."
+    }
+  ]
+}

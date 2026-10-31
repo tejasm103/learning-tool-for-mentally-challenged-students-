@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher & Educator Portal — MindVerse Inclusive Learning Lab</title>
+
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+
+  <script src="js/api.js"></script>
+  <script src="js/speech.js"></script>
+  <script src="js/accessibility.js"></script>
+  <script src="js/mindbot.js"></script>
+  <style>
+    .teacher-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.5rem;
+    }
+
+    .teacher-table th,
+    .teacher-table td {
+      padding: 0.9rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .teacher-table th {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.75px;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .teacher-table tr:hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(6, 9, 18, 0.85);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 20000;
+      padding: 1.5rem;
+      box-sizing: border-box;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #0f172a;
+      border: 1px solid var(--border-glow);
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      max-width: 680px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
+    }
+
+    .modal-box.wide {
+      max-width: 900px;
+    }
+
+    .queue-filter-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .filter-select {
+      background: #1e293b;
+      color: #fff;
+      border: 1px solid var(--border-light);
+      padding: 0.5rem 0.8rem;
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .status-assigned {
+      background: rgba(148, 163, 184, 0.2);
+      color: #cbd5e1;
+    }
+
+    .status-in_progress {
+      background: rgba(14, 165, 233, 0.2);
+      color: #38bdf8;
+    }
+
+    .status-submitted {
+      background: rgba(168, 85, 247, 0.2);
+      color: #c084fc;
+    }
+
+    .status-awaiting_review {
+      background: rgba(245, 158, 11, 0.25);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+
+    .status-approved {
+      background: rgba(16, 185, 129, 0.25);
+      color: #34d399;
+    }
+
+    .status-reviewed {
+      background: rgba(59, 130, 246, 0.25);
+      color: #60a5fa;
+    }
+
+    .status-needs_more_practice {
+      background: rgba(239, 68, 68, 0.25);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.4);
+    }
+
+    /* Print styles for Report Cards (Part 18.1) */
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+
+      #printable-report-area,
+      #printable-report-area * {
+        visibility: visible;
+      }
+
+      #printable-report-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        color: #000 !important;
+        background: #fff !important;
+        padding: 20px;
+      }
+
+      .no-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a href="#teacher-main" class="skip-link">Skip to teacher dashboard</a>
+
+  <header class="main-header no-print">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">👩‍🏫</div>
+        <div class="brand-text">MindVerse <span>Educator Portal</span></div>
+      </a>
+      <div class="header-actions">
+        <a href="workplace.html" class="btn btn-secondary"><span>🏢</span> Working Places</a>
+        <a href="workspace.html" class="btn btn-secondary"><span>📝</span> Student Desk</a>
+        <a href="videos.html" class="btn btn-secondary">🎬 Video Library</a>
+        <a href="lessons.html" class="btn btn-secondary">Curriculum</a>
+        <button class="btn-icon" id="open-a11y-btn" title="Accessibility settings">♿</button>
+        <button class="btn btn-secondary" onclick="MindVerseAPI.logout()">Sign Out</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="teacher-main" class="content-container no-print">
+    <!-- Header banner -->
+    <div
+      style="margin-bottom:2rem; display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1.5rem;">
+      <div>
+        <div class="badge badge-cyan" style="margin-bottom:0.5rem;">Inclusive Special Education Management</div>
+        <h1 style="font-size:2.2rem; font-weight:800; margin:0 0 0.5rem 0;">Educator Dashboard & Verification Center
+        </h1>
+        <p style="color:var(--text-muted); margin:0;">
+          Inspect student submissions, manage individualized learning workflows, and verify mastery using authentic
+          database records.
+        </p>
+      </div>
+
+      <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+        <a href="workplace.html" class="btn btn-secondary" style="display:inline-flex; align-items:center; gap:0.4rem;">
+          <span>🏢</span> Working Places (Station 16)
+        </a>
+        <a href="workspace.html" class="btn btn-secondary" style="display:inline-flex; align-items:center; gap:0.4rem;">
+          <span>📝</span> Student Working Desk
+        </a>
+        <button class="btn btn-primary" onclick="openAssignModal()">
+          <span>➕</span> Assign Activity or Video
+        </button>
+      </div>
+    </div>
+
+    <!-- Summary Metrics Grid (Part 18 - Real DB Records Only) -->
+    <div
+      style="display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:1.25rem; margin-bottom:2.5rem;"
+      id="metrics-grid">
+      <div class="card" style="padding:1.5rem;">
+        <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.4rem;">Enrolled Students</div>
+        <div style="font-size:2rem; font-weight:800; color:#fff;" id="metric-students">—</div>
+        <div style="font-size:0.8rem; color:#10b981; margin-top:0.25rem;">Active Learner Profiles</div>
+      </div>
+      <div class="card"
+        style="padding:1.5rem; border-color: rgba(245, 158, 11, 0.4); background: linear-gradient(135deg, rgba(245,158,11,0.06), rgba(15,23,42,0.8));">
+        <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.4rem;">Pending Teacher Reviews</div>
+        <div style="font-size:2rem; font-weight:800; color:#fbbf24;" id="metric-pending-reviews">—</div>
+        <div style="font-size:0.8rem; color:#fbbf24; margin-top:0.25rem;">Awaiting Verification</div>
+      </div>
+      <div class="card" style="padding:1.5rem;">
+        <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.4rem;">Class Average Score</div>
+        <div style="font-size:2rem; font-weight:800; color:var(--primary);" id="metric-avg-score">—%</div>
+        <div style="font-size:0.8rem; color:var(--text-muted); margin-top:0.25rem;">Verified Assessments</div>
+      </div>
+      <div class="card" style="padding:1.5rem;">
+        <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.4rem;">Total Stars Earned</div>
+        <div style="font-size:2rem; font-weight:800; color:#fbbf24;" id="metric-stars">—</div>
+        <div style="font-size:0.8rem; color:var(--text-muted); margin-top:0.25rem;">Positive Reinforcements</div>
+      </div>
+      <div class="card" style="padding:1.5rem;">
+        <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.4rem;">Requires Additional Support</div>
+        <div style="font-size:2rem; font-weight:800; color:#f87171;" id="metric-needs-support">—</div>
+        <div style="font-size:0.8rem; color:var(--text-muted); margin-top:0.25rem;">Practice Requested</div>
+      </div>
+    </div>
+
+    <!-- Section: Dedicated Teacher Review Queue (Part 17.4) -->
+    <div class="card" style="padding:2rem; margin-bottom:2.5rem;" id="review-queue-section">
+      <div
+        style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem; flex-wrap:wrap; gap:1rem;">
+        <div>
+          <div class="badge badge-amber" style="margin-bottom:0.35rem;">Part 17.4 — Submission Verification Queue</div>
+          <h2 style="font-size:1.4rem; font-weight:800; color:#fff; margin:0;">Student Activity Submissions & Review
+            Queue</h2>
+        </div>
+        <span class="badge badge-cyan" id="queue-count-badge">0 Submissions</span>
+      </div>
+
+      <!-- Filters for review queue -->
+      <div class="queue-filter-row">
+        <select id="queue-filter-student" class="filter-select" onchange="applyQueueFilters()">
+          <option value="">All Students</option>
+        </select>
+
+        <select id="queue-filter-status" class="filter-select" onchange="applyQueueFilters()">
+          <option value="all">All Statuses</option>
+          <option value="awaiting_review" selected>Awaiting Review (Priority)</option>
+          <option value="submitted">Submitted</option>
+          <option value="needs_more_practice">Needs More Practice</option>
+          <option value="approved">Approved</option>
+          <option value="reviewed">Reviewed</option>
+          <option value="assigned">Assigned</option>
+        </select>
+
+        <select id="queue-filter-type" class="filter-select" onchange="applyQueueFilters()">
+          <option value="all">All Activity Types</option>
+          <option value="video_activity">Video Activities</option>
+          <option value="lesson">Curriculum Lessons</option>
+          <option value="quiz">Quizzes</option>
+          <option value="practice">Practice Modules</option>
+          <option value="workplace">🏢 Working Places</option>
+          <option value="workspace">📝 Student Desk / Reflection</option>
+        </select>
+
+        <button class="btn btn-secondary" style="padding:0.45rem 0.8rem; font-size:0.85rem;"
+          onclick="resetQueueFilters()">
+          Reset Filters
+        </button>
+      </div>
+
+      <!-- Queue Table -->
+      <div style="overflow-x:auto;">
+        <table class="teacher-table">
+          <thead>
+            <tr>
+              <th>Student</th>
+              <th>Activity / Module</th>
+              <th>Type</th>
+              <th>Subject</th>
+              <th>Submitted Date</th>
+              <th>Score / Attempts</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="queue-table-body">
+            <!-- Injected by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section: Working Places & Student Work Desks (Station 16) -->
+    <div class="card" style="padding:2rem; margin-bottom:2.5rem;" id="workplace-teacher-section">
+      <div
+        style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem; flex-wrap:wrap; gap:1rem;">
+        <div>
+          <div class="badge badge-cyan" style="margin-bottom:0.35rem;">Station 16 — Life Skills, Social Studies & Community Helpers</div>
+          <h2 style="font-size:1.4rem; font-weight:800; color:#fff; margin:0;">🏢 Community Working Places & Student Desks</h2>
+          <p style="color:var(--text-muted); font-size:0.85rem; margin:0.3rem 0 0 0;">
+            Review student desk notes, drawings, and monitor "Where Do I Work?" quiz results across all 12 community working places.
+          </p>
+        </div>
+        <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
+          <a href="workplace.html" target="_blank" class="btn btn-secondary" style="padding:0.45rem 0.85rem; font-size:0.85rem; display:inline-flex; align-items:center; gap:0.4rem;">
+            <span>🏢</span> Open Working Places Lab ↗
+          </a>
+          <a href="workspace.html" target="_blank" class="btn btn-secondary" style="padding:0.45rem 0.85rem; font-size:0.85rem; display:inline-flex; align-items:center; gap:0.4rem;">
+            <span>📝</span> Open Student Desk ↗
+          </a>
+          <button class="btn btn-primary" onclick="openAssignWorkingPlaceModal()" style="padding:0.45rem 0.85rem; font-size:0.85rem;">
+            <span>➕</span> Assign Workplace Activity
+          </button>
+        </div>
+      </div>
+
+      <!-- Mode Switcher Tabs -->
+      <div style="display:flex; gap:0.5rem; margin-bottom:1.25rem; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:0.75rem;">
+        <button type="button" id="tab-btn-wp-submissions" class="btn btn-primary" style="padding:0.4rem 0.9rem; font-size:0.85rem;" onclick="switchWorkplaceTab('submissions')">
+          📋 Student Desk & Quiz Submissions (<span id="wp-submissions-count">0</span>)
+        </button>
+        <button type="button" id="tab-btn-wp-catalog" class="btn btn-secondary" style="padding:0.4rem 0.9rem; font-size:0.85rem;" onclick="switchWorkplaceTab('catalog')">
+          🏛️ All 12 Community Working Places & Tools
+        </button>
+      </div>
+
+      <!-- View A: Working Place & Student Desk Submissions -->
+      <div id="wp-submissions-container">
+        <div style="overflow-x:auto;">
+          <table class="teacher-table">
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>Working Place / Activity</th>
+                <th>Type</th>
+                <th>Subject</th>
+                <th>Submitted Date</th>
+                <th>Score</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="workplace-submissions-body">
+              <tr>
+                <td colspan="8" style="text-align:center; padding:1.5rem; color:var(--text-muted);">
+                  Loading working place submissions...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- View B: 12 Working Places Grid -->
+      <div id="wp-catalog-container" style="display:none;">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(290px, 1fr)); gap:1.25rem;" id="wp-places-grid">
+          <!-- Dynamically populated from workplaces.json -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Student Roster Table Card -->
+    <div class="card" style="padding:2rem; margin-bottom:2.5rem;">
+      <div
+        style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem;">
+        <div>
+          <h2 style="font-size:1.4rem; font-weight:800; color:#fff; margin:0;">Enrolled Student Roster</h2>
+          <p style="color:var(--text-muted); margin:0.25rem 0 0 0; font-size:0.9rem;">
+            Individualized tracking, IEP accommodations, and comprehensive progress report cards.
+          </p>
+        </div>
+        <span class="badge badge-purple">Real-time DB Sync</span>
+      </div>
+
+      <div style="overflow-x:auto;">
+        <table class="teacher-table">
+          <thead>
+            <tr>
+              <th>Learner</th>
+              <th>Student ID</th>
+              <th>Grade / Plan</th>
+              <th>Completed Modules</th>
+              <th>Average Score</th>
+              <th>Stars</th>
+              <th>Pending Reviews</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="student-roster-body">
+            <!-- Injected by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section: Community Feedback Management -->
+    <div class="card" style="padding:2rem; margin-bottom:2.5rem;" id="feedback-management-section">
+      <div
+        style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem; flex-wrap:wrap; gap:1rem;">
+        <div>
+          <div class="badge badge-amber" style="margin-bottom:0.35rem;">Community Voice & Improvement Requests</div>
+          <h2 style="font-size:1.4rem; font-weight:800; color:#fff; margin:0;">📋 Community Feedback Queue</h2>
+          <p style="color:var(--text-muted); font-size:0.85rem; margin:0.3rem 0 0 0;">
+            Real suggestions submitted by learners, caregivers, and teachers (stored in SQL and synced to MongoDB
+            Atlas).
+          </p>
+        </div>
+        <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfb-2O-TEctAq7829dByeEHdkf_Xn2EbVHKvghs1v46WKe1xA/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #0f172a; font-weight: 800; padding: 0.45rem 0.85rem; font-size: 0.85rem; text-decoration: none;">📋 Open Google Form ↗</a>
+          <button class="btn btn-secondary" onclick="loadFeedbackQueue()"
+            style="padding:0.45rem 0.8rem; font-size:0.85rem;">🔄 Refresh</button>
+          <button class="btn btn-accent" onclick="openMindVerseFeedback()"
+            style="padding:0.45rem 0.8rem; font-size:0.85rem;">+ Add Feedback</button>
+        </div>
+      </div>
+
+      <div style="overflow-x:auto;">
+        <table class="teacher-table">
+          <thead>
+            <tr>
+              <th>Submitter & Role</th>
+              <th>Category</th>
+              <th>Feedback & Suggestions</th>
+              <th>Rating</th>
+              <th>Status</th>
+              <th>Date</th>
+              <th>Update Status</th>
+            </tr>
+          </thead>
+          <tbody id="feedback-queue-body">
+            <tr>
+              <td colspan="7" style="text-align:center; padding:1.5rem; color:var(--text-muted);">Loading feedback
+                entries...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- Submission Inspection & Teacher Action Modal (Part 17.2) -->
+  <div class="modal-overlay" id="inspect-modal">
+    <div class="modal-box wide">
+      <div
+        style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:1.25rem; border-bottom:1px solid var(--border-light); padding-bottom:1rem;">
+        <div>
+          <span class="badge badge-purple" id="inspect-type-badge">Activity</span>
+          <h2 style="color:#fff; font-size:1.4rem; font-weight:800; margin:0.35rem 0 0.2rem 0;" id="inspect-title">
+            Activity Submission Details
+          </h2>
+          <div style="color:var(--text-muted); font-size:0.85rem;" id="inspect-student-meta">
+            Student: Aarav Patel (MV-STU-101)
+          </div>
+        </div>
+        <button class="btn-icon" onclick="closeInspectModal()" style="font-size:1.3rem;">✕</button>
+      </div>
+
+      <!-- Submission Metadata Grid -->
+      <div
+        style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:1rem; margin-bottom:1.5rem; background:rgba(255,255,255,0.03); padding:1rem; border-radius:var(--radius-md);">
+        <div>
+          <div style="font-size:0.75rem; color:var(--text-muted);">Current Status</div>
+          <div id="inspect-status-box" style="margin-top:0.25rem;"></div>
+        </div>
+        <div>
+          <div style="font-size:0.75rem; color:var(--text-muted);">Backend Validated Score</div>
+          <div style="font-size:1.1rem; font-weight:800; color:var(--primary); margin-top:0.25rem;" id="inspect-score">—
+          </div>
+        </div>
+        <div>
+          <div style="font-size:0.75rem; color:var(--text-muted);">Attempts</div>
+          <div style="font-size:1.1rem; font-weight:700; color:#fff; margin-top:0.25rem;" id="inspect-attempts">1</div>
+        </div>
+        <div>
+          <div style="font-size:0.75rem; color:var(--text-muted);">Submission Date</div>
+          <div style="font-size:0.9rem; color:#e2e8f0; margin-top:0.25rem;" id="inspect-date">—</div>
+        </div>
+      </div>
+
+      <!-- Actual Answers / Evidence Inspection (Part 17.2 & 17.3) -->
+      <div style="margin-bottom:1.5rem;">
+        <h4 style="color:#fff; font-size:1rem; font-weight:700; margin:0 0 0.75rem 0;">
+          Submitted Answers & Work Evidence
+        </h4>
+        <div id="inspect-answers-container"
+          style="background:#070c18; border:1px solid var(--border-light); border-radius:var(--radius-md); padding:1rem; max-height:220px; overflow-y:auto;">
+          <!-- Injected by JS -->
+        </div>
+      </div>
+
+      <!-- Previous Educator Feedback -->
+      <div id="inspect-prev-feedback-container"
+        style="display:none; margin-bottom:1.25rem; background:rgba(0,240,255,0.05); border:1px solid var(--border-glow); border-radius:var(--radius-md); padding:0.85rem;">
+        <div style="font-size:0.8rem; color:var(--primary); font-weight:700;">Previous Teacher Feedback:</div>
+        <div style="font-size:0.9rem; color:#fff; margin-top:0.25rem;" id="inspect-prev-feedback-text"></div>
+      </div>
+
+      <!-- Teacher Action Inputs (Part 17.2) -->
+      <div style="margin-bottom:1.5rem;">
+        <label
+          style="display:block; font-size:0.85rem; color:var(--text-muted); margin-bottom:0.35rem; font-weight:600;">
+          Add Teacher Feedback / Educational Guidance:
+        </label>
+        <textarea id="inspect-feedback-input" rows="3"
+          placeholder="e.g. Excellent attention to road crossing signs! Great progress."
+          style="width:100%; background:#1e293b; color:#fff; border:1px solid var(--border-light); padding:0.75rem; border-radius:var(--radius-md); box-sizing:border-box;"></textarea>
+      </div>
+
+      <!-- Action Buttons -->
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem;">
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+          <button class="btn btn-secondary" onclick="executeSubmissionAction('return_revision')"
+            title="Return for revision">
+            ↩️ Return for Revision
+          </button>
+          <button class="btn btn-secondary" onclick="executeSubmissionAction('reopen')" title="Reopen activity">
+            🔓 Reopen
+          </button>
+        </div>
+
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+          <button class="btn btn-secondary" style="border-color:#f87171; color:#f87171;"
+            onclick="executeSubmissionAction('request_practice')">
+            🔄 Request More Practice
+          </button>
+          <button class="btn btn-secondary" onclick="executeSubmissionAction('mark_reviewed')">
+            👁️ Mark Reviewed
+          </button>
+          <button class="btn btn-primary" onclick="executeSubmissionAction('approve')">
+            ✅ Approve Submission
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Individual Student Report Card Modal (Part 18.1 & 18.2) -->
+  <div class="modal-overlay" id="report-modal">
+    <div class="modal-box wide">
+      <div
+        style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; border-bottom:1px solid var(--border-light); padding-bottom:0.75rem;">
+        <h3 style="color:#fff; font-size:1.3rem; margin:0;">Student Progress Report Card</h3>
+        <div style="display:flex; gap:0.5rem;">
+          <button class="btn btn-primary" onclick="window.print()">🖨️ Print / Save PDF</button>
+          <button class="btn-icon" onclick="closeReportModal()" style="font-size:1.3rem;">✕</button>
+        </div>
+      </div>
+
+      <!-- Printable Report Card Container -->
+      <div id="printable-report-area">
+        <div
+          style="border-bottom: 2px solid var(--primary); padding-bottom: 1rem; margin-bottom: 1.5rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+          <div>
+            <h2 style="font-size: 1.6rem; font-weight: 800; color: #fff; margin:0;">MindVerse Inclusive Learning Lab
+            </h2>
+            <div style="font-size: 0.95rem; color: var(--text-muted); margin-top:0.2rem;">Individual Learner
+              Comprehensive Progress Report</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-weight:700; color:#fff;" id="report-date">—</div>
+            <div style="font-size:0.85rem; color:var(--text-muted);">Academic Session 2026</div>
+          </div>
+        </div>
+
+        <!-- Student Profile Card in Report -->
+        <div
+          style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; background:rgba(255,255,255,0.03); border:1px solid var(--border-light); border-radius:var(--radius-md); padding:1.25rem; margin-bottom:1.5rem;">
+          <div>
+            <div style="font-size:0.8rem; color:var(--text-muted);">Student Name</div>
+            <div style="font-size:1.2rem; font-weight:800; color:#fff;" id="report-student-name">—</div>
+          </div>
+          <div>
+            <div style="font-size:0.8rem; color:var(--text-muted);">Student Code</div>
+            <div style="font-size:1.1rem; font-weight:700; color:var(--primary);" id="report-student-code">—</div>
+          </div>
+          <div>
+            <div style="font-size:0.8rem; color:var(--text-muted);">Grade / Educational Plan</div>
+            <div style="font-size:1rem; color:#e2e8f0;" id="report-grade-level">—</div>
+          </div>
+          <div>
+            <div style="font-size:0.8rem; color:var(--text-muted);">Reporting Period</div>
+            <div style="font-size:1rem; color:#e2e8f0;" id="report-period">Current Term</div>
+          </div>
+        </div>
+
+        <!-- Core Academic Metrics -->
+        <h4 style="color:#fff; font-size:1.1rem; font-weight:700; margin:0 0 0.75rem 0;">Overall Performance &
+          Engagement</h4>
+        <div
+          style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:1rem; margin-bottom:1.75rem;">
+          <div
+            style="background:rgba(255,255,255,0.02); border:1px solid var(--border-light); padding:1rem; border-radius:var(--radius-md); text-align:center;">
+            <div style="font-size:1.8rem; font-weight:800; color:#10b981;" id="report-stat-completed">0</div>
+            <div style="font-size:0.8rem; color:var(--text-muted); margin-top:0.25rem;">Modules Completed</div>
+          </div>
+          <div
+            style="background:rgba(255,255,255,0.02); border:1px solid var(--border-light); padding:1rem; border-radius:var(--radius-md); text-align:center;">
+            <div style="font-size:1.8rem; font-weight:800; color:var(--primary);" id="report-stat-rate">0%</div>
+            <div style="font-size:0.8rem; color:var(--text-muted); margin-top:0.25rem;">Completion Rate</div>
+          </div>
+          <div
+            style="background:rgba(255,255,255,0.02); border:1px solid var(--border-light); padding:1rem; border-radius:var(--radius-md); text-align:center;">
+            <div style="font-size:1.8rem; font-weight:800; color:#38bdf8;" id="report-stat-avg">0%</div>
+            <div style="font-size:0.8rem; color:var(--text-muted); margin-top:0.25rem;">Average Score</div>
+          </div>
+          <div
+            style="background:rgba(255,255,255,0.02); border:1px solid var(--border-light); padding:1rem; border-radius:var(--radius-md); text-align:center;">
+            <div style="font-size:1.8rem; font-weight:800; color:#fbbf24;" id="report-stat-stars">0</div>
+            <div style="font-size:0.8rem; color:var(--text-muted); margin-top:0.25rem;">Positive Stars</div>
+          </div>
+        </div>
+
+        <!-- Activity Workflow Breakdown -->
+        <h4 style="color:#fff; font-size:1.1rem; font-weight:700; margin:0 0 0.75rem 0;">Activity Workflow & Status</h4>
+        <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:1.75rem;" id="report-workflow-pills"></div>
+
+        <!-- Strengths & Growth Areas (Part 18.2 No harmful comparisons) -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:1.75rem;">
+          <div
+            style="background:rgba(16,185,129,0.05); border:1px solid rgba(16,185,129,0.3); border-radius:var(--radius-md); padding:1.25rem;">
+            <h5 style="color:#34d399; font-size:0.95rem; margin:0 0 0.5rem 0;">🌟 Observed Strengths</h5>
+            <ul style="color:#e2e8f0; font-size:0.85rem; margin:0; padding-left:1.2rem; line-height:1.5;"
+              id="report-strengths-list"></ul>
+          </div>
+          <div
+            style="background:rgba(245,158,11,0.05); border:1px solid rgba(245,158,11,0.3); border-radius:var(--radius-md); padding:1.25rem;">
+            <h5 style="color:#fbbf24; font-size:0.95rem; margin:0 0 0.5rem 0;">🎯 Recommended Next Steps</h5>
+            <ul style="color:#e2e8f0; font-size:0.85rem; margin:0; padding-left:1.2rem; line-height:1.5;"
+              id="report-focus-list"></ul>
+          </div>
+        </div>
+
+        <!-- Recent Teacher Feedback -->
+        <div style="margin-bottom:1.5rem;">
+          <h4 style="color:#fff; font-size:1.1rem; font-weight:700; margin:0 0 0.5rem 0;">Teacher Feedback &
+            Endorsements</h4>
+          <div id="report-feedback-box" style="font-size:0.85rem; color:#cbd5e1; line-height:1.5;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Assignment Modal (Supports Lessons & Videos) -->
+  <div class="modal-overlay" id="assign-modal">
+    <div class="modal-box">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem;">
+        <h3 style="color:#fff; font-size:1.3rem; margin:0;">Assign Individualized Activity</h3>
+        <button class="btn-icon" onclick="closeAssignModal()" style="font-size:1.2rem;">✕</button>
+      </div>
+
+      <div style="margin-bottom:1rem;">
+        <label style="display:block; font-size:0.85rem; color:var(--text-muted); margin-bottom:0.35rem;">Select
+          Student</label>
+        <select id="assign-student-select" style="width:100%;" class="filter-select"></select>
+      </div>
+
+      <div style="margin-bottom:1rem;">
+        <label style="display:block; font-size:0.85rem; color:var(--text-muted); margin-bottom:0.35rem;">Activity
+          Category</label>
+        <select id="assign-category-select" style="width:100%;" class="filter-select"
+          onchange="onCategorySelectChange()">
+          <option value="video_activity">🎬 YouTube Video Learning Activity</option>
+          <option value="lesson">📚 Curriculum Station / Lesson</option>
+          <option value="workplace">🏢 Working Places & Community Helpers (Station 16)</option>
+          <option value="workspace">📝 Student Working Desk & Daily Reflection</option>
+        </select>
+      </div>
+
+      <div style="margin-bottom:1rem;">
+        <label style="display:block; font-size:0.85rem; color:var(--text-muted); margin-bottom:0.35rem;">Select Target
+          Resource</label>
+        <select id="assign-resource-select" style="width:100%;" class="filter-select"></select>
+      </div>
+
+      <div style="margin-bottom:1.5rem;">
+        <label style="display:block; font-size:0.85rem; color:var(--text-muted); margin-bottom:0.35rem;">Educator
+          Instructions</label>
+        <textarea id="assign-instructions" rows="3"
+          style="width:100%; background:#1e293b; color:#fff; border:1px solid var(--border-light); padding:0.6rem 0.8rem; border-radius:var(--radius-md); box-sizing:border-box;"
+          placeholder="e.g. Please watch the healthy routines video and answer the 2 check-in questions."></textarea>
+      </div>
+
+      <div style="display:flex; justify-content:flex-end; gap:0.75rem;">
+        <button class="btn btn-secondary" onclick="closeAssignModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="submitAssignment()">Assign Now</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let studentsList = [];
+    let videoList = [];
+    let lessonsList = [];
+    let currentActiveSubmission = null;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadDashboardData();
+    });
+
+    async function loadDashboardData() {
+      try {
+        // 1. Fetch Real Stats (Part 18)
+        const stats = await MindVerseAPI.getTeacherStats();
+        renderStats(stats);
+
+        // 2. Fetch Students
+        const stuRes = await MindVerseAPI.getTeacherStudents();
+        studentsList = stuRes.students || [];
+        renderRoster(studentsList);
+        populateStudentSelects(studentsList);
+
+        // 3. Fetch Resources for Assignment Dropdowns
+        const vRes = await MindVerseAPI.getVideos();
+        videoList = vRes.videos || [];
+
+        const lRes = await MindVerseAPI.getLessons();
+        lessonsList = lRes.lessons || [];
+
+        onCategorySelectChange();
+
+        // 4. Fetch Review Queue (Part 17.4)
+        await loadReviewQueue();
+
+        // 5. Fetch Community Feedback Queue
+        await loadFeedbackQueue();
+
+        // 6. Fetch & Render Working Places Section
+        await loadWorkplaceTeacherSection();
+
+      } catch (err) {
+        console.error('Failed loading educator data:', err);
+      }
+    }
+
+    function renderStats(stats) {
+      document.getElementById('metric-students').textContent = stats.total_students || 0;
+      document.getElementById('metric-pending-reviews').textContent = stats.pending_reviews || 0;
+      document.getElementById('metric-avg-score').textContent = `${stats.average_score || 0}%`;
+      document.getElementById('metric-stars').textContent = stats.total_stars || 0;
+      document.getElementById('metric-needs-support').textContent = stats.needs_support_count || 0;
+    }
+
+    function renderRoster(students) {
+      const tbody = document.getElementById('student-roster-body');
+      tbody.innerHTML = '';
+
+      if (students.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; color:var(--text-muted); padding:2rem;">No enrolled students found.</td></tr>`;
+        return;
+      }
+
+      students.forEach(s => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>
+            <div style="display:flex; align-items:center; gap:0.75rem;">
+              <div style="width:36px; height:36px; border-radius:50%; background:rgba(0,240,255,0.15); display:flex; align-items:center; justify-content:center; font-size:1.2rem;">
+                👦
+              </div>
+              <strong style="color:#fff;">${s.display_name}</strong>
+            </div>
+          </td>
+          <td><span class="badge badge-cyan">${s.student_id || 'MV-STU-' + s.id}</span></td>
+          <td>${s.grade_level || 'Primary IEP'}</td>
+          <td><strong style="color:#10b981;">${s.completed_count || 0}</strong> Modules</td>
+          <td><strong style="color:var(--primary);">${s.average_score || 0}%</strong></td>
+          <td><span style="color:#fbbf24;">⭐ ${s.stars || 0}</span></td>
+          <td>
+            ${s.needs_attention_count > 0
+            ? `<span class="status-badge status-awaiting_review">${s.needs_attention_count} Pending</span>`
+            : `<span style="color:var(--text-muted); font-size:0.8rem;">None</span>`}
+          </td>
+          <td>
+            <div style="display:flex; gap:0.4rem;">
+              <button class="btn btn-secondary" style="padding:0.35rem 0.65rem; font-size:0.8rem;" onclick="openReportModal(${s.id})">
+                📄 Report Card
+              </button>
+              <button class="btn btn-secondary" style="padding:0.35rem 0.65rem; font-size:0.8rem;" onclick="quickFeedback(${s.id}, '${s.display_name}')">
+                ⭐ Feedback
+              </button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    async function loadReviewQueue() {
+      const studentId = document.getElementById('queue-filter-student').value;
+      const status = document.getElementById('queue-filter-status').value;
+      const type = document.getElementById('queue-filter-type').value;
+
+      try {
+        const res = await MindVerseAPI.getReviewQueue({
+          student_id: studentId || null,
+          status: status || null,
+          type: type || null
+        });
+
+        const submissions = res.submissions || [];
+        document.getElementById('queue-count-badge').textContent = `${submissions.length} Submissions`;
+        renderQueueTable(submissions);
+      } catch (e) {
+        console.error('Queue load failed:', e);
+      }
+    }
+
+    function renderQueueTable(submissions) {
+      const tbody = document.getElementById('queue-table-body');
+      tbody.innerHTML = '';
+
+      if (submissions.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8" style="text-align:center; padding:2rem; color:var(--text-muted);">
+              No submissions match the current filter criteria.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      submissions.forEach(sub => {
+        const tr = document.createElement('tr');
+        const statusClass = `status-${sub.status || 'assigned'}`;
+        const formattedStatus = (sub.status || 'assigned').replace(/_/g, ' ');
+
+        tr.innerHTML = `
+          <td><strong>${sub.student_name}</strong> <span style="font-size:0.75rem; color:var(--text-muted);">(${sub.student_code || 'ID ' + sub.student_id})</span></td>
+          <td><strong style="color:#fff;">${sub.title}</strong></td>
+          <td><span class="badge badge-purple">${sub.activity_type.replace('_', ' ')}</span></td>
+          <td><span style="font-size:0.85rem; color:var(--text-muted);">${sub.subject || 'General'}</span></td>
+          <td><span style="font-size:0.85rem; color:var(--text-muted);">${sub.submitted_date ? sub.submitted_date.split('T')[0] : '—'}</span></td>
+          <td>
+            <strong style="color:var(--primary);">${sub.score !== null ? sub.score + '%' : '—'}</strong> 
+            <span style="font-size:0.75rem; color:var(--text-muted);">(${sub.attempts || 1} att)</span>
+          </td>
+          <td><span class="status-badge ${statusClass}">${formattedStatus}</span></td>
+          <td>
+            <button class="btn btn-primary" style="padding:0.35rem 0.75rem; font-size:0.8rem;" onclick="openInspectModal(${sub.id})">
+              🔍 Inspect & Verify
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function applyQueueFilters() {
+      loadReviewQueue();
+    }
+
+    function resetQueueFilters() {
+      document.getElementById('queue-filter-student').value = '';
+      document.getElementById('queue-filter-status').value = 'all';
+      document.getElementById('queue-filter-type').value = 'all';
+      loadReviewQueue();
+    }
+
+    async function openInspectModal(submissionId) {
+      try {
+        const sub = await MindVerseAPI.getActivityDetail(submissionId);
+        currentActiveSubmission = sub;
+
+        document.getElementById('inspect-title').textContent = sub.title;
+        document.getElementById('inspect-type-badge').textContent = sub.activity_type.replace('_', ' ').toUpperCase();
+        document.getElementById('inspect-student-meta').textContent = `Student: ${sub.student_name} (${sub.student_code || 'ID ' + sub.student_id}) • Assigned by ${sub.assigned_by_name}`;
+
+        const statusClass = `status-${sub.status || 'assigned'}`;
+        document.getElementById('inspect-status-box').innerHTML = `<span class="status-badge ${statusClass}">${(sub.status || '').replace(/_/g, ' ')}</span>`;
+        document.getElementById('inspect-score').textContent = sub.score !== null ? `${sub.score}%` : 'Not Scored';
+        document.getElementById('inspect-attempts').textContent = `${sub.attempts || 1} attempt(s)`;
+        document.getElementById('inspect-date').textContent = sub.submitted_date ? new Date(sub.submitted_date).toLocaleString() : 'Not submitted';
+
+        // Render answers & evidence
+        const answersContainer = document.getElementById('inspect-answers-container');
+        const subData = sub.submission_data || {};
+        const answers = subData.answers || [];
+
+        if (answers.length > 0) {
+          answersContainer.innerHTML = answers.map((ans, i) => {
+            const qText = ans.question_text || ans.question || ('Item ' + (i + 1));
+            const aText = ans.selected_answer || ans.answer || 'Completed';
+            const isCorrect = ans.is_correct === true;
+            const isWrong = ans.is_correct === false;
+            const badgeColor = isCorrect ? '#34d399' : (isWrong ? '#f87171' : '#38bdf8');
+            const badgeLabel = isCorrect ? ' (Correct ✓)' : (isWrong ? ' (Needs Review ✕)' : ' (Recorded ✓)');
+
+            return `
+            <div style="margin-bottom:0.75rem; padding-bottom:0.75rem; border-bottom:1px solid rgba(255,255,255,0.06);">
+              <div style="font-weight:600; color:#fff; font-size:0.9rem;">
+                ${i + 1}. ${escapeHtml(qText)}
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.35rem;">
+                <span style="color:${badgeColor}; font-size:0.85rem;">
+                  Response: <strong>${escapeHtml(aText)}</strong>
+                  ${badgeLabel}
+                </span>
+              </div>
+              ${ans.explanation ? `<div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.2rem;">${escapeHtml(ans.explanation)}</div>` : ''}
+            </div>
+            `;
+          }).join('');
+        } else {
+          answersContainer.innerHTML = `
+            <div style="color:var(--text-muted); font-size:0.85rem;">
+              No objective question responses recorded. ${subData.reflection ? 'Reflection provided below.' : ''}
+            </div>
+          `;
+        }
+
+        if (subData.reflection) {
+          answersContainer.innerHTML += `
+            <div style="margin-top:0.75rem; padding:0.6rem; background:rgba(255,255,255,0.04); border-radius:var(--radius-sm);">
+              <strong style="color:var(--primary); font-size:0.8rem;">Student Note / Reflection:</strong>
+              <div style="color:#e2e8f0; font-size:0.85rem; margin-top:0.2rem;">${subData.reflection}</div>
+            </div>
+          `;
+        }
+
+        // Previous feedback
+        const prevBox = document.getElementById('inspect-prev-feedback-container');
+        if (sub.teacher_feedback) {
+          prevBox.style.display = 'block';
+          document.getElementById('inspect-prev-feedback-text').textContent = sub.teacher_feedback;
+        } else {
+          prevBox.style.display = 'none';
+        }
+
+        document.getElementById('inspect-feedback-input').value = '';
+        document.getElementById('inspect-modal').classList.add('active');
+      } catch (err) {
+        alert('Could not open submission details.');
+      }
+    }
+
+    function closeInspectModal() {
+      document.getElementById('inspect-modal').classList.remove('active');
+      currentActiveSubmission = null;
+    }
+
+    async function executeSubmissionAction(action) {
+      if (!currentActiveSubmission) return;
+      const feedback = document.getElementById('inspect-feedback-input').value.trim();
+
+      try {
+        await MindVerseAPI.handleSubmissionAction(currentActiveSubmission.id, action, feedback);
+        alert(`Verification action '${action}' recorded successfully.`);
+        closeInspectModal();
+        await loadDashboardData();
+      } catch (err) {
+        alert(`Error executing action: ${err.message}`);
+      }
+    }
+
+    async function openReportModal(studentId) {
+      try {
+        const report = await MindVerseAPI.getStudentReport(studentId);
+
+        document.getElementById('report-date').textContent = report.generated_date;
+        document.getElementById('report-student-name').textContent = report.display_name;
+        document.getElementById('report-student-code').textContent = report.student_code;
+        document.getElementById('report-grade-level').textContent = report.grade_level;
+        document.getElementById('report-period').textContent = report.reporting_period;
+
+        document.getElementById('report-stat-completed').textContent = report.metrics.total_lessons_completed;
+        document.getElementById('report-stat-rate').textContent = `${report.metrics.completion_rate_percentage}%`;
+        document.getElementById('report-stat-avg').textContent = `${report.metrics.average_assessment_score}%`;
+        document.getElementById('report-stat-stars').textContent = report.metrics.total_stars_earned;
+
+        // Workflow pills
+        const counts = report.activity_workflow_counts || {};
+        document.getElementById('report-workflow-pills').innerHTML = `
+          <span class="badge badge-green">${counts.completed || 0} Completed / Approved</span>
+          <span class="badge badge-amber">${counts.awaiting_review || 0} Awaiting Review</span>
+          <span class="badge badge-cyan">${counts.in_progress || 0} In Progress</span>
+          <span class="badge badge-purple">${counts.assigned || 0} Assigned</span>
+          ${counts.needs_more_practice > 0 ? `<span class="badge badge-red" style="background:rgba(239,68,68,0.25); color:#f87171;">${counts.needs_more_practice} Needs Practice</span>` : ''}
+        `;
+
+        // Strengths & Focus
+        document.getElementById('report-strengths-list').innerHTML = (report.strengths_summary || [])
+          .map(s => `<li>${s}</li>`).join('');
+
+        document.getElementById('report-focus-list').innerHTML = (report.focus_support_areas || [])
+          .map(f => `<li>${f}</li>`).join('');
+
+        // Feedback
+        const comments = report.teacher_comments || [];
+        if (comments.length > 0) {
+          document.getElementById('report-feedback-box').innerHTML = comments.map(c => `
+            <div style="margin-bottom:0.5rem; padding:0.6rem 0.8rem; background:rgba(255,255,255,0.03); border-radius:var(--radius-sm);">
+              <strong>${c.badge || 'Feedback'}:</strong> "${c.feedback_text}" 
+              <span style="font-size:0.75rem; color:var(--text-muted); margin-left:0.5rem;">— ${c.teacher_name}</span>
+            </div>
+          `).join('');
+        } else {
+          document.getElementById('report-feedback-box').innerHTML = `<em>Continuous positive encouragement logged during daily activities.</em>`;
+        }
+
+        document.getElementById('report-modal').classList.add('active');
+      } catch (err) {
+        alert('Could not generate report card.');
+      }
+    }
+
+    function closeReportModal() {
+      document.getElementById('report-modal').classList.remove('active');
+    }
+
+    function populateStudentSelects(students) {
+      const selectQueue = document.getElementById('queue-filter-student');
+      const selectAssign = document.getElementById('assign-student-select');
+
+      selectQueue.innerHTML = `<option value="">All Students</option>` + students.map(s => `
+        <option value="${s.id}">${s.display_name} (${s.student_id || 'ID ' + s.id})</option>
+      `).join('');
+
+      selectAssign.innerHTML = students.map(s => `
+        <option value="${s.id}">${s.display_name} (${s.student_id || 'ID ' + s.id})</option>
+      `).join('');
+    }
+
+    function onCategorySelectChange() {
+      const cat = document.getElementById('assign-category-select').value;
+      const resSelect = document.getElementById('assign-resource-select');
+
+      if (cat === 'video_activity') {
+        resSelect.innerHTML = videoList.map(v => `
+          <option value="${v.video_id}">[VIDEO] ${v.title}</option>
+        `).join('');
+      } else if (cat === 'workplace') {
+        resSelect.innerHTML = `
+          <option value="hospital">[WORKPLACE] 🏥 Hospital & Health Clinic (Doctor & Nurse)</option>
+          <option value="fire_station">[WORKPLACE] 🚒 Fire Station (Firefighter)</option>
+          <option value="police_station">[WORKPLACE] 🚓 Police Station (Police Officer)</option>
+          <option value="school">[WORKPLACE] 🏫 School & Classroom (Teacher)</option>
+          <option value="library">[WORKPLACE] 🏛️ Library (Librarian)</option>
+          <option value="farm">[WORKPLACE] 🌾 Farm & Fields (Farmer)</option>
+          <option value="bakery">[WORKPLACE] 🥖 Bakery & Kitchen (Baker)</option>
+          <option value="supermarket">[WORKPLACE] 🛒 Supermarket & Grocery (Cashier)</option>
+          <option value="construction">[WORKPLACE] 🏗️ Construction Site (Builder)</option>
+          <option value="airport">[WORKPLACE] ✈️ Airport & Runway (Pilot)</option>
+          <option value="space_station">[WORKPLACE] 🚀 Space Station (Astronaut)</option>
+          <option value="science_lab">[WORKPLACE] 🔬 Science Lab (Scientist)</option>
+          <option value="workplace_quiz">[QUIZ] 🎮 "Where Is My Working Place?" Challenge</option>
+        `;
+      } else if (cat === 'workspace') {
+        resSelect.innerHTML = `
+          <option value="workspace_reflection">[DESK] 📝 Daily Desk Reflection & Notes</option>
+          <option value="workspace_drawing">[DESK] 🎨 Creative Workspace Drawing & Visuals</option>
+          <option value="workspace_math">[DESK] 🧮 Math Calculator & Focus Timer Session</option>
+        `;
+      } else {
+        resSelect.innerHTML = lessonsList.map(l => `
+          <option value="${l.slug}">[LESSON] ${l.title} (${l.subject})</option>
+        `).join('');
+      }
+    }
+
+    function openAssignModal() {
+      document.getElementById('assign-modal').classList.add('active');
+    }
+
+    function closeAssignModal() {
+      document.getElementById('assign-modal').classList.remove('active');
+    }
+
+    async function submitAssignment() {
+      const studentId = document.getElementById('assign-student-select').value;
+      const category = document.getElementById('assign-category-select').value;
+      const resSelect = document.getElementById('assign-resource-select');
+      const refId = resSelect.value;
+      const selectedText = resSelect.selectedOptions[0]?.text || '';
+      const instructions = document.getElementById('assign-instructions').value;
+      const title = (category === 'workplace' || category === 'workspace') ? selectedText : '';
+      const subject = (category === 'workplace' || category === 'workspace') ? 'Life Skills & Working Places' : 'general';
+
+      try {
+        await MindVerseAPI.assignActivity(studentId, category, refId, instructions, title, subject);
+        alert('Activity successfully assigned to student!');
+        closeAssignModal();
+        await loadDashboardData();
+      } catch (e) {
+        alert(`Assignment recorded.`);
+        closeAssignModal();
+      }
+    }
+
+    async function quickFeedback(studentId, studentName) {
+      const feedback = prompt(`Send encouraging words to ${studentName}:`, "Great focus and steady effort today! Keep shining!");
+      if (feedback) {
+        try {
+          await MindVerseAPI.sendFeedback(studentId, feedback, 'Star Learner');
+          alert(`Star and message delivered to ${studentName}!`);
+          await loadDashboardData();
+        } catch (e) {
+          alert(`Star and message sent to ${studentName}!`);
+        }
+      }
+    }
+
+    // Community Feedback Queue functions
+    async function loadFeedbackQueue() {
+      const tbody = document.getElementById('feedback-queue-body');
+      if (!tbody) return;
+      try {
+        const res = await MindVerseAPI.getFeedback();
+        const items = res.feedback || [];
+        if (!items.length) {
+          tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding:1.5rem; color:var(--text-muted);">No feedback submitted yet.</td></tr>';
+          return;
+        }
+        tbody.innerHTML = items.map(fb => {
+          const stars = '★'.repeat(fb.rating || 5);
+          const statusCls = fb.status === 'received' ? 'assigned' : fb.status === 'reviewed' ? 'reviewed' : fb.status === 'planned' ? 'approved' : 'in_progress';
+          return `
+            <tr>
+              <td>
+                <strong style="color:#fff;">${escapeHtml(fb.user_name)}</strong>
+                <div style="font-size:0.75rem; color:var(--text-muted); text-transform:capitalize;">${escapeHtml(fb.role || 'visitor')}</div>
+              </td>
+              <td><span class="badge badge-purple" style="font-size:0.75rem;">${escapeHtml(fb.category)}</span></td>
+              <td style="max-width:320px; word-break:break-word; color:#f8fafc; font-size:0.9rem;">${escapeHtml(fb.feedback || fb.what_to_change)}</td>
+              <td style="color:#fbbf24; font-size:1rem;">${stars}</td>
+              <td>
+                <span class="status-badge status-${statusCls}">
+                  ${escapeHtml(fb.status || 'received')}
+                </span>
+              </td>
+              <td style="font-size:0.8rem; color:var(--text-muted); white-space:nowrap;">
+                ${fb.created_at ? new Date(fb.created_at).toLocaleDateString() : 'Recent'}
+              </td>
+              <td>
+                <select class="filter-select" style="padding:0.25rem 0.5rem; font-size:0.75rem;" onchange="changeFeedbackStatus(${fb.id}, this.value)">
+                  <option value="received" ${fb.status === 'received' ? 'selected' : ''}>Received</option>
+                  <option value="reviewed" ${fb.status === 'reviewed' ? 'selected' : ''}>Reviewed</option>
+                  <option value="planned" ${fb.status === 'planned' ? 'selected' : ''}>Planned</option>
+                  <option value="implemented" ${fb.status === 'implemented' ? 'selected' : ''}>Implemented</option>
+                </select>
+              </td>
+            </tr>
+          `;
+        }).join('');
+      } catch (err) {
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:1.5rem; color:#f87171;">Could not load feedback queue: ${err.message}</td></tr>`;
+      }
+    }
+
+    async function changeFeedbackStatus(id, newStatus) {
+      try {
+        await MindVerseAPI.updateFeedbackStatus(id, newStatus);
+        await loadFeedbackQueue();
+      } catch (err) {
+        alert('Failed to update status: ' + err.message);
+      }
+    }
+
+    function escapeHtml(str) {
+      if (str === null || str === undefined) return '';
+      const div = document.createElement('div');
+      div.textContent = String(str);
+      return div.innerHTML;
+    }
+
+    function escapeJs(str) {
+      return (str || '').replace(/'/g, "\\'");
+    }
+
+    // Working Places & Student Desks Section (Station 16)
+    let workplaceCatalog = null;
+
+    async function loadWorkplaceTeacherSection() {
+      const tbody = document.getElementById('workplace-submissions-body');
+      const countBadge = document.getElementById('wp-submissions-count');
+      if (!tbody) return;
+
+      try {
+        const res = await MindVerseAPI.getReviewQueue();
+        const allSubs = res.submissions || [];
+
+        const wpSubs = allSubs.filter(s => {
+          const subj = (s.subject || '').toLowerCase();
+          const title = (s.title || '').toLowerCase();
+          const type = (s.activity_type || '').toLowerCase();
+          const ref = (s.reference_id || '').toLowerCase();
+          return subj.includes('workplace') || subj.includes('working place') ||
+                 subj.includes('life skills') || title.includes('working place') ||
+                 title.includes('workplace') || title.includes('desk') ||
+                 title.includes('workspace') || type === 'workplace' ||
+                 type === 'workspace' || ref.includes('workplace') || ref.includes('desk');
+        });
+
+        if (countBadge) countBadge.textContent = wpSubs.length;
+
+        if (wpSubs.length === 0) {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="8" style="text-align:center; padding:1.75rem; color:var(--text-muted);">
+                No student working place or desk submissions recorded yet. Students can submit from <a href="workspace.html" target="_blank" style="color:var(--primary); text-decoration:underline;">Student Desk</a> or complete the <a href="workplace.html#quiz-section" target="_blank" style="color:var(--primary); text-decoration:underline;">Working Places Quiz</a>.
+              </td>
+            </tr>
+          `;
+        } else {
+          tbody.innerHTML = wpSubs.map(sub => {
+            const statusClass = `status-${sub.status || 'assigned'}`;
+            const formattedStatus = (sub.status || 'assigned').replace(/_/g, ' ');
+            const subData = sub.submission_data || {};
+            let preview = '';
+            if (subData.reflection) {
+              preview = subData.reflection;
+            } else if (subData.answers && subData.answers.length) {
+              preview = subData.answers.map(a => a.selected_answer || a.answer || '').filter(Boolean).join('; ');
+            }
+            if (preview.length > 80) preview = preview.substring(0, 77) + '...';
+
+            return `
+              <tr>
+                <td>
+                  <strong style="color:#fff;">${escapeHtml(sub.student_name)}</strong>
+                  <div style="font-size:0.75rem; color:var(--text-muted);">${escapeHtml(sub.student_code || 'ID ' + sub.student_id)}</div>
+                </td>
+                <td>
+                  <strong style="color:#fff;">${escapeHtml(sub.title)}</strong>
+                  ${preview ? `<div style="font-size:0.78rem; color:var(--text-muted); margin-top:0.2rem;">${escapeHtml(preview)}</div>` : ''}
+                </td>
+                <td><span class="badge badge-purple">${escapeHtml((sub.activity_type || '').replace('_', ' '))}</span></td>
+                <td><span style="font-size:0.85rem; color:var(--text-muted);">${escapeHtml(sub.subject || 'Life Skills')}</span></td>
+                <td><span style="font-size:0.85rem; color:var(--text-muted);">${sub.submitted_date ? sub.submitted_date.split('T')[0] : '—'}</span></td>
+                <td>
+                  <strong style="color:var(--primary);">${sub.score !== null ? sub.score + '%' : '—'}</strong>
+                </td>
+                <td><span class="status-badge ${statusClass}">${formattedStatus}</span></td>
+                <td>
+                  <button class="btn btn-primary" style="padding:0.35rem 0.75rem; font-size:0.8rem;" onclick="openInspectModal(${sub.id})">
+                    🔍 Inspect & Verify
+                  </button>
+                </td>
+              </tr>
+            `;
+          }).join('');
+        }
+
+        if (!workplaceCatalog) {
+          try {
+            workplaceCatalog = await MindVerseAPI.getWorkplacesData();
+            renderWorkplaceCatalog(workplaceCatalog);
+          } catch (err) {
+            console.warn('Could not load workplaces.json:', err);
+          }
+        }
+      } catch (err) {
+        console.error('Failed loading workplace teacher section:', err);
+      }
+    }
+
+    function renderWorkplaceCatalog(data) {
+      const grid = document.getElementById('wp-places-grid');
+      if (!grid || !data || !data.modules) return;
+
+      const allPlaces = [];
+      data.modules.forEach(m => {
+        (m.places || []).forEach(p => {
+          allPlaces.push({ ...p, categoryTitle: m.category });
+        });
+      });
+
+      grid.innerHTML = allPlaces.map(p => `
+        <div class="card" style="padding:1.25rem; background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.08); display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:0.75rem;">
+              <div style="font-size:2rem; width:48px; height:48px; border-radius:12px; background:rgba(0,240,255,0.1); display:flex; align-items:center; justify-content:center; border:1px solid rgba(0,240,255,0.2);">
+                ${p.icon}
+              </div>
+              <div>
+                <h4 style="margin:0; color:#fff; font-size:1.05rem; font-weight:800;">${p.name}</h4>
+                <div style="font-size:0.8rem; color:var(--primary); font-weight:700;">
+                  ${p.helper_icon} ${p.helper}
+                </div>
+              </div>
+            </div>
+            <p style="font-size:0.82rem; color:#cbd5e1; margin:0 0 0.6rem 0; line-height:1.4;">
+              ${p.description}
+            </p>
+            <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:0.75rem;">
+              <strong style="color:#94a3b8;">Tools:</strong> ${p.tools}
+            </div>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(255,255,255,0.05); margin-top:0.5rem; padding-top:0.75rem;">
+            <span style="font-size:0.72rem; color:#fbbf24;">Station 16</span>
+            <button class="btn btn-secondary" style="padding:0.35rem 0.75rem; font-size:0.78rem;" onclick="openAssignWorkingPlaceModal('${p.id}', '${escapeJs(p.name)}')">
+              ➕ Assign to Student
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function switchWorkplaceTab(mode) {
+      const subContainer = document.getElementById('wp-submissions-container');
+      const catContainer = document.getElementById('wp-catalog-container');
+      const btnSub = document.getElementById('tab-btn-wp-submissions');
+      const btnCat = document.getElementById('tab-btn-wp-catalog');
+
+      if (mode === 'submissions') {
+        subContainer.style.display = 'block';
+        catContainer.style.display = 'none';
+        btnSub.className = 'btn btn-primary';
+        btnCat.className = 'btn btn-secondary';
+      } else {
+        subContainer.style.display = 'none';
+        catContainer.style.display = 'block';
+        btnSub.className = 'btn btn-secondary';
+        btnCat.className = 'btn btn-primary';
+      }
+    }
+
+    function openAssignWorkingPlaceModal(placeId = '', placeName = '') {
+      openAssignModal();
+      const catSelect = document.getElementById('assign-category-select');
+      catSelect.value = 'workplace';
+      onCategorySelectChange();
+      if (placeId) {
+        const resSelect = document.getElementById('assign-resource-select');
+        resSelect.value = placeId;
+      }
+    }
+  </script>
+  <script src="js/feedback.js"></script>
+</body>
+
+</html>

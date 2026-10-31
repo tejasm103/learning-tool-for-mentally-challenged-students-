@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multiplication Tables 1 to 20 — MindVerse Learning Lab</title>
+  
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+  <link rel="stylesheet" href="css/games.css">
+
+  <script src="js/api.js"></script>
+  <script src="js/speech.js"></script>
+  <script src="js/accessibility.js"></script>
+  <script src="js/games.js"></script>
+  <script src="js/mindbot.js"></script>
+</head>
+<body>
+  <a href="#tables-main" class="skip-link">Skip to multiplication tables</a>
+
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">✖️</div>
+        <div class="brand-text">MindVerse <span>Multiplication Lab</span></div>
+      </a>
+      <div class="header-actions">
+        <a href="classroom_3d.html" class="btn btn-secondary">🏫 3D Classroom</a>
+        <a href="math.html" class="btn btn-secondary">Numbers & Math</a>
+        <button class="btn-icon" id="open-a11y-btn" title="Accessibility settings">♿</button>
+        <a href="student_dashboard.html" class="btn btn-primary">My Dashboard</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="tables-main" class="content-container">
+    <div style="margin-bottom:2rem;">
+      <div class="badge badge-cyan" style="margin-bottom:0.5rem;">Tables 1 to 20 Master</div>
+      <h1 style="font-size:2.2rem; font-weight:800;">Multiplication Tables (1 – 20)</h1>
+      <p style="color:var(--text-muted);">Explore each multiplication table with clear equations, voice reading, and missing-number practice.</p>
+    </div>
+
+    <!-- Table Selector Pills (1 to 20) -->
+    <div style="background:rgba(255,255,255,0.04); border:1px solid var(--border-light); border-radius:var(--radius-xl); padding:0.75rem 1rem; display:flex; gap:0.5rem; overflow-x:auto; margin-bottom:2.5rem;" id="table-pills-bar">
+      <!-- 1 to 20 rendered via JS -->
+    </div>
+
+    <!-- Interactive Table Board -->
+    <div style="display:grid; grid-template-columns:1.2fr 1fr; gap:2.5rem; max-width:1100px; margin:0 auto;">
+      <!-- Table Rows List -->
+      <div class="card" style="padding:2rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; border-bottom:1px solid var(--border-light); padding-bottom:1rem;">
+          <h2 style="font-size:1.6rem; color:var(--primary);" id="current-table-title">Table of 5</h2>
+          <button class="btn btn-primary" id="read-all-btn">
+            <span>🔊</span> Read Full Table
+          </button>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:0.6rem;" id="table-equations-list">
+          <!-- Equations -->
+        </div>
+      </div>
+
+      <!-- Missing Number Practice Activity -->
+      <div class="card" style="padding:2rem;">
+        <h3 style="color:#fff; font-size:1.3rem; margin-bottom:0.5rem;">🎯 Missing Number Challenge</h3>
+        <p style="color:var(--text-muted); font-size:0.95rem; margin-bottom:1.5rem;">What is the missing value in this equation?</p>
+
+        <div style="background:rgba(0,240,255,0.08); border:2px solid var(--border-glow); border-radius:var(--radius-lg); padding:2rem; text-align:center; margin-bottom:1.5rem;">
+          <div style="font-size:2.2rem; font-weight:800; color:#fff;" id="practice-equation">5 × ? = 25</div>
+        </div>
+
+        <div id="practice-options" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1.5rem;">
+          <!-- Options -->
+        </div>
+
+        <div id="practice-result" style="min-height:30px; font-weight:700; text-align:center; font-size:1.1rem;"></div>
+
+        <div style="margin-top:2rem; text-align:center;">
+          <button class="btn btn-accent" id="complete-table-btn">
+            <span>⭐</span> Complete Table & Record Score
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    let activeTable = 5;
+    let tableData = null;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      renderPills();
+      loadTable(5);
+
+      document.getElementById('read-all-btn').onclick = () => {
+        if (!tableData || !tableData.rows) return;
+        let idx = 0;
+        function speakNext() {
+          if (idx < tableData.rows.length) {
+            const row = tableData.rows[idx];
+            if (typeof MindVerseAudio !== 'undefined') {
+              MindVerseAudio.speak(row.audio);
+            }
+            idx++;
+            setTimeout(speakNext, 1200);
+          }
+        }
+        speakNext();
+      };
+
+      document.getElementById('complete-table-btn').onclick = async () => {
+        if (typeof MindVerseAudio !== 'undefined') MindVerseAudio.playSuccessSound();
+        try {
+          await MindVerseAPI.completeLesson('multiplication-tables', 100, 150);
+        } catch (e) {}
+        if (typeof MindVerseGames !== 'undefined') {
+          MindVerseGames.showCelebration(`Table of ${activeTable} Mastered!`, 150, 3);
+        }
+      };
+    });
+
+    function renderPills() {
+      const container = document.getElementById('table-pills-bar');
+      container.innerHTML = '';
+      for (let i = 1; i <= 20; i++) {
+        const btn = document.createElement('button');
+        btn.className = `btn btn-secondary ${i === 5 ? 'active' : ''}`;
+        btn.style.cssText = 'min-width:48px; height:44px; padding:0; font-weight:800; border-radius:var(--radius-full);';
+        btn.textContent = i;
+        btn.onclick = () => loadTable(i);
+        container.appendChild(btn);
+      }
+    }
+
+    async function loadTable(number) {
+      activeTable = number;
+
+      // Update pills active
+      document.querySelectorAll('#table-pills-bar button').forEach((btn, idx) => {
+        const isActive = (idx + 1) === number;
+        btn.classList.toggle('active', isActive);
+        btn.classList.toggle('btn-primary', isActive);
+        btn.classList.toggle('btn-secondary', !isActive);
+      });
+
+      document.getElementById('current-table-title').textContent = `Table of ${number}`;
+
+      try {
+        tableData = await MindVerseAPI.getMultiplicationTable(number);
+      } catch (e) {
+        // Build fallback
+        tableData = {
+          number,
+          rows: Array.from({ length: 10 }, (_, i) => ({
+            multiplier: i + 1,
+            equation: `${number} × ${i + 1} = ${number * (i + 1)}`,
+            result: number * (i + 1),
+            audio: `${number} times ${i + 1} equals ${number * (i + 1)}`
+          }))
+        };
+      }
+
+      renderRows(tableData.rows);
+      generatePracticeQuestion(number);
+    }
+
+    function renderRows(rows) {
+      const list = document.getElementById('table-equations-list');
+      list.innerHTML = '';
+
+      rows.forEach(r => {
+        const rowEl = document.createElement('div');
+        rowEl.style.cssText = 'background:rgba(255,255,255,0.04); border:1px solid var(--border-light); border-radius:var(--radius-md); padding:0.75rem 1.25rem; display:flex; justify-content:space-between; align-items:center; cursor:pointer; transition:background 0.2s;';
+        rowEl.innerHTML = `
+          <span style="font-size:1.25rem; font-weight:800; color:#fff;">${r.equation}</span>
+          <span style="color:var(--primary); font-size:1.1rem;">🔊</span>
+        `;
+        rowEl.onclick = () => {
+          if (typeof MindVerseAudio !== 'undefined') {
+            MindVerseAudio.playClickSound();
+            MindVerseAudio.speak(r.audio);
+          }
+        };
+        list.appendChild(rowEl);
+      });
+    }
+
+    function generatePracticeQuestion(number) {
+      const mult = Math.floor(Math.random() * 9) + 2; // 2 to 10
+      const ans = number * mult;
+
+      document.getElementById('practice-equation').textContent = `${number} × ? = ${ans}`;
+      const optContainer = document.getElementById('practice-options');
+      optContainer.innerHTML = '';
+      const res = document.getElementById('practice-result');
+      res.textContent = '';
+
+      const wrong1 = mult + 1;
+      const wrong2 = mult > 2 ? mult - 1 : mult + 2;
+      const wrong3 = mult + 3;
+      const options = [mult, wrong1, wrong2, wrong3].sort(() => Math.random() - 0.5);
+
+      options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'btn btn-secondary';
+        btn.style.padding = '0.9rem';
+        btn.style.fontSize = '1.25rem';
+        btn.textContent = opt;
+
+        btn.onclick = () => {
+          if (opt === mult) {
+            btn.className = 'btn btn-primary';
+            res.style.color = 'var(--accent-green)';
+            res.textContent = `🌟 Correct! ${number} × ${mult} = ${ans}!`;
+            if (typeof MindVerseAudio !== 'undefined') {
+              MindVerseAudio.playStarSound();
+              MindVerseAudio.speak(`Correct! ${number} times ${mult} is ${ans}`);
+            }
+          } else {
+            btn.style.borderColor = 'var(--accent-pink)';
+            res.style.color = 'var(--accent-pink)';
+            res.textContent = 'Try again! Think about counting by groups.';
+            if (typeof MindVerseAudio !== 'undefined') MindVerseAudio.playGentleTryAgain();
+          }
+        };
+        optContainer.appendChild(btn);
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,1548 @@
+{
+  "title": "Mathematics & Numbers Lab",
+  "numbers": [
+    {
+      "number": 0,
+      "name": "Number 0",
+      "is_even": true,
+      "tens": 0,
+      "ones": 0
+    },
+    {
+      "number": 1,
+      "name": "Number 1",
+      "is_even": false,
+      "tens": 0,
+      "ones": 1
+    },
+    {
+      "number": 2,
+      "name": "Number 2",
+      "is_even": true,
+      "tens": 0,
+      "ones": 2
+    },
+    {
+      "number": 3,
+      "name": "Number 3",
+      "is_even": false,
+      "tens": 0,
+      "ones": 3
+    },
+    {
+      "number": 4,
+      "name": "Number 4",
+      "is_even": true,
+      "tens": 0,
+      "ones": 4
+    },
+    {
+      "number": 5,
+      "name": "Number 5",
+      "is_even": false,
+      "tens": 0,
+      "ones": 5
+    },
+    {
+      "number": 6,
+      "name": "Number 6",
+      "is_even": true,
+      "tens": 0,
+      "ones": 6
+    },
+    {
+      "number": 7,
+      "name": "Number 7",
+      "is_even": false,
+      "tens": 0,
+      "ones": 7
+    },
+    {
+      "number": 8,
+      "name": "Number 8",
+      "is_even": true,
+      "tens": 0,
+      "ones": 8
+    },
+    {
+      "number": 9,
+      "name": "Number 9",
+      "is_even": false,
+      "tens": 0,
+      "ones": 9
+    },
+    {
+      "number": 10,
+      "name": "Number 10",
+      "is_even": true,
+      "tens": 1,
+      "ones": 0
+    },
+    {
+      "number": 11,
+      "name": "Number 11",
+      "is_even": false,
+      "tens": 1,
+      "ones": 1
+    },
+    {
+      "number": 12,
+      "name": "Number 12",
+      "is_even": true,
+      "tens": 1,
+      "ones": 2
+    },
+    {
+      "number": 13,
+      "name": "Number 13",
+      "is_even": false,
+      "tens": 1,
+      "ones": 3
+    },
+    {
+      "number": 14,
+      "name": "Number 14",
+      "is_even": true,
+      "tens": 1,
+      "ones": 4
+    },
+    {
+      "number": 15,
+      "name": "Number 15",
+      "is_even": false,
+      "tens": 1,
+      "ones": 5
+    },
+    {
+      "number": 16,
+      "name": "Number 16",
+      "is_even": true,
+      "tens": 1,
+      "ones": 6
+    },
+    {
+      "number": 17,
+      "name": "Number 17",
+      "is_even": false,
+      "tens": 1,
+      "ones": 7
+    },
+    {
+      "number": 18,
+      "name": "Number 18",
+      "is_even": true,
+      "tens": 1,
+      "ones": 8
+    },
+    {
+      "number": 19,
+      "name": "Number 19",
+      "is_even": false,
+      "tens": 1,
+      "ones": 9
+    },
+    {
+      "number": 20,
+      "name": "Number 20",
+      "is_even": true,
+      "tens": 2,
+      "ones": 0
+    }
+  ],
+  "total_numbers": 100,
+  "tables": {
+    "1": {
+      "number": 1,
+      "title": "Table of 1",
+      "rows": [
+        {
+          "multiplier": 1,
+          "equation": "1 × 1 = 1",
+          "result": 1,
+          "audio": "1 times 1 equals 1"
+        },
+        {
+          "multiplier": 2,
+          "equation": "1 × 2 = 2",
+          "result": 2,
+          "audio": "1 times 2 equals 2"
+        },
+        {
+          "multiplier": 3,
+          "equation": "1 × 3 = 3",
+          "result": 3,
+          "audio": "1 times 3 equals 3"
+        },
+        {
+          "multiplier": 4,
+          "equation": "1 × 4 = 4",
+          "result": 4,
+          "audio": "1 times 4 equals 4"
+        },
+        {
+          "multiplier": 5,
+          "equation": "1 × 5 = 5",
+          "result": 5,
+          "audio": "1 times 5 equals 5"
+        },
+        {
+          "multiplier": 6,
+          "equation": "1 × 6 = 6",
+          "result": 6,
+          "audio": "1 times 6 equals 6"
+        },
+        {
+          "multiplier": 7,
+          "equation": "1 × 7 = 7",
+          "result": 7,
+          "audio": "1 times 7 equals 7"
+        },
+        {
+          "multiplier": 8,
+          "equation": "1 × 8 = 8",
+          "result": 8,
+          "audio": "1 times 8 equals 8"
+        },
+        {
+          "multiplier": 9,
+          "equation": "1 × 9 = 9",
+          "result": 9,
+          "audio": "1 times 9 equals 9"
+        },
+        {
+          "multiplier": 10,
+          "equation": "1 × 10 = 10",
+          "result": 10,
+          "audio": "1 times 10 equals 10"
+        }
+      ]
+    },
+    "2": {
+      "number": 2,
+      "title": "Table of 2",
+      "rows": [
+        {
+          "multiplier": 1,
+          "equation": "2 × 1 = 2",
+          "result": 2,
+          "audio": "2 times 1 equals 2"
+        },
+        {
+          "multiplier": 2,
+          "equation": "2 × 2 = 4",
+          "result": 4,
+          "audio": "2 times 2 equals 4"
+        },
+        {
+          "multiplier": 3,
+          "equation": "2 × 3 = 6",
+          "result": 6,
+          "audio": "2 times 3 equals 6"
+        },
+        {
+          "multiplier": 4,
+          "equation": "2 × 4 = 8",
+          "result": 8,
+          "audio": "2 times 4 equals 8"
+        },
+        {
+          "multiplier": 5,
+          "equation": "2 × 5 = 10",
+          "result": 10,
+          "audio": "2 times 5 equals 10"
+        },
+        {
+          "multiplier": 6,
+          "equation": "2 × 6 = 12",
+          "result": 12,
+          "audio": "2 times 6 equals 12"
+        },
+        {
+          "multiplier": 7,
+          "equation": "2 × 7 = 14",
+          "result": 14,
+          "audio": "2 times 7 equals 14"
+        },
+        {
+          "multiplier": 8,
+          "equation": "2 × 8 = 16",
+          "result": 16,
+          "audio": "2 times 8 equals 16"
+        },
+        {
+          "multiplier": 9,
+          "equation": "2 × 9 = 18",
+          "result": 18,
+          "audio": "2 times 9 equals 18"
+        },
+        {
+          "multiplier": 10,
+          "equation": "2 × 10 = 20",
+          "result": 20,
+          "audio": "2 times 10 equals 20"
+        }
+      ]
+    },
+    "3": {
+      "number": 3,
+      "title": "Table of 3",
+      "rows": [
+        {
+          "multiplier": 1,
+          "equation": "3 × 1 = 3",
+          "result": 3,
+          "audio": "3 times 1 equals 3"
+        },
+        {
+          "multiplier": 2,
+          "equation": "3 × 2 = 6",
+          "result": 6,
+          "audio": "3 times 2 equals 6"
+        },
+        {
+          "multiplier": 3,
+          "equation": "3 × 3 = 9",
+          "result": 9,
+          "audio": "3 times 3 equals 9"
+        },
+        {
+          "multiplier": 4,
+          "equation": "3 × 4 = 12",
+          "result": 12,
+          "audio": "3 times 4 equals 12"
+        },
+        {
+          "multiplier": 5,
+          "equation": "3 × 5 = 15",
+          "result": 15,
+          "audio": "3 times 5 equals 15"
+        },
+        {
+          "multiplier": 6,
+          "equation": "3 × 6 = 18",
+          "result": 18,
+          "audio": "3 times 6 equals 18"
+        },
+        {
+          "multiplier": 7,
+          "equation": "3 × 7 = 21",
+          "result": 21,
+          "audio": "3 times 7 equals 21"
+        },
+        {
+          "multiplier": 8,
+          "equation": "3 × 8 = 24",
+          "result": 24,
+          "audio": "3 times 8 equals 24"
+        },
+        {
+          "multiplier": 9,
+          "equation": "3 × 9 = 27",
+          "result": 27,
+          "audio": "3 times 9 equals 27"
+        },
+        {
+          "multiplier": 10,
+          "equation": "3 × 10 = 30",
+          "result": 30,
+          "audio": "3 times 10 equals 30"
+        }
+      ]
+    },
+    "4": {
+      "number": 4,
+      "title": "Table of 4",
+      "rows": [
+        {
+          "multiplier": 1,
+          "equation": "4 × 1 = 4",
+          "result": 4,
+          "audio": "4 times 1 equals 4"
+        },
+        {
+          "multiplier": 2,
+          "equation": "4 × 2 = 8",
+          "result": 8,
+          "audio": "4 times 2 equals 8"
+        },
+        {
+          "multiplier": 3,
+          "equation": "4 × 3 = 12",
+          "result": 12,
+          "audio": "4 times 3 equals 12"
+        },
+        {
+          "multiplier": 4,
+          "equation": "4 × 4 = 16",
+          "result": 16,
+          "audio": "4 times 4 equals 16"
+        },
+        {
+          "multiplier": 5,
+          "equation": "4 × 5 = 20",
+          "result": 20,
+          "audio": "4 times 5 equals 20"
+        },
+        {
+          "multiplier": 6,
+          "equation": "4 × 6 = 24",
+          "result": 24,
+          "audio": "4 times 6 equals 24"
+        },
+        {
+          "multiplier": 7,
+          "equation": "4 × 7 = 28",
+          "result": 28,
+          "audio": "4 times 7 equals 28"
+        },
+        {
+          "multiplier": 8,
+          "equation": "4 × 8 = 32",
+          "result": 32,
+          "audio": "4 times 8 equals 32"
+        },
+        {
+          "multiplier": 9,
+          "equation": "4 × 9 = 36",
+          "result": 36,
+          "audio": "4 times 9 equals 36"
+        },
+        {
+          "multiplier": 10,
+          "equation": "4 × 10 = 40",
+          "result": 40,
+          "audio": "4 times 10 equals 40"
+        }
+      ]
+    },
+    "5": {
+      "number": 5,
+      "title": "Table of 5",
+      "rows": [
+        {
+          "multiplier": 1,
+          "equation": "5 × 1 = 5",
+          "result": 5,
+          "audio": "5 times 1 equals 5"
+        },
+        {
+          "multiplier": 2,
+          "equation": "5 × 2 = 10",
+          "result": 10,
+          "audio": "5 times 2 equals 10"
+        },
+        {
+          "multiplier": 3,
+          "equation": "5 × 3 = 15",
+          "result": 15,
+          "audio": "5 times 3 equals 15"
+        },
+        {
+          "multiplier": 4,
+          "equation": "5 × 4 = 20",
+          "result": 20,
+          "audio": "5 times 4 equals 20"
+        },
+        {
+          "multiplier": 5,
+          "equation": "5 × 5 = 25",
+          "result": 25,
+          "audio": "5 times 5 equals 25"
+        },
+        {
+          "multiplier": 6,
+          "equation": "5 × 6 = 30",
+          "result": 30,
+          "audio": "5 times 6 equals 30"
+        },
+        {
+          "multiplier": 7,
+          "equation": "5 × 7 = 35",
+          "result": 35,
+          "audio": "5 times 7 equals 35"
+        },
+        {
+          "multiplier": 8,
+          "equation": "5 × 8 = 40",
+          "result": 40,
+          "audio": "5 times 8 equals 40"
+        },
+        {
+          "multiplier": 9,
+          "equation": "5 × 9 = 45",
+          "result": 45,
+          "audio": "5 times 9 equals 45"
+        },
+        {
+          "multiplier": 10,
+          "equation": "5 × 10 = 50",
+          "result": 50,
+          "audio": "5 times 10 equals 50"
+        }
+      ]
+    },
+    "6": {
+      "number": 6,
+      "title": "Table of 6",
+      "rows": [
+        {
+          "multiplier": 1,
+          "equation": "6 × 1 = 6",
+          "result": 6,
+          "audio": "6 times 1 equals 6"
+        },
+        {
+          "multiplier": 2,
+          "equation": "6 × 2 = 12",
+          "result": 12,
+          "audio": "6 times 2 equals 12"
+        },
+        {
+          "multiplier": 3,
+          "equation": "6 × 3 = 18",
+          "result": 18,
+          "audio": "6 times 3 equals 18"
+        },
+        {
+          "multiplier": 4,
+          "equation": "6 × 4 = 24",
+          "result": 24,
+          "audio": "6 times 4 equals 24"
+        },
+        {
+          "multiplier": 5,
+          "equation": "6 × 5 = 30",
+          "result": 30,
+          "audio": "6 times 5 equals 30"
+        },
+        {
+          "multiplier": 6,
+          "equation": "6 × 6 = 36",
+          "result": 36,
+          "audio": "6 times 6 equals 36"
+        },
+        {
+          "multiplier": 7,
+          "equation": "6 × 7 = 42",
+          "result": 42,
+          "audio": "6 times 7 equals 42"
+        },
+        {
+          "multiplier": 8,
+          "equation": "6 × 8 = 48",
+          "result": 48,
+          "audio": "6 times 8 equals 48"
+        },
+        {
+          "multiplier": 9,
+          "equation": "6 × 9 = 54",
+          "result": 54,
+          "audio": "6 times 9 equals 54"
+        },
+        {
+          "multiplier": 10,
+          "equation": "6 × 10 = 60",
+          "result": 60,
+          "audio": "6 times 10 equals 60"
+        }
+      ]
+    },
+    "7": {
+      "number": 7,
+      "title": "Table of 7",
+      "rows": [
+        {
+          "multiplier": 1,
+          "equation": "7 × 1 = 7",
+          "result": 7,
+          "audio": "7 times 1 equals 7"
+        },
+        {
+          "multiplier": 2,
+          "equation": "7 × 2 = 14",
+          "result": 14,
+          "audio": "7 times 2 equals 14"
+        },
+        {
+          "multiplier": 3,
+          "equation": "7 × 3 = 21",
+          "result": 21,
+          "audio": "7 times 3 equals 21"
+        },
+        {
+          "multiplier": 4,
+          "equation": "7 × 4 = 28",
+          "result": 28,
+          "audio": "7 times 4 equals 28"
+        },
+        {
+          "multiplier": 5,
+          "equation": "7 × 5 = 35",
+          "result": 35,
+          "audio": "7 times 5 equals 35"
+        },
+        {
+          "multiplier": 6,
+          "equation": "7 × 6 = 42",
+          "result": 42,
+          "audio": "7 times 6 equals 42"
+        },
+        {
+          "multiplier": 7,
+          "equation": "7 × 7 = 49",
+          "result": 49,
+          "audio": "7 times 7 equals 49"
+        },
+        {
+          "multiplier": 8,
+          "equation": "7 × 8 = 56",
+          "result": 56,
+          "audio": "7 times 8 equals 56"
+        },
+        {
+          "multiplier": 9,
+          "equation": "7 × 9 = 63",
+          "result": 63,
+          "audio": "7 times 9 equals 63"
+        },
+        {
+          "multiplier": 10,
+          "equation": "7 × 10 = 70",
+          "result": 70,
+          "audio": "7 times 10 equals 70"
+        }
+      ]
+    },
+    "8": {
+      "number": 8,
+      "title": "Table of 8",
+      "rows": [
+        {
+          "multiplier": 1,
+          "equation": "8 × 1 = 8",
+          "result": 8,
+          "audio": "8 times 1 equals 8"
+        },
+        {
+          "multiplier": 2,
+          "equation": "8 × 2 = 16",
+          "result": 16,
+          "audio": "8 times 2 equals 16"
+        },
+        {
+          "multiplier": 3,
+          "equation": "8 × 3 = 24",
+          "result": 24,
+          "audio": "8 times 3 equals 24"
+        },
+        {
+          "multiplier": 4,
+          "equation": "8 × 4 = 32",
+          "result": 32,
+          "audio": "8 times 4 equals 32"
+        },
+        {
+          "multiplier": 5,
+          "equation": "8 × 5 = 40",
+          "result": 40,
+          "audio": "8 times 5 equals 40"
+        },
+        {
+          "multiplier": 6,
+          "equation": "8 × 6 = 48",
+          "result": 48,
+          "audio": "8 times 6 equals 48"
+        },
+        {
+          "multiplier": 7,
+          "equation": "8 × 7 = 56",
+          "result": 56,
+          "audio": "8 times 7 equals 56"
+        },
+        {
+          "multiplier": 8,
+          "equation": "8 × 8 = 64",
+          "result": 64,
+          "audio": "8 times 8 equals 64"
+        },
+        {
+          "multiplier": 9,
+          "equation": "8 × 9 = 72",
+          "result": 72,
+          "audio": "8 times 9 equals 72"
+        },
+        {
+          "multiplier": 10,
+          "equation": "8 × 10 = 80",
+          "result": 80,
+          "audio": "8 times 10 equals 80"
+        }
+      ]
+    },
+    "9": {
+      "number": 9,
+      "title": "Table of 9",
+      "rows": [
+        {
+          "multiplier": 1,
+          "equation": "9 × 1 = 9",
+          "result": 9,
+          "audio": "9 times 1 equals 9"
+        },
+        {
+          "multiplier": 2,
+          "equation": "9 × 2 = 18",
+          "result": 18,
+          "audio": "9 times 2 equals 18"
+        },
+        {
+          "multiplier": 3,
+          "equation": "9 × 3 = 27",
+          "result": 27,
+          "audio": "9 times 3 equals 27"
+        },
+        {
+          "multiplier": 4,
+          "equation": "9 × 4 = 36",
+          "result": 36,
+          "audio": "9 times 4 equals 36"
+        },
+        {
+          "multiplier": 5,
+          "equation": "9 × 5 = 45",
+          "result": 45,
+          "audio": "9 times 5 equals 45"
+        },
+        {
+          "multiplier": 6,
+          "equation": "9 × 6 = 54",
+          "result": 54,
+          "audio": "9 times 6 equals 54"
+        },
+        {
+          "multiplier": 7,
+          "equation": "9 × 7 = 63",
+          "result": 63,
+          "audio": "9 times 7 equals 63"
+        },
+        {
+          "multiplier": 8,
+          "equation": "9 × 8 = 72",
+          "result": 72,
+          "audio": "9 times 8 equals 72"
+        },
+        {
+          "multiplier": 9,
+          "equation": "9 × 9 = 81",
+          "result": 81,
+          "audio": "9 times 9 equals 81"
+        },
+        {
+          "multiplier": 10,
+          "equation": "9 × 10 = 90",
+          "result": 90,
+          "audio": "9 times 10 equals 90"
+        }
+      ]
+    },
+    "10": {
+      "number": 10,
+      "title": "Table of 10",
+      "rows": [
+        {
+          "multiplier": 1,
+          "equation": "10 × 1 = 10",
+          "result": 10,
+          "audio": "10 times 1 equals 10"
+        },
+        {
+          "multiplier": 2,
+          "equation": "10 × 2 = 20",
+          "result": 20,
+          "audio": "10 times 2 equals 20"
+        },
+        {
+          "multiplier": 3,
+          "equation": "10 × 3 = 30",
+          "result": 30,
+          "audio": "10 times 3 equals 30"
+        },
+        {
+          "multiplier": 4,
+          "equation": "10 × 4 = 40",
+          "result": 40,
+          "audio": "10 times 4 equals 40"
+        },
+        {
+          "multiplier": 5,
+          "equation": "10 × 5 = 50",
+          "result": 50,
+          "audio": "10 times 5 equals 50"
+        },
+        {
+          "multiplier": 6,
+          "equation": "10 × 6 = 60",
+          "result": 60,
+          "audio": "10 times 6 equals 60"
+        },
+        {
+          "multiplier": 7,
+          "equation": "10 × 7 = 70",
+          "result": 70,
+          "audio": "10 times 7 equals 70"
+        },
+        {
+          "multiplier": 8,
+          "equation": "10 × 8 = 80",
+          "result": 80,
+          "audio": "10 times 8 equals 80"
+        },
+        {
+          "multiplier": 9,
+          "equation": "10 × 9 = 90",
+          "result": 90,
+          "audio": "10 times 9 equals 90"
+        },
+        {
+          "multiplier": 10,
+          "equation": "10 × 10 = 100",
+          "result": 100,
+          "audio": "10 times 10 equals 100"
+        }
+      ]
+    },
+    "11": {
+      "number": 11,
+      "title": "Table of 11",
+      "rows": [
+        {
+          "multiplier": 1,
+          "equation": "11 × 1 = 11",
+          "result": 11,
+          "audio": "11 times 1 equals 11"
+        },
+        {
+          "multiplier": 2,
+          "equation": "11 × 2 = 22",
+          "result": 22,
+          "audio": "11 times 2 equals 22"
+        },
+        {
+          "multiplier": 3,
+          "equation": "11 × 3 = 33",
+          "result": 33,
+          "audio": "11 times 3 equals 33"
+        },
+        {
+          "multiplier": 4,
+          "equation": "11 × 4 = 44",
+          "result": 44,
+          "audio": "11 times 4 equals 44"
+        },
+        {
+          "multiplier": 5,
+          "equation": "11 × 5 = 55",
+          "result": 55,
+          "audio": "11 times 5 equals 55"
+        },
+        {
+          "multiplier": 6,
+          "equation": "11 × 6 = 66",
+          "result": 66,
+          "audio": "11 times 6 equals 66"
+        },
+        {
+          "multiplier": 7,
+          "equation": "11 × 7 = 77",
+          "result": 77,
+          "audio": "11 times 7 equals 77"
+        },
+        {
+          "multiplier": 8,
+          "equation": "11 × 8 = 88",
+          "result": 88,
+          "audio": "11 times 8 equals 88"
+        },
+        {
+          "multiplier": 9,
+          "equation": "11 × 9 = 99",
+          "result": 99,
+          "audio": "11 times 9 equals 99"
+        },
+        {
+          "multiplier": 10,
+          "equation": "11 × 10 = 110",
+          "result": 110,
+          "audio": "11 times 10 equals 110"
+        }
+      ]
+    },
+    "12": {
+      "number": 12,
+      "title": "Table of 12",
+      "rows": [
+        {
+          "multiplier": 1,
+          "equation": "12 × 1 = 12",
+          "result": 12,
+          "audio": "12 times 1 equals 12"
+        },
+        {
+          "multiplier": 2,
+          "equation": "12 × 2 = 24",
+          "result": 24,
+          "audio": "12 times 2 equals 24"
+        },
+        {
+          "multiplier": 3,
+          "equation": "12 × 3 = 36",
+          "result": 36,
+          "audio": "12 times 3 equals 36"
+        },
+        {
+          "multiplier": 4,
+          "equation": "12 × 4 = 48",
+          "result": 48,
+          "audio": "12 times 4 equals 48"
+        },
+        {
+          "multiplier": 5,
+          "equation": "12 × 5 = 60",
+          "result": 60,
+          "audio": "12 times 5 equals 60"
+        },
+        {
+          "multiplier": 6,
+          "equation": "12 × 6 = 72",
+          "result": 72,
+          "audio": "12 times 6 equals 72"
+        },
+        {
+          "multiplier": 7,
+          "equation": "12 × 7 = 84",
+          "result": 84,
+          "audio": "12 times 7 equals 84"
+        },
+        {
+          "multiplier": 8,
+          "equation": "12 × 8 = 96",
+          "result": 96,
+          "audio": "12 times 8 equals 96"
+        },
+        {
+          "multiplier": 9,
+          "equation": "12 × 9 = 108",
+          "result": 108,
+          "audio": "12 times 9 equals 108"
+        },
+        {
+          "multiplier": 10,
+          "equation": "12 × 10 = 120",
+          "result": 120,
+          "audio": "12 times 10 equals 120"
+        }
+      ]
+    },
+    "13": {
+      "number": 13,
+      "title": "Table of 13",
+      "rows": [
+        {
+          "multiplier": 1,
+          "equation": "13 × 1 = 13",
+          "result": 13,
+          "audio": "13 times 1 equals 13"
+        },
+        {
+          "multiplier": 2,
+          "equation": "13 × 2 = 26",
+          "result": 26,
+          "audio": "13 times 2 equals 26"
+        },
+        {
+          "multiplier": 3,
+          "equation": "13 × 3 = 39",
+          "result": 39,
+          "audio": "13 times 3 equals 39"
+        },
+        {
+          "multiplier": 4,
+          "equation": "13 × 4 = 52",
+          "result": 52,
+          "audio": "13 times 4 equals 52"
+        },
+        {
+          "multiplier": 5,
+          "equation": "13 × 5 = 65",
+          "result": 65,
+          "audio": "13 times 5 equals 65"
+        },
+        {
+          "multiplier": 6,
+          "equation": "13 × 6 = 78",
+          "result": 78,
+          "audio": "13 times 6 equals 78"
+        },
+        {
+          "multiplier": 7,
+          "equation": "13 × 7 = 91",
+          "result": 91,
+          "audio": "13 times 7 equals 91"
+        },
+        {
+          "multiplier": 8,
+          "equation": "13 × 8 = 104",
+          "result": 104,
+          "audio": "13 times 8 equals 104"
+        },
+        {
+          "multiplier": 9,
+          "equation": "13 × 9 = 117",
+          "result": 117,
+          "audio": "13 times 9 equals 117"
+        },
+        {
+          "multiplier": 10,
+          "equation": "13 × 10 = 130",
+          "result": 130,
+          "audio": "13 times 10 equals 130"
+        }
+      ]
+    },
+    "14": {
+      "number": 14,
+      "title": "Table of 14",
+      "rows": [
+        {
+          "multiplier": 1,
+          "equation": "14 × 1 = 14",
+          "result": 14,
+          "audio": "14 times 1 equals 14"
+        },
+        {
+          "multiplier": 2,
+          "equation": "14 × 2 = 28",
+          "result": 28,
+          "audio": "14 times 2 equals 28"
+        },
+        {
+          "multiplier": 3,
+          "equation": "14 × 3 = 42",
+          "result": 42,
+          "audio": "14 times 3 equals 42"
+        },
+        {
+          "multiplier": 4,
+          "equation": "14 × 4 = 56",
+          "result": 56,
+          "audio": "14 times 4 equals 56"
+        },
+        {
+          "multiplier": 5,
+          "equation": "14 × 5 = 70",
+          "result": 70,
+          "audio": "14 times 5 equals 70"
+        },
+        {
+          "multiplier": 6,
+          "equation": "14 × 6 = 84",
+          "result": 84,
+          "audio": "14 times 6 equals 84"
+        },
+        {
+          "multiplier": 7,
+          "equation": "14 × 7 = 98",
+          "result": 98,
+          "audio": "14 times 7 equals 98"
+        },
+        {
+          "multiplier": 8,
+          "equation": "14 × 8 = 112",
+          "result": 112,
+          "audio": "14 times 8 equals 112"
+        },
+        {
+          "multiplier": 9,
+          "equation": "14 × 9 = 126",
+          "result": 126,
+          "audio": "14 times 9 equals 126"
+        },
+        {
+          "multiplier": 10,
+          "equation": "14 × 10 = 140",
+          "result": 140,
+          "audio": "14 times 10 equals 140"
+        }
+      ]
+    },
+    "15": {
+      "number": 15,
+      "title": "Table of 15",
+      "rows": [
+        {
+          "multiplier": 1,
+          "equation": "15 × 1 = 15",
+          "result": 15,
+          "audio": "15 times 1 equals 15"
+        },
+        {
+          "multiplier": 2,
+          "equation": "15 × 2 = 30",
+          "result": 30,
+          "audio": "15 times 2 equals 30"
+        },
+        {
+          "multiplier": 3,
+          "equation": "15 × 3 = 45",
+          "result": 45,
+          "audio": "15 times 3 equals 45"
+        },
+        {
+          "multiplier": 4,
+          "equation": "15 × 4 = 60",
+          "result": 60,
+          "audio": "15 times 4 equals 60"
+        },
+        {
+          "multiplier": 5,
+          "equation": "15 × 5 = 75",
+          "result": 75,
+          "audio": "15 times 5 equals 75"
+        },
+        {
+          "multiplier": 6,
+          "equation": "15 × 6 = 90",
+          "result": 90,
+          "audio": "15 times 6 equals 90"
+        },
+        {
+          "multiplier": 7,
+          "equation": "15 × 7 = 105",
+          "result": 105,
+          "audio": "15 times 7 equals 105"
+        },
+        {
+          "multiplier": 8,
+          "equation": "15 × 8 = 120",
+          "result": 120,
+          "audio": "15 times 8 equals 120"
+        },
+        {
+          "multiplier": 9,
+          "equation": "15 × 9 = 135",
+          "result": 135,
+          "audio": "15 times 9 equals 135"
+        },
+        {
+          "multiplier": 10,
+          "equation": "15 × 10 = 150",
+          "result": 150,
+          "audio": "15 times 10 equals 150"
+        }
+      ]
+    },
+    "16": {
+      "number": 16,
+      "title": "Table of 16",
+      "rows": [
+        {
+          "multiplier": 1,
+          "equation": "16 × 1 = 16",
+          "result": 16,
+          "audio": "16 times 1 equals 16"
+        },
+        {
+          "multiplier": 2,
+          "equation": "16 × 2 = 32",
+          "result": 32,
+          "audio": "16 times 2 equals 32"
+        },
+        {
+          "multiplier": 3,
+          "equation": "16 × 3 = 48",
+          "result": 48,
+          "audio": "16 times 3 equals 48"
+        },
+        {
+          "multiplier": 4,
+          "equation": "16 × 4 = 64",
+          "result": 64,
+          "audio": "16 times 4 equals 64"
+        },
+        {
+          "multiplier": 5,
+          "equation": "16 × 5 = 80",
+          "result": 80,
+          "audio": "16 times 5 equals 80"
+        },
+        {
+          "multiplier": 6,
+          "equation": "16 × 6 = 96",
+          "result": 96,
+          "audio": "16 times 6 equals 96"
+        },
+        {
+          "multiplier": 7,
+          "equation": "16 × 7 = 112",
+          "result": 112,
+          "audio": "16 times 7 equals 112"
+        },
+        {
+          "multiplier": 8,
+          "equation": "16 × 8 = 128",
+          "result": 128,
+          "audio": "16 times 8 equals 128"
+        },
+        {
+          "multiplier": 9,
+          "equation": "16 × 9 = 144",
+          "result": 144,
+          "audio": "16 times 9 equals 144"
+        },
+        {
+          "multiplier": 10,
+          "equation": "16 × 10 = 160",
+          "result": 160,
+          "audio": "16 times 10 equals 160"
+        }
+      ]
+    },
+    "17": {
+      "number": 17,
+      "title": "Table of 17",
+      "rows": [
+        {
+          "multiplier": 1,
+          "equation": "17 × 1 = 17",
+          "result": 17,
+          "audio": "17 times 1 equals 17"
+        },
+        {
+          "multiplier": 2,
+          "equation": "17 × 2 = 34",
+          "result": 34,
+          "audio": "17 times 2 equals 34"
+        },
+        {
+          "multiplier": 3,
+          "equation": "17 × 3 = 51",
+          "result": 51,
+          "audio": "17 times 3 equals 51"
+        },
+        {
+          "multiplier": 4,
+          "equation": "17 × 4 = 68",
+          "result": 68,
+          "audio": "17 times 4 equals 68"
+        },
+        {
+          "multiplier": 5,
+          "equation": "17 × 5 = 85",
+          "result": 85,
+          "audio": "17 times 5 equals 85"
+        },
+        {
+          "multiplier": 6,
+          "equation": "17 × 6 = 102",
+          "result": 102,
+          "audio": "17 times 6 equals 102"
+        },
+        {
+          "multiplier": 7,
+          "equation": "17 × 7 = 119",
+          "result": 119,
+          "audio": "17 times 7 equals 119"
+        },
+        {
+          "multiplier": 8,
+          "equation": "17 × 8 = 136",
+          "result": 136,
+          "audio": "17 times 8 equals 136"
+        },
+        {
+          "multiplier": 9,
+          "equation": "17 × 9 = 153",
+          "result": 153,
+          "audio": "17 times 9 equals 153"
+        },
+        {
+          "multiplier": 10,
+          "equation": "17 × 10 = 170",
+          "result": 170,
+          "audio": "17 times 10 equals 170"
+        }
+      ]
+    },
+    "18": {
+      "number": 18,
+      "title": "Table of 18",
+      "rows": [
+        {
+          "multiplier": 1,
+          "equation": "18 × 1 = 18",
+          "result": 18,
+          "audio": "18 times 1 equals 18"
+        },
+        {
+          "multiplier": 2,
+          "equation": "18 × 2 = 36",
+          "result": 36,
+          "audio": "18 times 2 equals 36"
+        },
+        {
+          "multiplier": 3,
+          "equation": "18 × 3 = 54",
+          "result": 54,
+          "audio": "18 times 3 equals 54"
+        },
+        {
+          "multiplier": 4,
+          "equation": "18 × 4 = 72",
+          "result": 72,
+          "audio": "18 times 4 equals 72"
+        },
+        {
+          "multiplier": 5,
+          "equation": "18 × 5 = 90",
+          "result": 90,
+          "audio": "18 times 5 equals 90"
+        },
+        {
+          "multiplier": 6,
+          "equation": "18 × 6 = 108",
+          "result": 108,
+          "audio": "18 times 6 equals 108"
+        },
+        {
+          "multiplier": 7,
+          "equation": "18 × 7 = 126",
+          "result": 126,
+          "audio": "18 times 7 equals 126"
+        },
+        {
+          "multiplier": 8,
+          "equation": "18 × 8 = 144",
+          "result": 144,
+          "audio": "18 times 8 equals 144"
+        },
+        {
+          "multiplier": 9,
+          "equation": "18 × 9 = 162",
+          "result": 162,
+          "audio": "18 times 9 equals 162"
+        },
+        {
+          "multiplier": 10,
+          "equation": "18 × 10 = 180",
+          "result": 180,
+          "audio": "18 times 10 equals 180"
+        }
+      ]
+    },
+    "19": {
+      "number": 19,
+      "title": "Table of 19",
+      "rows": [
+        {
+          "multiplier": 1,
+          "equation": "19 × 1 = 19",
+          "result": 19,
+          "audio": "19 times 1 equals 19"
+        },
+        {
+          "multiplier": 2,
+          "equation": "19 × 2 = 38",
+          "result": 38,
+          "audio": "19 times 2 equals 38"
+        },
+        {
+          "multiplier": 3,
+          "equation": "19 × 3 = 57",
+          "result": 57,
+          "audio": "19 times 3 equals 57"
+        },
+        {
+          "multiplier": 4,
+          "equation": "19 × 4 = 76",
+          "result": 76,
+          "audio": "19 times 4 equals 76"
+        },
+        {
+          "multiplier": 5,
+          "equation": "19 × 5 = 95",
+          "result": 95,
+          "audio": "19 times 5 equals 95"
+        },
+        {
+          "multiplier": 6,
+          "equation": "19 × 6 = 114",
+          "result": 114,
+          "audio": "19 times 6 equals 114"
+        },
+        {
+          "multiplier": 7,
+          "equation": "19 × 7 = 133",
+          "result": 133,
+          "audio": "19 times 7 equals 133"
+        },
+        {
+          "multiplier": 8,
+          "equation": "19 × 8 = 152",
+          "result": 152,
+          "audio": "19 times 8 equals 152"
+        },
+        {
+          "multiplier": 9,
+          "equation": "19 × 9 = 171",
+          "result": 171,
+          "audio": "19 times 9 equals 171"
+        },
+        {
+          "multiplier": 10,
+          "equation": "19 × 10 = 190",
+          "result": 190,
+          "audio": "19 times 10 equals 190"
+        }
+      ]
+    },
+    "20": {
+      "number": 20,
+      "title": "Table of 20",
+      "rows": [
+        {
+          "multiplier": 1,
+          "equation": "20 × 1 = 20",
+          "result": 20,
+          "audio": "20 times 1 equals 20"
+        },
+        {
+          "multiplier": 2,
+          "equation": "20 × 2 = 40",
+          "result": 40,
+          "audio": "20 times 2 equals 40"
+        },
+        {
+          "multiplier": 3,
+          "equation": "20 × 3 = 60",
+          "result": 60,
+          "audio": "20 times 3 equals 60"
+        },
+        {
+          "multiplier": 4,
+          "equation": "20 × 4 = 80",
+          "result": 80,
+          "audio": "20 times 4 equals 80"
+        },
+        {
+          "multiplier": 5,
+          "equation": "20 × 5 = 100",
+          "result": 100,
+          "audio": "20 times 5 equals 100"
+        },
+        {
+          "multiplier": 6,
+          "equation": "20 × 6 = 120",
+          "result": 120,
+          "audio": "20 times 6 equals 120"
+        },
+        {
+          "multiplier": 7,
+          "equation": "20 × 7 = 140",
+          "result": 140,
+          "audio": "20 times 7 equals 140"
+        },
+        {
+          "multiplier": 8,
+          "equation": "20 × 8 = 160",
+          "result": 160,
+          "audio": "20 times 8 equals 160"
+        },
+        {
+          "multiplier": 9,
+          "equation": "20 × 9 = 180",
+          "result": 180,
+          "audio": "20 times 9 equals 180"
+        },
+        {
+          "multiplier": 10,
+          "equation": "20 × 10 = 200",
+          "result": 200,
+          "audio": "20 times 10 equals 200"
+        }
+      ]
+    }
+  },
+  "shapes": [
+    {
+      "name": "Circle",
+      "sides": 0,
+      "icon": "⚪",
+      "desc": "Round with no corners, like a plate or a coin."
+    },
+    {
+      "name": "Triangle",
+      "sides": 3,
+      "icon": "🔺",
+      "desc": "Has 3 sides and 3 sharp corners, like a slice of pizza."
+    },
+    {
+      "name": "Square",
+      "sides": 4,
+      "icon": "⬛",
+      "desc": "Has 4 equal sides and 4 equal corners, like a game die."
+    },
+    {
+      "name": "Rectangle",
+      "sides": 4,
+      "icon": "▭",
+      "desc": "Has 4 sides with opposite sides equal, like a door or book."
+    },
+    {
+      "name": "Star",
+      "sides": 10,
+      "icon": "⭐",
+      "desc": "Shining shape with glowing points in the night sky."
+    },
+    {
+      "name": "Heart",
+      "sides": 0,
+      "icon": "💖",
+      "desc": "Curved symbol representing kindness and care."
+    },
+    {
+      "name": "Cube",
+      "sides": 6,
+      "icon": "🧊",
+      "desc": "A 3D box with 6 square faces, like an ice cube."
+    },
+    {
+      "name": "Sphere",
+      "sides": 0,
+      "icon": "🔮",
+      "desc": "A 3D ball that rolls smoothly in every direction."
+    }
+  ],
+  "addition_samples": [
+    {
+      "a": 2,
+      "b": 3,
+      "ans": 5,
+      "text": "2 apples + 3 apples = 5 apples",
+      "icon": "🍎"
+    },
+    {
+      "a": 4,
+      "b": 4,
+      "ans": 8,
+      "text": "4 stars + 4 stars = 8 stars",
+      "icon": "⭐"
+    },
+    {
+      "a": 5,
+      "b": 2,
+      "ans": 7,
+      "text": "5 flowers + 2 flowers = 7 flowers",
+      "icon": "🌸"
+    }
+  ]
+}

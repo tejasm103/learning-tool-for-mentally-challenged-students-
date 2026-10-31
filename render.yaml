@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: mindverse-learning-lab
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn 'backend.app:create_app()' --bind 0.0.0.0:$PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.8
+      - key: SECRET_KEY
+        generateValue: true
+      - key: FLASK_ENV
+        value: production
+      # Set your Supabase connection string in Render Dashboard -> Environment Variables:
+      # e.g. postgresql://postgres.[project-ref]:[password]@aws-0-[region].pooler.supabase.com:6543/postgres
+      - key: DATABASE_URL
+        sync: false
+      # MongoDB Atlas ("mango db") Support:
+      # e.g. mongodb+srv://<username>:<password>@cluster0.abcde.mongodb.net/?retryWrites=true&w=majority
+      - key: MONGO_URI
+        sync: false
+      - key: MONGO_DB_NAME
+        value: mindverse

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Alphabet A to Z — MindVerse Learning Lab</title>
+  
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+  <link rel="stylesheet" href="css/games.css">
+
+  <script src="js/api.js"></script>
+  <script src="js/speech.js"></script>
+  <script src="js/accessibility.js"></script>
+  <script src="js/games.js"></script>
+  <script src="js/mindbot.js"></script>
+</head>
+<body>
+  <a href="#alphabet-main" class="skip-link">Skip to alphabet lesson</a>
+
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🔤</div>
+        <div class="brand-text">MindVerse <span>Alphabet Lab</span></div>
+      </a>
+      <div class="header-actions">
+        <a href="classroom_3d.html" class="btn btn-secondary">🏫 3D Classroom</a>
+        <button class="btn-icon" id="open-a11y-btn" title="Accessibility settings">♿</button>
+        <a href="student_dashboard.html" class="btn btn-primary">My Dashboard</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="alphabet-main" class="content-container">
+    <!-- Header info -->
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:2rem;">
+      <div>
+        <div class="badge badge-cyan" style="margin-bottom:0.5rem;">English Curriculum A to Z</div>
+        <h1 style="font-size:2.2rem; font-weight:800;">English Alphabet Discovery</h1>
+        <p style="color:var(--text-muted);">Explore each letter with sounds, pictures, vocabulary, and interactive practice.</p>
+      </div>
+      <button class="btn btn-secondary" id="toggle-chart-btn">
+        <span>🖼️</span> View Full Alphabet Chart
+      </button>
+    </div>
+
+    <!-- Reference Chart Modal/Section (User Reference Image 2) -->
+    <div id="chart-section" class="card" style="display:none; margin-bottom:2rem; text-align:center;">
+      <h3 style="margin-bottom:1rem; color:var(--primary);">Reference Alphabet Chart</h3>
+      <img src="images/alphabet_chart.jpg" alt="Complete Illustrated Alphabet Chart A to Z" style="max-width:100%; height:auto; border-radius:var(--radius-md); border:1px solid var(--border-glow);">
+    </div>
+
+    <!-- Letter Selector Track -->
+    <div style="background:rgba(255,255,255,0.04); border:1px solid var(--border-light); border-radius:var(--radius-xl); padding:0.75rem 1rem; display:flex; gap:0.5rem; overflow-x:auto; margin-bottom:2.5rem;" id="letter-pills-bar">
+      <!-- Generated via JS A-Z -->
+    </div>
+
+    <!-- Interactive Letter Stage -->
+    <div class="card" style="padding:2.5rem; max-width:900px; margin:0 auto; box-shadow:0 0 35px var(--primary-glow);">
+      <div style="display:grid; grid-template-columns:1fr 1.3fr; gap:2.5rem; align-items:center;">
+        
+        <!-- Large Visual Letter Display -->
+        <div style="background:linear-gradient(135deg, rgba(0,240,255,0.1), rgba(121,40,202,0.1)); border:2px solid var(--border-glow); border-radius:var(--radius-xl); padding:2rem; text-align:center;">
+          <div id="letter-display" style="font-size:7rem; font-weight:900; line-height:1; color:#fff; text-shadow:0 0 25px var(--primary-glow);">A a</div>
+          <div id="letter-phonetic" style="font-size:1.2rem; color:var(--primary); font-weight:700; margin-top:0.5rem;">Sound: /eɪ/ (ay)</div>
+          
+          <div style="font-size:4.5rem; margin:1.2rem 0;" id="letter-icon">🍎</div>
+          <div id="letter-word" style="font-size:1.8rem; font-weight:800; color:#fff;">Apple</div>
+
+          <button class="btn btn-primary btn-lg" id="letter-audio-btn" style="margin-top:1.25rem; width:100%;">
+            <span>🔊</span> Listen & Repeat
+          </button>
+        </div>
+
+        <!-- Explanation & Vocabulary -->
+        <div>
+          <div class="badge badge-purple" id="letter-badge" style="margin-bottom:0.75rem;">Letter A</div>
+          <h2 id="letter-title" style="font-size:1.8rem; margin-bottom:0.75rem;">A is for Apple</h2>
+          <p id="letter-sentence" style="font-size:1.15rem; color:var(--text-main); margin-bottom:1rem; line-height:1.6;">
+            An apple is a sweet, crunchy fruit.
+          </p>
+          
+          <div style="background:rgba(255,255,255,0.05); padding:1rem; border-radius:var(--radius-md); border-left:4px solid var(--primary); margin-bottom:1.5rem;">
+            <div style="font-weight:700; color:var(--primary); font-size:0.9rem; margin-bottom:0.3rem;">💡 Fun Fact</div>
+            <div id="letter-fact" style="font-size:0.95rem; color:var(--text-muted);">Apples give you healthy energy to play and learn!</div>
+          </div>
+
+          <h4 style="color:#fff; margin-bottom:0.75rem;">More Words Starting with this Letter:</h4>
+          <div id="letter-examples" style="display:flex; gap:0.6rem; flex-wrap:wrap; margin-bottom:1.5rem;">
+            <!-- Example words -->
+          </div>
+
+          <div style="display:flex; gap:1rem;">
+            <button class="btn btn-secondary" id="prev-letter-btn">← Previous</button>
+            <button class="btn btn-primary" id="next-letter-btn">Next Letter →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Quick Practice Section -->
+      <div style="margin-top:3rem; padding-top:2rem; border-top:1px solid var(--border-light);">
+        <h3 style="color:#fff; font-size:1.3rem; margin-bottom:1rem;">🎯 Practice Activity</h3>
+        <p id="quiz-question-text" style="font-size:1.05rem; color:var(--text-muted); margin-bottom:1.25rem;">
+          Which word begins with the letter A?
+        </p>
+
+        <div id="quiz-options-container" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:1rem; margin-bottom:1.5rem;">
+          <!-- Options -->
+        </div>
+
+        <div id="practice-feedback" style="min-height:32px; font-weight:700; font-size:1.1rem;"></div>
+
+        <div style="margin-top:1.5rem; display:flex; justify-content:space-between; align-items:center;">
+          <button class="btn btn-accent" id="mark-complete-btn">
+            <span>⭐</span> Complete Lesson & Save Progress
+          </button>
+          <a href="games.html" class="btn btn-secondary">Play Matching Game →</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    let alphabetData = [];
+    let currentIndex = 0;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        alphabetData = await MindVerseAPI.getEnglishAlphabet();
+        if (!alphabetData || alphabetData.length === 0) return;
+
+        renderPills();
+        loadLetter(0);
+
+        document.getElementById('prev-letter-btn').onclick = () => {
+          if (currentIndex > 0) loadLetter(currentIndex - 1);
+        };
+        document.getElementById('next-letter-btn').onclick = () => {
+          if (currentIndex < alphabetData.length - 1) loadLetter(currentIndex + 1);
+        };
+
+        document.getElementById('letter-audio-btn').onclick = () => {
+          const item = alphabetData[currentIndex];
+          if (typeof MindVerseAudio !== 'undefined') {
+            MindVerseAudio.speak(item.audio_text || `${item.letter} is for ${item.primary_word}.`);
+          }
+        };
+
+        document.getElementById('toggle-chart-btn').onclick = () => {
+          const chart = document.getElementById('chart-section');
+          chart.style.display = chart.style.display === 'none' ? 'block' : 'none';
+        };
+
+        document.getElementById('mark-complete-btn').onclick = async () => {
+          const item = alphabetData[currentIndex];
+          if (typeof MindVerseAudio !== 'undefined') MindVerseAudio.playSuccessSound();
+          try {
+            await MindVerseAPI.completeLesson('english-alphabet', 100, 120);
+          } catch (e) {}
+          if (typeof MindVerseGames !== 'undefined') {
+            MindVerseGames.showCelebration(`Letter ${item.letter} Mastered!`, 100, 3);
+          }
+        };
+
+      } catch (err) {
+        console.error('Failed to load alphabet data:', err);
+      }
+    });
+
+    function renderPills() {
+      const container = document.getElementById('letter-pills-bar');
+      container.innerHTML = '';
+      alphabetData.forEach((item, idx) => {
+        const btn = document.createElement('button');
+        btn.className = `btn btn-secondary ${idx === 0 ? 'active' : ''}`;
+        btn.style.cssText = 'min-width:44px; height:44px; padding:0; font-weight:800; border-radius:var(--radius-full);';
+        btn.textContent = item.letter;
+        btn.onclick = () => loadLetter(idx);
+        container.appendChild(btn);
+      });
+    }
+
+    function loadLetter(index) {
+      currentIndex = index;
+      const item = alphabetData[index];
+
+      // Update active pill
+      const pills = document.querySelectorAll('#letter-pills-bar button');
+      pills.forEach((p, idx) => {
+        p.classList.toggle('active', idx === index);
+        p.classList.toggle('btn-primary', idx === index);
+        p.classList.toggle('btn-secondary', idx !== index);
+      });
+
+      // Update View
+      document.getElementById('letter-display').textContent = `${item.letter} ${item.lowercase}`;
+      document.getElementById('letter-phonetic').textContent = `Sound: /${item.sound}/ (${item.phonetic})`;
+      document.getElementById('letter-icon').textContent = item.icon;
+      document.getElementById('letter-word').textContent = item.primary_word;
+      document.getElementById('letter-badge').textContent = `Letter ${item.letter}`;
+      document.getElementById('letter-title').textContent = `${item.letter} is for ${item.primary_word}`;
+      document.getElementById('letter-sentence').textContent = item.sentence;
+      document.getElementById('letter-fact').textContent = item.fact;
+
+      // Examples
+      const exContainer = document.getElementById('letter-examples');
+      exContainer.innerHTML = '';
+      item.example_words.forEach(w => {
+        const chip = document.createElement('span');
+        chip.className = 'badge badge-cyan';
+        chip.style.fontSize = '0.95rem';
+        chip.style.padding = '0.45rem 0.9rem';
+        chip.textContent = w;
+        chip.style.cursor = 'pointer';
+        chip.onclick = () => {
+          if (typeof MindVerseAudio !== 'undefined') MindVerseAudio.speak(w);
+        };
+        exContainer.appendChild(chip);
+      });
+
+      // Quiz Practice
+      document.getElementById('quiz-question-text').textContent = item.quiz_question;
+      const optContainer = document.getElementById('quiz-options-container');
+      optContainer.innerHTML = '';
+      const feedback = document.getElementById('practice-feedback');
+      feedback.textContent = '';
+
+      item.options.forEach(opt => {
+        const optBtn = document.createElement('button');
+        optBtn.className = 'btn btn-secondary';
+        optBtn.style.padding = '1rem';
+        optBtn.style.fontSize = '1.1rem';
+        optBtn.textContent = opt;
+
+        optBtn.onclick = () => {
+          if (opt === item.correct) {
+            optBtn.className = 'btn btn-primary';
+            feedback.style.color = 'var(--accent-green)';
+            feedback.textContent = `🌟 Correct! ${item.correct} starts with ${item.letter}!`;
+            if (typeof MindVerseAudio !== 'undefined') {
+              MindVerseAudio.playStarSound();
+              MindVerseAudio.speak(`Superb! ${item.correct}`);
+            }
+          } else {
+            optBtn.style.borderColor = 'var(--accent-pink)';
+            feedback.style.color = 'var(--accent-pink)';
+            feedback.textContent = `Try again! Notice the starting letter sound of ${item.letter}.`;
+            if (typeof MindVerseAudio !== 'undefined') MindVerseAudio.playGentleTryAgain();
+          }
+        };
+        optContainer.appendChild(optBtn);
+      });
+
+      // Auto speak letter on change
+      if (typeof MindVerseAudio !== 'undefined') {
+        MindVerseAudio.speak(`${item.letter}. ${item.primary_word}.`);
+      }
+    }
+  </script>
+</body>
+</html>

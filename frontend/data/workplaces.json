@@ -1,0 +1,199 @@
+{
+  "title": "Our Working Places & Community Helpers",
+  "description": "Learn about the important working places in our community and the people who work there to help us every day.",
+  "modules": [
+    {
+      "id": "health_emergency",
+      "category": "Health & Emergency Working Places",
+      "icon": "🚑",
+      "places": [
+        {
+          "id": "hospital",
+          "name": "Hospital & Health Clinic",
+          "icon": "🏥",
+          "helper": "Doctor, Nurse & Paramedic",
+          "helper_icon": "👩‍⚕️",
+          "tools": "Stethoscope, Thermometer, Bandages, Medicine",
+          "description": "A caring place where sick or injured people go to be treated, healed, and checked by doctors and nurses.",
+          "audio_text": "Hospital. Doctors and nurses work in the hospital to help people heal, stay healthy, and feel better.",
+          "fun_fact": "Hospitals are open 24 hours every day, even when you are asleep!"
+        },
+        {
+          "id": "fire_station",
+          "name": "Fire Station",
+          "icon": "🚒",
+          "helper": "Firefighter",
+          "helper_icon": "🧑‍🚒",
+          "tools": "Fire Truck, Water Hose, Ladder, Helmet, Protective Suit",
+          "description": "The headquarters where brave firefighters keep their fire engines ready to rush and put out fires or rescue people and pets.",
+          "audio_text": "Fire Station. Firefighters work here to protect our neighborhood from fires and help in emergencies.",
+          "fun_fact": "Fire trucks carry powerful hoses that can spray thousands of liters of water in just one minute!"
+        },
+        {
+          "id": "police_station",
+          "name": "Police Station",
+          "icon": "🚓",
+          "helper": "Police Officer",
+          "helper_icon": "👮",
+          "tools": "Police Car, Badge, Walkie-Talkie, High-Visibility Vest",
+          "description": "The working place where police officers coordinate to keep our community safe, peaceful, and orderly.",
+          "audio_text": "Police Station. Police officers work here to keep our roads and neighborhoods safe for everyone.",
+          "fun_fact": "Police officers are friendly community helpers. If you are lost, always ask a police officer for help!"
+        }
+      ]
+    },
+    {
+      "id": "education_public",
+      "category": "Education & Public Services",
+      "icon": "🏫",
+      "places": [
+        {
+          "id": "school",
+          "name": "School & Classroom",
+          "icon": "🏫",
+          "helper": "Teacher & Principal",
+          "helper_icon": "👩‍🏫",
+          "tools": "Books, Chalkboard, Computers, Pencils, Maps",
+          "description": "A joyful working place where teachers inspire students, teach reading, math, science, art, and good manners.",
+          "audio_text": "School. Teachers work at school to help children learn new ideas, make friends, and discover their talents.",
+          "fun_fact": "Teachers prepare fun lessons and creative games so every student enjoys learning!"
+        },
+        {
+          "id": "library",
+          "name": "Library",
+          "icon": "🏛️",
+          "helper": "Librarian",
+          "helper_icon": "📚",
+          "tools": "Storybooks, Encyclopedias, Library Cards, Computers",
+          "description": "A quiet and calm working place filled with thousands of books, stories, and knowledge for everyone to borrow.",
+          "audio_text": "Library. Librarians work here to help people find exciting books and keep the library peaceful and organized.",
+          "fun_fact": "Libraries let you borrow books for free to read at home with your family!"
+        },
+        {
+          "id": "post_office",
+          "name": "Post Office",
+          "icon": "📮",
+          "helper": "Mail Carrier & Postal Worker",
+          "helper_icon": "📬",
+          "tools": "Mail Van, Stamps, Envelopes, Parcel Scales",
+          "description": "The working place where letters, birthday cards, and packages are sorted and delivered to homes and businesses.",
+          "audio_text": "Post Office. Postal workers sort and deliver friendly letters and packages across the world.",
+          "fun_fact": "Before delivery vans, mail was sometimes carried by horses or homing pigeons!"
+        }
+      ]
+    },
+    {
+      "id": "food_production",
+      "category": "Food, Agriculture & Markets",
+      "icon": "🌾",
+      "places": [
+        {
+          "id": "farm",
+          "name": "Farm & Orchard",
+          "icon": "🚜",
+          "helper": "Farmer",
+          "helper_icon": "🧑‍🌾",
+          "tools": "Tractor, Plow, Watering Can, Seeds, Barn",
+          "description": "An open green working place where farmers grow fresh vegetables, fruits, grains, and take care of farm animals.",
+          "audio_text": "Farm. Farmers work hard in fields to grow healthy food like apples, carrots, rice, and wheat for us to eat.",
+          "fun_fact": "Farms supply almost all the food you find on your breakfast table!"
+        },
+        {
+          "id": "bakery",
+          "name": "Bakery",
+          "icon": "🥖",
+          "helper": "Baker",
+          "helper_icon": "👨‍🍳",
+          "tools": "Oven, Rolling Pin, Flour, Mixing Bowls, Apron",
+          "description": "A delicious-smelling working place where bakers make fresh bread, soft buns, biscuits, and celebration cakes.",
+          "audio_text": "Bakery. Bakers wake up very early in the morning to bake warm bread and delicious cakes for our families.",
+          "fun_fact": "Bread dough rises because friendly yeast creates tiny air bubbles in the dough!"
+        },
+        {
+          "id": "supermarket",
+          "name": "Supermarket & Grocery Store",
+          "icon": "🛒",
+          "helper": "Grocer & Cashier",
+          "helper_icon": "🏪",
+          "tools": "Barcode Scanner, Cash Register, Shopping Carts, Shelves",
+          "description": "A lively store where shopkeepers organize and sell fresh groceries, fruits, milk, and household goods.",
+          "audio_text": "Supermarket. Cashiers and shopkeepers work here to scan items and help families buy daily supplies.",
+          "fun_fact": "Supermarkets organize foods by categories so it is easy to find what you need!"
+        }
+      ]
+    },
+    {
+      "id": "science_travel",
+      "category": "Science, Travel & Construction",
+      "icon": "🚀",
+      "places": [
+        {
+          "id": "construction_site",
+          "name": "Construction Site",
+          "icon": "🏗️",
+          "helper": "Builder & Civil Engineer",
+          "helper_icon": "👷",
+          "tools": "Crane, Cement Mixer, Hard Hat, Blueprint, Measuring Tape",
+          "description": "An active working place where builders and engineers construct strong houses, bridges, roads, and tall towers.",
+          "audio_text": "Construction Site. Builders and engineers wear hard hats to build safe houses, schools, and bridges.",
+          "fun_fact": "Workers wear bright yellow or orange vests so everyone can see them clearly and stay safe!"
+        },
+        {
+          "id": "airport",
+          "name": "Airport & Hangar",
+          "icon": "✈️",
+          "helper": "Pilot & Flight Attendant",
+          "helper_icon": "🧑‍✈️",
+          "tools": "Airplane, Runway, Radar, Headsets, Luggage Cart",
+          "description": "The bustling working place where pilots, air traffic controllers, and flight crew help travelers fly safely across countries.",
+          "audio_text": "Airport. Pilots and air traffic controllers work here to fly airplanes safely through the sky.",
+          "fun_fact": "Airplanes have two pilots in the cockpit to double-check every safety control!"
+        },
+        {
+          "id": "science_lab",
+          "name": "Science & Space Lab",
+          "icon": "🔬",
+          "helper": "Scientist & Astronaut",
+          "helper_icon": "👩‍🔬",
+          "tools": "Microscope, Telescope, Test Tubes, Computers, Lab Coat",
+          "description": "A curious working place where scientists explore nature, invent new technologies, and study stars in space.",
+          "audio_text": "Science Lab. Scientists work with microscopes and computers to discover new cures and learn how our universe works.",
+          "fun_fact": "Scientists often do dozens of experiments to find one amazing new discovery!"
+        }
+      ]
+    }
+  ],
+  "quizzes": [
+    {
+      "question": "Which working place has fire engines, ladders, and long water hoses?",
+      "options": ["Fire Station", "Bakery", "Library", "Airport"],
+      "correct": "Fire Station",
+      "explanation": "Firefighters keep fire engines and hoses at the Fire Station."
+    },
+    {
+      "question": "Where does a doctor and nurse work to care for patients?",
+      "options": ["Hospital", "Farm", "Construction Site", "Post Office"],
+      "correct": "Hospital",
+      "explanation": "Hospitals and clinics are where doctors and nurses provide healthcare."
+    },
+    {
+      "question": "Where does a farmer drive a tractor and grow fresh crops?",
+      "options": ["Farm", "Police Station", "Library", "Supermarket"],
+      "correct": "Farm",
+      "explanation": "Farmers work on farms to grow vegetables, fruits, and grains."
+    },
+    {
+      "question": "If you want to read quiet storybooks and borrow books for free, which working place should you visit?",
+      "options": ["Library", "Fire Station", "Airport", "Bakery"],
+      "correct": "Library",
+      "explanation": "Librarians take care of books and help readers at the Library."
+    },
+    {
+      "question": "Where does a pilot work to fly airplanes high in the sky?",
+      "options": ["Airport", "Hospital", "School", "Farm"],
+      "correct": "Airport",
+      "explanation": "Pilots work at airports and fly airplanes between cities."
+    }
+  ]
+}
+

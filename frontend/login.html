@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login & Portals — MindVerse Inclusive Learning Lab</title>
+  
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+
+  <script src="js/api.js"></script>
+  <script src="js/speech.js"></script>
+  <script src="js/accessibility.js"></script>
+  <style>
+    .auth-container {
+      max-width: 520px;
+      margin: 3rem auto;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid var(--border-glow);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    }
+    .auth-tabs {
+      display: flex;
+      border-bottom: 2px solid var(--border-light);
+      margin-bottom: 2rem;
+    }
+    .auth-tab {
+      flex: 1;
+      text-align: center;
+      padding: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      transition: var(--transition-normal);
+    }
+    .auth-tab.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 0.4rem;
+    }
+    .form-input {
+      width: 100%;
+      background: #0b1120;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 0.75rem 1rem;
+      color: #fff;
+      font-size: 1rem;
+      box-sizing: border-box;
+      transition: var(--transition-fast);
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 10px var(--primary-glow);
+    }
+    .demo-box {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-light);
+      text-align: center;
+    }
+    .demo-btn-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+    .demo-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 0.75rem 0.5rem;
+      color: #fff;
+      cursor: pointer;
+      transition: var(--transition-normal);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .demo-btn:hover {
+      background: rgba(0, 240, 255, 0.15);
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <a href="#auth-main" class="skip-link">Skip to login form</a>
+
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🧠</div>
+        <div class="brand-text">MindVerse <span>Learning Lab</span></div>
+      </a>
+      <div class="header-actions">
+        <a href="index.html" class="btn btn-secondary">Home</a>
+        <a href="classroom_3d.html" class="btn btn-secondary">🏫 3D Classroom</a>
+        <button class="btn-icon" id="open-a11y-btn" title="Accessibility settings">♿</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="auth-main" class="content-container">
+    <div class="auth-container">
+      <div style="text-align:center; margin-bottom:1.5rem;">
+        <div style="font-size:2.8rem; margin-bottom:0.5rem;">🎒</div>
+        <h1 style="font-size:1.8rem; font-weight:800; color:#fff;" id="auth-heading">Welcome Back</h1>
+        <p style="color:var(--text-muted); font-size:0.95rem;">Select your role or try instant 1-click Demo accounts.</p>
+      </div>
+
+      <div class="auth-tabs">
+        <div class="auth-tab active" id="tab-login" onclick="switchAuthTab('login')">Sign In</div>
+        <div class="auth-tab" id="tab-register" onclick="switchAuthTab('register')">Register Student</div>
+      </div>
+
+      <div id="auth-error" style="display:none; background:rgba(239,68,68,0.2); border:1px solid #ef4444; color:#f87171; padding:0.75rem 1rem; border-radius:var(--radius-md); font-size:0.9rem; margin-bottom:1.25rem;"></div>
+      <div id="auth-success" style="display:none; background:rgba(16,185,129,0.2); border:1px solid #10b981; color:#34d399; padding:0.75rem 1rem; border-radius:var(--radius-md); font-size:0.9rem; margin-bottom:1.25rem;"></div>
+
+      <!-- Login Form -->
+      <form id="login-form" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label for="login-username">Username</label>
+          <input type="text" id="login-username" class="form-input" placeholder="e.g. aarav or teacher" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" class="form-input" placeholder="Enter your password" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; padding:0.85rem; font-size:1.05rem; margin-top:0.5rem;" id="login-submit-btn">
+          Sign In
+        </button>
+      </form>
+
+      <!-- Register Form -->
+      <form id="register-form" style="display:none;" onsubmit="handleRegister(event)">
+        <div class="form-group">
+          <label for="reg-fullname">Learner's Full Name</label>
+          <input type="text" id="reg-fullname" class="form-input" placeholder="e.g. Rohan Kumar" required>
+        </div>
+        <div class="form-group">
+          <label for="reg-username">Choose Username</label>
+          <input type="text" id="reg-username" class="form-input" placeholder="e.g. rohan123" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="reg-password">Password</label>
+          <input type="password" id="reg-password" class="form-input" placeholder="Create a password" required autocomplete="new-password">
+        </div>
+        <div class="form-group">
+          <label for="reg-grade">Grade / Learning Level</label>
+          <select id="reg-grade" class="form-input">
+            <option value="Primary (Grades 1-2)">Primary (Grades 1-2)</option>
+            <option value="Preparatory (Grades 3-5)">Preparatory (Grades 3-5)</option>
+            <option value="Middle (Grades 6-8)">Middle (Grades 6-8)</option>
+            <option value="Special Individualized">Special Individualized Plan</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; padding:0.85rem; font-size:1.05rem; margin-top:0.5rem;">
+          Create Student Account
+        </button>
+      </form>
+
+      <!-- 1-Click Demo Profiles -->
+      <div class="demo-box">
+        <span style="font-size:0.85rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; font-weight:700;">Instant 1-Click Demo Accounts</span>
+        <div class="demo-btn-grid">
+          <button class="demo-btn" onclick="demoSignIn('student')">
+            <span style="font-size:1.8rem;">🎒</span>
+            <span style="font-weight:700; font-size:0.85rem;">Student</span>
+            <span style="font-size:0.75rem; color:var(--text-muted);">Aarav</span>
+          </button>
+          <button class="demo-btn" onclick="demoSignIn('teacher')">
+            <span style="font-size:1.8rem;">👩‍🏫</span>
+            <span style="font-weight:700; font-size:0.85rem;">Teacher</span>
+            <span style="font-size:0.75rem; color:var(--text-muted);">Ms. Priya</span>
+          </button>
+          <button class="demo-btn" onclick="demoSignIn('caregiver')">
+            <span style="font-size:1.8rem;">🏡</span>
+            <span style="font-weight:700; font-size:0.85rem;">Caregiver</span>
+            <span style="font-size:0.75rem; color:var(--text-muted);">Lakshmi</span>
+          </button>
+          <button class="demo-btn" onclick="demoSignIn('admin')">
+            <span style="font-size:1.8rem;">🛡️</span>
+            <span style="font-weight:700; font-size:0.85rem;">Admin</span>
+            <span style="font-size:0.75rem; color:var(--text-muted);">System</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Check query param e.g. ?role=teacher
+      const params = new URLSearchParams(window.location.search);
+      const roleParam = params.get('role');
+      if (roleParam === 'teacher' || roleParam === 'caregiver' || roleParam === 'student') {
+        // Pre-fill or highlight
+      }
+    });
+
+    function switchAuthTab(tab) {
+      const loginTab = document.getElementById('tab-login');
+      const regTab = document.getElementById('tab-register');
+      const loginForm = document.getElementById('login-form');
+      const regForm = document.getElementById('register-form');
+      const heading = document.getElementById('auth-heading');
+
+      hideAlerts();
+
+      if (tab === 'login') {
+        loginTab.classList.add('active');
+        regTab.classList.remove('active');
+        loginForm.style.display = 'block';
+        regForm.style.display = 'none';
+        heading.textContent = 'Welcome Back';
+      } else {
+        loginTab.classList.remove('active');
+        regTab.classList.add('active');
+        loginForm.style.display = 'none';
+        regForm.style.display = 'block';
+        heading.textContent = 'New Learner Account';
+      }
+    }
+
+    function hideAlerts() {
+      document.getElementById('auth-error').style.display = 'none';
+      document.getElementById('auth-success').style.display = 'none';
+    }
+
+    function showError(msg) {
+      const err = document.getElementById('auth-error');
+      err.textContent = msg;
+      err.style.display = 'block';
+    }
+
+    function showSuccess(msg) {
+      const succ = document.getElementById('auth-success');
+      succ.textContent = msg;
+      succ.style.display = 'block';
+    }
+
+    function redirectRole(role) {
+      if (role === 'teacher' || role === 'admin') {
+        window.location.href = 'teacher_dashboard.html';
+      } else if (role === 'caregiver') {
+        window.location.href = 'caregiver_dashboard.html';
+      } else {
+        window.location.href = 'student_dashboard.html';
+      }
+    }
+
+    async function handleLogin(e) {
+      e.preventDefault();
+      hideAlerts();
+
+      const username = document.getElementById('login-username').value.trim();
+      const password = document.getElementById('login-password').value;
+
+      try {
+        const res = await MindVerseAPI.login(username, password);
+        showSuccess(`Welcome back, ${res.user.display_name}! Redirecting...`);
+        setTimeout(() => redirectRole(res.user.role), 600);
+      } catch (err) {
+        showError(err.message || 'Login failed. Please check credentials.');
+      }
+    }
+
+    async function handleRegister(e) {
+      e.preventDefault();
+      hideAlerts();
+
+      const display_name = document.getElementById('reg-fullname').value.trim();
+      const username = document.getElementById('reg-username').value.trim();
+      const password = document.getElementById('reg-password').value;
+      const grade_level = document.getElementById('reg-grade').value;
+
+      try {
+        const res = await MindVerseAPI.register({
+          username,
+          password,
+          display_name,
+          role: 'student',
+          grade_level
+        });
+        showSuccess(`Account created for ${res.user.display_name}! Redirecting...`);
+        setTimeout(() => redirectRole('student'), 800);
+      } catch (err) {
+        showError(err.message || 'Registration failed.');
+      }
+    }
+
+    async function demoSignIn(role) {
+      hideAlerts();
+      try {
+        const res = await MindVerseAPI.demoLogin(role);
+        showSuccess(`Signed in as demo ${res.user.display_name}. Redirecting...`);
+        setTimeout(() => redirectRole(res.user.role), 600);
+      } catch (err) {
+        showError(err.message || 'Demo sign in failed.');
+      }
+    }
+  </script>
+</body>
+</html>
+

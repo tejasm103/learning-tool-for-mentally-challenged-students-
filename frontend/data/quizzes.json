@@ -1,0 +1,1697 @@
+[
+  {
+    "id": 1,
+    "section": "Section 1: English Alphabet",
+    "subject": "english",
+    "question": "How many letters are there in the English alphabet?",
+    "options": [
+      "A) 24",
+      "B) 26",
+      "C) 28",
+      "D) 21"
+    ],
+    "correct_letter": "B",
+    "correct": "B) 26",
+    "explanation": "The modern English alphabet contains exactly 26 letters from A to Z."
+  },
+  {
+    "id": 2,
+    "section": "Section 1: English Alphabet",
+    "subject": "english",
+    "question": "Which of the following is a vowel?",
+    "options": [
+      "A) B",
+      "B) G",
+      "C) E",
+      "D) Y"
+    ],
+    "correct_letter": "C",
+    "correct": "C) E",
+    "explanation": "The five core vowels in English are A, E, I, O, and U."
+  },
+  {
+    "id": 3,
+    "section": "Section 1: English Alphabet",
+    "subject": "english",
+    "question": "How many consonants are there in the English alphabet?",
+    "options": [
+      "A) 5",
+      "B) 19",
+      "C) 21",
+      "D) 26"
+    ],
+    "correct_letter": "C",
+    "correct": "C) 21",
+    "explanation": "Out of 26 total letters, subtracting the 5 vowels leaves 21 consonants."
+  },
+  {
+    "id": 4,
+    "section": "Section 1: English Alphabet",
+    "subject": "english",
+    "question": "What is the 10th letter of the English alphabet?",
+    "options": [
+      "A) I",
+      "B) J",
+      "C) K",
+      "D) L"
+    ],
+    "correct_letter": "B",
+    "correct": "B) J",
+    "explanation": "Counting from A (1) to J (10), J is the tenth letter."
+  },
+  {
+    "id": 5,
+    "section": "Section 1: English Alphabet",
+    "subject": "english",
+    "question": "Which letter is positioned exactly between 'G' and 'I'?",
+    "options": [
+      "A) H",
+      "B) F",
+      "C) J",
+      "D) K"
+    ],
+    "correct_letter": "A",
+    "correct": "A) H",
+    "explanation": "In alphabetical sequence: G, H, I."
+  },
+  {
+    "id": 6,
+    "section": "Section 1: English Alphabet",
+    "subject": "english",
+    "question": "Which letter comes right before 'W'?",
+    "options": [
+      "A) X",
+      "B) V",
+      "C) U",
+      "D) T"
+    ],
+    "correct_letter": "B",
+    "correct": "B) V",
+    "explanation": "In alphabetical sequence: U, V, W, X."
+  },
+  {
+    "id": 7,
+    "section": "Section 1: English Alphabet",
+    "subject": "english",
+    "question": "If the alphabet is written in reverse, which letter comes first?",
+    "options": [
+      "A) A",
+      "B) M",
+      "C) Z",
+      "D) Y"
+    ],
+    "correct_letter": "C",
+    "correct": "C) Z",
+    "explanation": "Reversing the alphabet starts with Z and ends with A."
+  },
+  {
+    "id": 8,
+    "section": "Section 1: English Alphabet",
+    "subject": "english",
+    "question": "Which of these letters is a 'semi-vowel' often acting like a vowel?",
+    "options": [
+      "A) X",
+      "B) Y",
+      "C) Z",
+      "D) W"
+    ],
+    "correct_letter": "B",
+    "correct": "B) Y",
+    "explanation": "The letter Y often represents vowel sounds (as in 'gym', 'happy', and 'sky')."
+  },
+  {
+    "id": 9,
+    "section": "Section 1: English Alphabet",
+    "subject": "english",
+    "question": "What is the 5th consonant in the alphabet?",
+    "options": [
+      "A) F",
+      "B) G",
+      "C) H",
+      "D) J"
+    ],
+    "correct_letter": "B",
+    "correct": "B) G",
+    "explanation": "Consonants in alphabetical order: 1st=B, 2nd=C, 3rd=D, 4th=F, 5th=G."
+  },
+  {
+    "id": 10,
+    "section": "Section 1: English Alphabet",
+    "subject": "english",
+    "question": "Which letter is the last vowel in alphabetical order?",
+    "options": [
+      "A) O",
+      "B) I",
+      "C) U",
+      "D) E"
+    ],
+    "correct_letter": "C",
+    "correct": "C) U",
+    "explanation": "The five vowels are A, E, I, O, U. U is the fifth and last vowel."
+  },
+  {
+    "id": 11,
+    "section": "Section 1: English Alphabet",
+    "subject": "english",
+    "question": "What is the position of the letter 'P' from the beginning?",
+    "options": [
+      "A) 15",
+      "B) 16",
+      "C) 17",
+      "D) 14"
+    ],
+    "correct_letter": "B",
+    "correct": "B) 16",
+    "explanation": "P is the 16th letter of the alphabet (following O at 15)."
+  },
+  {
+    "id": 12,
+    "section": "Section 1: English Alphabet",
+    "subject": "english",
+    "question": "Which letter has the numerical value of 25?",
+    "options": [
+      "A) X",
+      "B) Z",
+      "C) Y",
+      "D) W"
+    ],
+    "correct_letter": "C",
+    "correct": "C) Y",
+    "explanation": "Y is the 25th letter, followed by Z at 26."
+  },
+  {
+    "id": 13,
+    "section": "Section 1: English Alphabet",
+    "subject": "english",
+    "question": "How many letters are between 'M' and 'Q'?",
+    "options": [
+      "A) 2",
+      "B) 3",
+      "C) 4",
+      "D) 5"
+    ],
+    "correct_letter": "B",
+    "correct": "B) 3",
+    "explanation": "The letters between M and Q are N, O, and P (3 letters)."
+  },
+  {
+    "id": 14,
+    "section": "Section 1: English Alphabet",
+    "subject": "english",
+    "question": "Which pairs of letters are vowels?",
+    "options": [
+      "A) A, E",
+      "B) B, C",
+      "C) X, Y",
+      "D) M, N"
+    ],
+    "correct_letter": "A",
+    "correct": "A) A, E",
+    "explanation": "Both A and E are fundamental English vowels."
+  },
+  {
+    "id": 15,
+    "section": "Section 1: English Alphabet",
+    "subject": "english",
+    "question": "What is the 20th letter of the alphabet?",
+    "options": [
+      "A) S",
+      "B) T",
+      "C) U",
+      "D) V"
+    ],
+    "correct_letter": "B",
+    "correct": "B) T",
+    "explanation": "T is the 20th letter of the alphabet."
+  },
+  {
+    "id": 16,
+    "section": "Section 1: English Alphabet",
+    "subject": "english",
+    "question": "Which letter follows 'Q'?",
+    "options": [
+      "A) P",
+      "B) S",
+      "C) R",
+      "D) T"
+    ],
+    "correct_letter": "C",
+    "correct": "C) R",
+    "explanation": "In alphabetical sequence: P, Q, R, S."
+  },
+  {
+    "id": 17,
+    "section": "Section 1: English Alphabet",
+    "subject": "english",
+    "question": "How many letters make up the word 'ALPHABET'?",
+    "options": [
+      "A) 7",
+      "B) 8",
+      "C) 9",
+      "D) 6"
+    ],
+    "correct_letter": "B",
+    "correct": "B) 8",
+    "explanation": "A-L-P-H-A-B-E-T contains 8 letters."
+  },
+  {
+    "id": 18,
+    "section": "Section 1: English Alphabet",
+    "subject": "english",
+    "question": "Which vowel is missing from the sequence: A, E, __, O, U?",
+    "options": [
+      "A) I",
+      "B) Y",
+      "C) H",
+      "D) J"
+    ],
+    "correct_letter": "A",
+    "correct": "A) I",
+    "explanation": "The complete vowel sequence is A, E, I, O, U."
+  },
+  {
+    "id": 19,
+    "section": "Section 1: English Alphabet",
+    "subject": "english",
+    "question": "What is the 3rd letter from the end of the alphabet?",
+    "options": [
+      "A) X",
+      "B) Y",
+      "C) Z",
+      "D) W"
+    ],
+    "correct_letter": "A",
+    "correct": "A) X",
+    "explanation": "Counting from the end: Z (1st from end), Y (2nd from end), X (3rd from end)."
+  },
+  {
+    "id": 20,
+    "section": "Section 1: English Alphabet",
+    "subject": "english",
+    "question": "Which letter is located at the exact middle of the 26 letters (alongside N)?",
+    "options": [
+      "A) L",
+      "B) M",
+      "C) O",
+      "D) K"
+    ],
+    "correct_letter": "B",
+    "correct": "B) M",
+    "explanation": "The 26 letters split into two halves of 13: A-M (1-13) and N-Z (14-26). M is the 13th letter."
+  },
+  {
+    "id": 21,
+    "section": "Section 2: Kannada Varnamala",
+    "subject": "kannada",
+    "question": "How many core letters are there in the modern Kannada alphabet (Aksharamale)?",
+    "options": [
+      "A) 49",
+      "B) 52",
+      "C) 46",
+      "D) 50"
+    ],
+    "correct_letter": "A",
+    "correct": "A) 49",
+    "explanation": "The modern Kannada Aksharamale consists of 49 standard letters: 13 Swaras, 2 Yogavahas, and 34 Vyanjanas."
+  },
+  {
+    "id": 22,
+    "section": "Section 2: Kannada Varnamala",
+    "subject": "kannada",
+    "question": "What are vowels called in Kannada?",
+    "options": [
+      "A) Vyanjanagalu",
+      "B) Swaragalu",
+      "C) Yogavahagalu",
+      "D) Alpapranagalu"
+    ],
+    "correct_letter": "B",
+    "correct": "B) Swaragalu",
+    "explanation": "Vowels that can be pronounced independently are called Swaragalu (ಸ್ವರಗಳು)."
+  },
+  {
+    "id": 23,
+    "section": "Section 2: Kannada Varnamala",
+    "subject": "kannada",
+    "question": "How many Swaragalu (vowels) are there in Kannada?",
+    "options": [
+      "A) 11",
+      "B) 13",
+      "C) 15",
+      "D) 14"
+    ],
+    "correct_letter": "B",
+    "correct": "B) 13",
+    "explanation": "Kannada has 13 standard vowels (from ಅ to ಔ)."
+  },
+  {
+    "id": 24,
+    "section": "Section 2: Kannada Varnamala",
+    "subject": "kannada",
+    "question": "What are consonants called in Kannada?",
+    "options": [
+      "A) Swaragalu",
+      "B) Vyanjanagalu",
+      "C) Sandhi",
+      "D) Nama"
+    ],
+    "correct_letter": "B",
+    "correct": "B) Vyanjanagalu",
+    "explanation": "Consonants requiring a vowel support are called Vyanjanagalu (ವ್ಯಂಜನಗಳು)."
+  },
+  {
+    "id": 25,
+    "section": "Section 2: Kannada Varnamala",
+    "subject": "kannada",
+    "question": "How many Vyanjanagalu (consonants) are there?",
+    "options": [
+      "A) 34",
+      "B) 36",
+      "C) 33",
+      "D) 35"
+    ],
+    "correct_letter": "A",
+    "correct": "A) 34",
+    "explanation": "There are 34 consonants (25 Vargiya + 9 Avargiya) from ಕ to ಳ."
+  },
+  {
+    "id": 26,
+    "section": "Section 2: Kannada Varnamala",
+    "subject": "kannada",
+    "question": "What is the category of letters 'ಅಂ' (Am) and 'ಅಃ' (Aha) called?",
+    "options": [
+      "A) Swara",
+      "B) Vyanjana",
+      "C) Yogavahagalu",
+      "D) Dirgha Swara"
+    ],
+    "correct_letter": "C",
+    "correct": "C) Yogavahagalu",
+    "explanation": "ಅಂ (Anusvara) and ಅಃ (Visarga) are called Yogavahagalu (ಯೋಗವಾಹಗಳು)."
+  },
+  {
+    "id": 27,
+    "section": "Section 2: Kannada Varnamala",
+    "subject": "kannada",
+    "question": "Which letter is the first letter of the Kannada Varnamala?",
+    "options": [
+      "A) ಆ",
+      "B) ಕ",
+      "C) ಅ",
+      "D) ಇ"
+    ],
+    "correct_letter": "C",
+    "correct": "C) ಅ",
+    "explanation": "'ಅ' is the foundational first vowel of the Kannada alphabet."
+  },
+  {
+    "id": 28,
+    "section": "Section 2: Kannada Varnamala",
+    "subject": "kannada",
+    "question": "What type of vowel is 'ಅ' (A)?",
+    "options": [
+      "A) Hrasva Swara (Short vowel)",
+      "B) Dirgha Swara (Long vowel)",
+      "C) Pluta Swara",
+      "D) Mahaprana"
+    ],
+    "correct_letter": "A",
+    "correct": "A) Hrasva Swara (Short vowel)",
+    "explanation": "'ಅ' takes one matra of time to pronounce and is a Hrasva Swara (ಹ್ರಸ್ವ ಸ್ವರ)."
+  },
+  {
+    "id": 29,
+    "section": "Section 2: Kannada Varnamala",
+    "subject": "kannada",
+    "question": "What type of vowel is 'ಆ' (Aa)?",
+    "options": [
+      "A) Hrasva Swara",
+      "B) Dirgha Swara",
+      "C) Yogavaha",
+      "D) Vyanjana"
+    ],
+    "correct_letter": "B",
+    "correct": "B) Dirgha Swara",
+    "explanation": "'ಆ' takes two matras of time to pronounce and is a Dirgha Swara (ದೀರ್ಘ ಸ್ವರ)."
+  },
+  {
+    "id": 30,
+    "section": "Section 2: Kannada Varnamala",
+    "subject": "kannada",
+    "question": "How many Hrasva Swaras are there in Kannada?",
+    "options": [
+      "A) 6",
+      "B) 7",
+      "C) 5",
+      "D) 8"
+    ],
+    "correct_letter": "A",
+    "correct": "A) 6",
+    "explanation": "There are 6 Hrasva Swaras: ಅ, ಇ, ಉ, ಋ, ಎ, ಒ."
+  },
+  {
+    "id": 31,
+    "section": "Section 2: Kannada Varnamala",
+    "subject": "kannada",
+    "question": "How many Dirgha Swaras are there in Kannada?",
+    "options": [
+      "A) 6",
+      "B) 7",
+      "C) 8",
+      "D) 5"
+    ],
+    "correct_letter": "B",
+    "correct": "B) 7",
+    "explanation": "There are 7 Dirgha Swaras: ಆ, ಈ, ಊ, ಏ, ಐ, ಓ, ಔ."
+  },
+  {
+    "id": 32,
+    "section": "Section 2: Kannada Varnamala",
+    "subject": "kannada",
+    "question": "Which of these is the first consonant (Vyanjana) in Kannada?",
+    "options": [
+      "A) ಖ",
+      "B) ಗ",
+      "C) ಕ",
+      "D) ಚ"
+    ],
+    "correct_letter": "C",
+    "correct": "C) ಕ",
+    "explanation": "'ಕ' is the first consonant of the Ka-varga."
+  },
+  {
+    "id": 33,
+    "section": "Section 2: Kannada Varnamala",
+    "subject": "kannada",
+    "question": "What are heavily accented consonants like 'ಖ' (Kha) and 'ಘ' (Gha) called?",
+    "options": [
+      "A) Alpapranagalu",
+      "B) Mahapranagalu",
+      "C) Anunasikagalu",
+      "D) Swaragalu"
+    ],
+    "correct_letter": "B",
+    "correct": "B) Mahapranagalu",
+    "explanation": "Aspirated consonants pronounced with extra breath are called Mahapranagalu (ಮಹಾಪ್ರಾಣಗಳು)."
+  },
+  {
+    "id": 34,
+    "section": "Section 2: Kannada Varnamala",
+    "subject": "kannada",
+    "question": "What are lightly accented consonants like 'ಕ' (Ka) and 'ಗ' (Ga) called?",
+    "options": [
+      "A) Alpapranagalu",
+      "B) Mahapranagalu",
+      "C) Anunasikagalu",
+      "D) Yogavahagalu"
+    ],
+    "correct_letter": "A",
+    "correct": "A) Alpapranagalu",
+    "explanation": "Unaspirated consonants pronounced with gentle breath are called Alpapranagalu (ಅಲ್ಪಪ್ರಾಣಗಳು)."
+  },
+  {
+    "id": 35,
+    "section": "Section 2: Kannada Varnamala",
+    "subject": "kannada",
+    "question": "Nasal sounds like 'ಙ' (Nga) and 'ಞ' (Nya) are classified as what?",
+    "options": [
+      "A) Mahaprana",
+      "B) Anunasikagalu",
+      "C) Hrasva Swara",
+      "D) Avargiya Vyanjana"
+    ],
+    "correct_letter": "B",
+    "correct": "B) Anunasikagalu",
+    "explanation": "Sounds pronounced through the nose are called Anunasikagalu (ಅನುನಾಸಿಕಗಳು)."
+  },
+  {
+    "id": 36,
+    "section": "Section 2: Kannada Varnamala",
+    "subject": "kannada",
+    "question": "How many structured consonant groups (Vargiya Vyanjanagalu) are there?",
+    "options": [
+      "A) 25",
+      "B) 9",
+      "C) 13",
+      "D) 34"
+    ],
+    "correct_letter": "A",
+    "correct": "A) 25",
+    "explanation": "There are 5 vargas of 5 letters each: 5 × 5 = 25 Vargiya Vyanjanas."
+  },
+  {
+    "id": 37,
+    "section": "Section 2: Kannada Varnamala",
+    "subject": "kannada",
+    "question": "How many unstructured consonants (Avargiya Vyanjanagalu) are there (from ಯ to ಳ)?",
+    "options": [
+      "A) 25",
+      "B) 9",
+      "C) 14",
+      "D) 5"
+    ],
+    "correct_letter": "B",
+    "correct": "B) 9",
+    "explanation": "There are 9 unstructured consonants: ಯ, ರ, ಲ, ವ, ಶ, ಷ, ಸ, ಹ, ಳ."
+  },
+  {
+    "id": 38,
+    "section": "Section 2: Kannada Varnamala",
+    "subject": "kannada",
+    "question": "Which letter is the last consonant in the Kannada alphabet?",
+    "options": [
+      "A) ಹ",
+      "B) ಳ",
+      "C) ಕ್ಷ",
+      "D) ಜ್ಞ"
+    ],
+    "correct_letter": "B",
+    "correct": "B) ಳ",
+    "explanation": "'ಳ' is the final consonant of the Kannada Aksharamale."
+  },
+  {
+    "id": 39,
+    "section": "Section 2: Kannada Varnamala",
+    "subject": "kannada",
+    "question": "What is the symbol '೦' known as in Kannada?",
+    "options": [
+      "A) Visarga",
+      "B) Anusvara",
+      "C) Halanta",
+      "D) Matra"
+    ],
+    "correct_letter": "B",
+    "correct": "B) Anusvara",
+    "explanation": "'೦' is Anusvara (ಅನುಸ್ವಾರ), representing a nasal sound."
+  },
+  {
+    "id": 40,
+    "section": "Section 2: Kannada Varnamala",
+    "subject": "kannada",
+    "question": "What is the symbol 'ಃ' known as in Kannada?",
+    "options": [
+      "A) Anusvara",
+      "B) Visarga",
+      "C) Ardhachandra",
+      "D) Avagraha"
+    ],
+    "correct_letter": "B",
+    "correct": "B) Visarga",
+    "explanation": "'ಃ' is Visarga (ವಿಸರ್ಗ), representing a breath sound."
+  },
+  {
+    "id": 41,
+    "section": "Section 3: Hindi Alphabet / Varnamala",
+    "subject": "hindi",
+    "question": "What is the script used to write the Hindi Varnamala?",
+    "options": [
+      "A) Roman",
+      "B) Devanagari",
+      "C) Dravidian",
+      "D) Gurmukhi"
+    ],
+    "correct_letter": "B",
+    "correct": "B) Devanagari",
+    "explanation": "Hindi is written in the Devanagari (देवनागरी) script."
+  },
+  {
+    "id": 42,
+    "section": "Section 3: Hindi Alphabet / Varnamala",
+    "subject": "hindi",
+    "question": "What are vowels called in Hindi?",
+    "options": [
+      "A) Vyanjan",
+      "B) Swar",
+      "C) Matra",
+      "D) Varn"
+    ],
+    "correct_letter": "B",
+    "correct": "B) Swar",
+    "explanation": "Vowels are known as Swar (स्वर)."
+  },
+  {
+    "id": 43,
+    "section": "Section 3: Hindi Alphabet / Varnamala",
+    "subject": "hindi",
+    "question": "How many standard Swar (vowels) are traditionally counted in basic Hindi grammar?",
+    "options": [
+      "A) 11",
+      "B) 13",
+      "C) 15",
+      "D) 9"
+    ],
+    "correct_letter": "A",
+    "correct": "A) 11",
+    "explanation": "Standard modern Hindi grammar counts 11 primary vowels (अ to औ)."
+  },
+  {
+    "id": 44,
+    "section": "Section 3: Hindi Alphabet / Varnamala",
+    "subject": "hindi",
+    "question": "What are consonants called in Hindi?",
+    "options": [
+      "A) Swar",
+      "B) Vyanjan",
+      "C) Anusvar",
+      "D) Visarg"
+    ],
+    "correct_letter": "B",
+    "correct": "B) Vyanjan",
+    "explanation": "Consonants are called Vyanjan (व्यंजन)."
+  },
+  {
+    "id": 45,
+    "section": "Section 3: Hindi Alphabet / Varnamala",
+    "subject": "hindi",
+    "question": "What is the total number of basic consonants (Vyanjan) in Hindi?",
+    "options": [
+      "A) 33",
+      "B) 35",
+      "C) 36",
+      "D) 40"
+    ],
+    "correct_letter": "A",
+    "correct": "A) 33",
+    "explanation": "The traditional basic matrix contains 33 consonants (from क to ह)."
+  },
+  {
+    "id": 46,
+    "section": "Section 3: Hindi Alphabet / Varnamala",
+    "subject": "hindi",
+    "question": "Which of the following is the first letter of Hindi Varnamala?",
+    "options": [
+      "A) आ",
+      "B) क",
+      "C) अ",
+      "D) इ"
+    ],
+    "correct_letter": "C",
+    "correct": "C) अ",
+    "explanation": "'अ' is the first letter and vowel of Hindi Varnamala."
+  },
+  {
+    "id": 47,
+    "section": "Section 3: Hindi Alphabet / Varnamala",
+    "subject": "hindi",
+    "question": "What kind of letter is 'ऊ' (Uu)?",
+    "options": [
+      "A) Hrasva Swar",
+      "B) Deergha Swar",
+      "C) Vyanjan",
+      "D) Joint Consonant"
+    ],
+    "correct_letter": "B",
+    "correct": "B) Deergha Swar",
+    "explanation": "'ऊ' is a long vowel (दीर्घ स्वर)."
+  },
+  {
+    "id": 48,
+    "section": "Section 3: Hindi Alphabet / Varnamala",
+    "subject": "hindi",
+    "question": "Which of the following is a joint consonant (Sanyukt Vyanjan) in Hindi?",
+    "options": [
+      "A) क",
+      "B) क्ष",
+      "C) म",
+      "D) ल"
+    ],
+    "correct_letter": "B",
+    "correct": "B) क्ष",
+    "explanation": "क्ष is formed by joining क् + ष् and is a Sanyukt Vyanjan (संयुक्त व्यंजन)."
+  },
+  {
+    "id": 49,
+    "section": "Section 3: Hindi Alphabet / Varnamala",
+    "subject": "hindi",
+    "question": "How many Sanyukt Vyanjan (joint consonants like क्ष, त्र, ज्ञ, श्र) are there?",
+    "options": [
+      "A) 3",
+      "B) 4",
+      "C) 5",
+      "D) 2"
+    ],
+    "correct_letter": "B",
+    "correct": "B) 4",
+    "explanation": "There are 4 standard Sanyukt Vyanjans: क्ष, त्र, ज्ञ, and श्र."
+  },
+  {
+    "id": 50,
+    "section": "Section 3: Hindi Alphabet / Varnamala",
+    "subject": "hindi",
+    "question": "What are the letters 'अं' and 'अः' collectively called in Hindi?",
+    "options": [
+      "A) Swar",
+      "B) Vyanjan",
+      "C) Ayogvah",
+      "D) Sanyukt Akshar"
+    ],
+    "correct_letter": "C",
+    "correct": "C) Ayogvah",
+    "explanation": "अं and अः are called Ayogvah (अयोगवाह)."
+  },
+  {
+    "id": 51,
+    "section": "Section 3: Hindi Alphabet / Varnamala",
+    "subject": "hindi",
+    "question": "Which letter is the first consonant (Vyanjan) in Hindi?",
+    "options": [
+      "A) ख",
+      "B) अ",
+      "C) क",
+      "D) च"
+    ],
+    "correct_letter": "C",
+    "correct": "C) क",
+    "explanation": "'क' is the first consonant in Hindi."
+  },
+  {
+    "id": 52,
+    "section": "Section 3: Hindi Alphabet / Varnamala",
+    "subject": "hindi",
+    "question": "What is the dot under letters like 'ड़' and 'ढ़' called?",
+    "options": [
+      "A) Anusvar",
+      "B) Visarg",
+      "C) Nuqta / Bindu",
+      "D) Chandrabindu"
+    ],
+    "correct_letter": "C",
+    "correct": "C) Nuqta / Bindu",
+    "explanation": "The diacritical mark dot placed underneath is called Nuqta (नुक़्ता)."
+  },
+  {
+    "id": 53,
+    "section": "Section 3: Hindi Alphabet / Varnamala",
+    "subject": "hindi",
+    "question": "What is the vowel sign or symbol added to a consonant called?",
+    "options": [
+      "A) Vyanjan",
+      "B) Matra",
+      "C) Halant",
+      "D) Varn"
+    ],
+    "correct_letter": "B",
+    "correct": "B) Matra",
+    "explanation": "The graphical mark representing a vowel attached to a consonant is a Matra (मात्रा)."
+  },
+  {
+    "id": 54,
+    "section": "Section 3: Hindi Alphabet / Varnamala",
+    "subject": "hindi",
+    "question": "Which vowel does not have a distinct explicit 'Matra' symbol attached to consonants?",
+    "options": [
+      "A) आ",
+      "B) इ",
+      "C) अ",
+      "D) ई"
+    ],
+    "correct_letter": "C",
+    "correct": "C) अ",
+    "explanation": "The short vowel 'अ' is inherently present in every base consonant without an extra symbol."
+  },
+  {
+    "id": 55,
+    "section": "Section 3: Hindi Alphabet / Varnamala",
+    "subject": "hindi",
+    "question": "What is the sound representation of the symbol 'ँ' called?",
+    "options": [
+      "A) Anusvar",
+      "B) Anunasik (Chandrabindu)",
+      "C) Visarg",
+      "D) Halant"
+    ],
+    "correct_letter": "B",
+    "correct": "B) Anunasik (Chandrabindu)",
+    "explanation": "'ँ' is called Anunasik or Chandrabindu (अनुनासिक / चन्द्रबिन्दु)."
+  },
+  {
+    "id": 56,
+    "section": "Section 3: Hindi Alphabet / Varnamala",
+    "subject": "hindi",
+    "question": "The consonants 'श', 'ष', 'स', 'ह' are called what?",
+    "options": [
+      "A) Antastha Vyanjan",
+      "B) Ushma Vyanjan (Sibilants)",
+      "C) Sparsh Vyanjan",
+      "D) Sanyukt Vyanjan"
+    ],
+    "correct_letter": "B",
+    "correct": "B) Ushma Vyanjan (Sibilants)",
+    "explanation": "These frictional, warm breath consonants are called Ushma Vyanjan (ऊष्म व्यंजन)."
+  },
+  {
+    "id": 57,
+    "section": "Section 3: Hindi Alphabet / Varnamala",
+    "subject": "hindi",
+    "question": "The consonants 'य', 'र', 'ल', 'व' are classified as what?",
+    "options": [
+      "A) Sparsh Vyanjan",
+      "B) Antastha Vyanjan (Semi-vowels)",
+      "C) Ushma Vyanjan",
+      "D) Ayogvah"
+    ],
+    "correct_letter": "B",
+    "correct": "B) Antastha Vyanjan (Semi-vowels)",
+    "explanation": "य, र, ल, व are classified as Antastha Vyanjan (अन्तःस्थ व्यंजन)."
+  },
+  {
+    "id": 58,
+    "section": "Section 3: Hindi Alphabet / Varnamala",
+    "subject": "hindi",
+    "question": "How many classes (Vargs) of Sparsh Vyanjan are there (Ka-varg, Cha-varg, etc.)?",
+    "options": [
+      "A) 4",
+      "B) 5",
+      "C) 6",
+      "D) 7"
+    ],
+    "correct_letter": "B",
+    "correct": "B) 5",
+    "explanation": "There are 5 vargas: कवर्ग, चवर्ग, टवर्ग, तवर्ग, and पवर्ग."
+  },
+  {
+    "id": 59,
+    "section": "Section 3: Hindi Alphabet / Varnamala",
+    "subject": "hindi",
+    "question": "Which letter follows 'ट' in the Hindi Varnamala?",
+    "options": [
+      "A) ठ",
+      "B) ड",
+      "C) ढ",
+      "D) ण"
+    ],
+    "correct_letter": "A",
+    "correct": "A) ठ",
+    "explanation": "In Ta-varga: ट, ठ, ड, ढ, ण."
+  },
+  {
+    "id": 60,
+    "section": "Section 3: Hindi Alphabet / Varnamala",
+    "subject": "hindi",
+    "question": "What is the last letter of the traditional basic matrix of consonants?",
+    "options": [
+      "A) स",
+      "B) ह",
+      "C) क्ष",
+      "D) ज्ञ"
+    ],
+    "correct_letter": "B",
+    "correct": "B) ह",
+    "explanation": "The traditional 33-consonant matrix ends with 'ह'."
+  },
+  {
+    "id": 61,
+    "section": "Section 4: Numbers & Mathematics",
+    "subject": "math",
+    "question": "Which number is neither prime nor composite?",
+    "options": [
+      "A) 0",
+      "B) 1",
+      "C) 2",
+      "D) 3"
+    ],
+    "correct_letter": "B",
+    "correct": "B) 1",
+    "explanation": "By mathematical definition, 1 has only one positive factor (itself), so it is neither prime nor composite."
+  },
+  {
+    "id": 62,
+    "section": "Section 4: Numbers & Mathematics",
+    "subject": "math",
+    "question": "What is the smallest prime number?",
+    "options": [
+      "A) 1",
+      "B) 2",
+      "C) 3",
+      "D) 0"
+    ],
+    "correct_letter": "B",
+    "correct": "B) 2",
+    "explanation": "2 is the smallest prime number (and the only even prime)."
+  },
+  {
+    "id": 63,
+    "section": "Section 4: Numbers & Mathematics",
+    "subject": "math",
+    "question": "How many digits are there in the decimal numbering system (0-9)?",
+    "options": [
+      "A) 9",
+      "B) 10",
+      "C) 11",
+      "D) 8"
+    ],
+    "correct_letter": "B",
+    "correct": "B) 10",
+    "explanation": "The decimal (base-10) system uses 10 symbols: 0, 1, 2, 3, 4, 5, 6, 7, 8, and 9."
+  },
+  {
+    "id": 64,
+    "section": "Section 4: Numbers & Mathematics",
+    "subject": "math",
+    "question": "What is the Roman numeral for 50?",
+    "options": [
+      "A) C",
+      "B) D",
+      "C) L",
+      "D) M"
+    ],
+    "correct_letter": "C",
+    "correct": "C) L",
+    "explanation": "In Roman numerals: X=10, L=50, C=100, D=500, M=1000."
+  },
+  {
+    "id": 65,
+    "section": "Section 4: Numbers & Mathematics",
+    "subject": "math",
+    "question": "What is the Roman numeral for 100?",
+    "options": [
+      "A) C",
+      "B) L",
+      "C) X",
+      "D) M"
+    ],
+    "correct_letter": "A",
+    "correct": "A) C",
+    "explanation": "C represents 100 in Roman numerals (from the Latin 'centum')."
+  },
+  {
+    "id": 66,
+    "section": "Section 4: Numbers & Mathematics",
+    "subject": "math",
+    "question": "What is a polygon with 5 sides called?",
+    "options": [
+      "A) Square",
+      "B) Hexagon",
+      "C) Pentagon",
+      "D) Octagon"
+    ],
+    "correct_letter": "C",
+    "correct": "C) Pentagon",
+    "explanation": "A 5-sided polygon is a pentagon."
+  },
+  {
+    "id": 67,
+    "section": "Section 4: Numbers & Mathematics",
+    "subject": "math",
+    "question": "What is the value of 2 to the power of 3 (2³)?",
+    "options": [
+      "A) 6",
+      "B) 8",
+      "C) 9",
+      "D) 4"
+    ],
+    "correct_letter": "B",
+    "correct": "B) 8",
+    "explanation": "2³ = 2 × 2 × 2 = 8."
+  },
+  {
+    "id": 68,
+    "section": "Section 4: Numbers & Mathematics",
+    "subject": "math",
+    "question": "Which number is an even prime number?",
+    "options": [
+      "A) 4",
+      "B) 2",
+      "C) 6",
+      "D) 8"
+    ],
+    "correct_letter": "B",
+    "correct": "B) 2",
+    "explanation": "2 is the only even prime number because all higher even numbers are divisible by 2."
+  },
+  {
+    "id": 69,
+    "section": "Section 4: Numbers & Mathematics",
+    "subject": "math",
+    "question": "What is the square root of 144?",
+    "options": [
+      "A) 11",
+      "B) 12",
+      "C) 14",
+      "D) 16"
+    ],
+    "correct_letter": "B",
+    "correct": "B) 12",
+    "explanation": "12 × 12 = 144, so √144 = 12."
+  },
+  {
+    "id": 70,
+    "section": "Section 4: Numbers & Mathematics",
+    "subject": "math",
+    "question": "What is the next number in the Fibonacci sequence: 0, 1, 1, 2, 3, 5, 8, __?",
+    "options": [
+      "A) 11",
+      "B) 12",
+      "C) 13",
+      "D) 15"
+    ],
+    "correct_letter": "C",
+    "correct": "C) 13",
+    "explanation": "In Fibonacci, each number is the sum of the previous two: 5 + 8 = 13."
+  },
+  {
+    "id": 71,
+    "section": "Section 4: Numbers & Mathematics",
+    "subject": "math",
+    "question": "What is 15 multiplied by 4?",
+    "options": [
+      "A) 50",
+      "B) 60",
+      "C) 55",
+      "D) 65"
+    ],
+    "correct_letter": "B",
+    "correct": "B) 60",
+    "explanation": "15 × 4 = 60."
+  },
+  {
+    "id": 72,
+    "section": "Section 4: Numbers & Mathematics",
+    "subject": "math",
+    "question": "What is the value of Pi (π) approximated to two decimal places?",
+    "options": [
+      "A) 3.12",
+      "B) 3.14",
+      "C) 3.16",
+      "D) 3.20"
+    ],
+    "correct_letter": "B",
+    "correct": "B) 3.14",
+    "explanation": "Pi is approximately 3.14159... or 3.14."
+  },
+  {
+    "id": 73,
+    "section": "Section 4: Numbers & Mathematics",
+    "subject": "math",
+    "question": "How many degrees are in a right angle?",
+    "options": [
+      "A) 45°",
+      "B) 90°",
+      "C) 180°",
+      "D) 360°"
+    ],
+    "correct_letter": "B",
+    "correct": "B) 90°",
+    "explanation": "A right angle measures exactly 90 degrees."
+  },
+  {
+    "id": 74,
+    "section": "Section 4: Numbers & Mathematics",
+    "subject": "math",
+    "question": "What is the smallest two-digit number?",
+    "options": [
+      "A) 11",
+      "B) 10",
+      "C) 99",
+      "D) 01"
+    ],
+    "correct_letter": "B",
+    "correct": "B) 10",
+    "explanation": "10 is the very first two-digit positive integer."
+  },
+  {
+    "id": 75,
+    "section": "Section 4: Numbers & Mathematics",
+    "subject": "math",
+    "question": "What is the product of any number multiplied by zero?",
+    "options": [
+      "A) The number itself",
+      "B) 1",
+      "C) 0",
+      "D) Infinity"
+    ],
+    "correct_letter": "C",
+    "correct": "C) 0",
+    "explanation": "Any real number multiplied by 0 always equals 0."
+  },
+  {
+    "id": 76,
+    "section": "Section 4: Numbers & Mathematics",
+    "subject": "math",
+    "question": "How many years are there in a millennium?",
+    "options": [
+      "A) 100",
+      "B) 1000",
+      "C) 10",
+      "D) 500"
+    ],
+    "correct_letter": "B",
+    "correct": "B) 1000",
+    "explanation": "A century is 100 years; a millennium is 1000 years."
+  },
+  {
+    "id": 77,
+    "section": "Section 4: Numbers & Mathematics",
+    "subject": "math",
+    "question": "What is the additive identity of numbers?",
+    "options": [
+      "A) 1",
+      "B) 0",
+      "C) -1",
+      "D) None"
+    ],
+    "correct_letter": "B",
+    "correct": "B) 0",
+    "explanation": "Adding 0 to any number leaves it unchanged (x + 0 = x)."
+  },
+  {
+    "id": 78,
+    "section": "Section 4: Numbers & Mathematics",
+    "subject": "math",
+    "question": "What is the multiplicative identity of numbers?",
+    "options": [
+      "A) 0",
+      "B) 1",
+      "C) -1",
+      "D) 2"
+    ],
+    "correct_letter": "B",
+    "correct": "B) 1",
+    "explanation": "Multiplying any number by 1 leaves it unchanged (x × 1 = x)."
+  },
+  {
+    "id": 79,
+    "section": "Section 4: Numbers & Mathematics",
+    "subject": "math",
+    "question": "What do you call numbers that cannot be written as a simple fraction (like √2)?",
+    "options": [
+      "A) Rational numbers",
+      "B) Irrational numbers",
+      "C) Integers",
+      "D) Natural numbers"
+    ],
+    "correct_letter": "B",
+    "correct": "B) Irrational numbers",
+    "explanation": "Numbers with non-repeating, non-terminating decimal expansions are irrational numbers."
+  },
+  {
+    "id": 80,
+    "section": "Section 4: Numbers & Mathematics",
+    "subject": "math",
+    "question": "What is the sum of the angles in a triangle?",
+    "options": [
+      "A) 90°",
+      "B) 180°",
+      "C) 270°",
+      "D) 360°"
+    ],
+    "correct_letter": "B",
+    "correct": "B) 180°",
+    "explanation": "The three interior angles of any planar triangle always add up to 180 degrees."
+  },
+  {
+    "id": 81,
+    "section": "Section 5: Cross-Language Trivia",
+    "subject": "trivia",
+    "question": "Which system has the fewest foundational alphabet letters?",
+    "options": [
+      "A) English Alphabet",
+      "B) Kannada Varnamala",
+      "C) Hindi Varnamala",
+      "D) They all have the same amount"
+    ],
+    "correct_letter": "A",
+    "correct": "A) English Alphabet",
+    "explanation": "English has 26 letters, compared to 49 in Kannada and 50+ in Hindi."
+  },
+  {
+    "id": 82,
+    "section": "Section 5: Cross-Language Trivia",
+    "subject": "trivia",
+    "question": "If you multiply the number of vowels in English by the number of foundational vowels in Hindi (5 × 11), what do you get?",
+    "options": [
+      "A) 45",
+      "B) 55",
+      "C) 50",
+      "D) 65"
+    ],
+    "correct_letter": "B",
+    "correct": "B) 55",
+    "explanation": "5 English vowels × 11 Hindi vowels = 55."
+  },
+  {
+    "id": 83,
+    "section": "Section 5: Cross-Language Trivia",
+    "subject": "trivia",
+    "question": "Which language script matches the layout structural grid (Ka-varg, Cha-varg, Ta-varg) of Hindi?",
+    "options": [
+      "A) English",
+      "B) Kannada",
+      "C) Both",
+      "D) Neither"
+    ],
+    "correct_letter": "B",
+    "correct": "B) Kannada",
+    "explanation": "Both Kannada and Hindi follow the pan-Indian phonetic matrix arranged into 5 articulate vargas."
+  },
+  {
+    "id": 84,
+    "section": "Section 5: Cross-Language Trivia",
+    "subject": "trivia",
+    "question": "What is the Kannada number sign for zero?",
+    "options": [
+      "A) ೦",
+      "B) ೧",
+      "C) ೨",
+      "D) ೩"
+    ],
+    "correct_letter": "A",
+    "correct": "A) ೦",
+    "explanation": "'೦' is the Kannada numeral glyph for zero."
+  },
+  {
+    "id": 85,
+    "section": "Section 5: Cross-Language Trivia",
+    "subject": "trivia",
+    "question": "What do the letters 'A' (English), 'अ' (Hindi), and 'ಅ' (Kannada) all share in common?",
+    "options": [
+      "A) They are all consonants",
+      "B) They are all the first vowels/letters of their respective alphabets",
+      "C) They all sound exactly like the number 1",
+      "D) They are all symbols for zero"
+    ],
+    "correct_letter": "B",
+    "correct": "B) They are all the first vowels/letters of their respective alphabets",
+    "explanation": "In all three languages, these represent the opening first letter and vowel."
+  },
+  {
+    "id": 86,
+    "section": "Section 6: Traffic & Road Safety",
+    "subject": "traffic",
+    "question": "What does a red traffic light mean?",
+    "options": [
+      "A) Go",
+      "B) Stop",
+      "C) Walk fast"
+    ],
+    "correct_letter": "B",
+    "correct": "B) Stop",
+    "explanation": "Red light always signals drivers and riders to stop completely."
+  },
+  {
+    "id": 87,
+    "section": "Section 6: Traffic & Road Safety",
+    "subject": "traffic",
+    "question": "What does a yellow traffic light mean?",
+    "options": [
+      "A) Slow down and prepare to stop",
+      "B) Drive as fast as you can",
+      "C) Dance"
+    ],
+    "correct_letter": "A",
+    "correct": "A) Slow down and prepare to stop",
+    "explanation": "Yellow light alerts traffic to slow down safely because the light is about to turn red."
+  },
+  {
+    "id": 88,
+    "section": "Section 6: Traffic & Road Safety",
+    "subject": "traffic",
+    "question": "What does a green traffic light mean?",
+    "options": [
+      "A) Stop",
+      "B) Sleep",
+      "C) Go"
+    ],
+    "correct_letter": "C",
+    "correct": "C) Go",
+    "explanation": "Green light means you may proceed safely through the intersection."
+  },
+  {
+    "id": 89,
+    "section": "Section 6: Traffic & Road Safety",
+    "subject": "traffic",
+    "question": "What shape is a standard Stop sign?",
+    "options": [
+      "A) Circle",
+      "B) Triangle",
+      "C) Octagon (8 sides)"
+    ],
+    "correct_letter": "C",
+    "correct": "C) Octagon (8 sides)",
+    "explanation": "Stop signs around the world are 8-sided red octagons so they can be recognized easily from any angle."
+  },
+  {
+    "id": 90,
+    "section": "Section 6: Traffic & Road Safety",
+    "subject": "traffic",
+    "question": "If you see a sign with a person walking, what does it mean?",
+    "options": [
+      "A) Playground ahead",
+      "B) Pedestrian crossing ahead",
+      "C) No walking allowed"
+    ],
+    "correct_letter": "B",
+    "correct": "B) Pedestrian crossing ahead",
+    "explanation": "The walking person symbol warns drivers to watch out for pedestrians crossing."
+  },
+  {
+    "id": 91,
+    "section": "Section 6: Traffic & Road Safety",
+    "subject": "traffic",
+    "question": "Where is the safest place to cross a busy street?",
+    "options": [
+      "A) Anywhere you want",
+      "B) At a zebra crossing or intersection",
+      "C) Between two parked cars"
+    ],
+    "correct_letter": "B",
+    "correct": "B) At a zebra crossing or intersection",
+    "explanation": "Zebra crossings and intersections are visible locations designated for pedestrians."
+  },
+  {
+    "id": 92,
+    "section": "Section 6: Traffic & Road Safety",
+    "subject": "traffic",
+    "question": "What should you do before crossing the road?",
+    "options": [
+      "A) Look left, right, and left again",
+      "B) Close your eyes and run",
+      "C) Text on a phone"
+    ],
+    "correct_letter": "A",
+    "correct": "A) Look left, right, and left again",
+    "explanation": "Looking left, right, and left again ensures cars are stopped from all traffic directions."
+  },
+  {
+    "id": 93,
+    "section": "Section 6: Traffic & Road Safety",
+    "subject": "traffic",
+    "question": "What are the white stripes painted on the road for crossing called?",
+    "options": [
+      "A) Tiger crossing",
+      "B) Zebra crossing",
+      "C) Cheetah crossing"
+    ],
+    "correct_letter": "B",
+    "correct": "B) Zebra crossing",
+    "explanation": "The alternating white and black road pattern is named a Zebra crossing."
+  },
+  {
+    "id": 94,
+    "section": "Section 6: Traffic & Road Safety",
+    "subject": "traffic",
+    "question": "If the pedestrian signal shows a Red Hand or a Red Standing Man, what should you do?",
+    "options": [
+      "A) Cross quickly",
+      "B) Wait on the sidewalk",
+      "C) Jump up and down"
+    ],
+    "correct_letter": "B",
+    "correct": "B) Wait on the sidewalk",
+    "explanation": "A red pedestrian signal indicates cars have the green light and pedestrians must wait."
+  },
+  {
+    "id": 95,
+    "section": "Section 6: Traffic & Road Safety",
+    "subject": "traffic",
+    "question": "If the pedestrian signal shows a Green Walking Man, what does it mean?",
+    "options": [
+      "A) You can safely start crossing after checking for cars",
+      "B) You should run backwards",
+      "C) The cars are going to speed up"
+    ],
+    "correct_letter": "A",
+    "correct": "A) You can safely start crossing after checking for cars",
+    "explanation": "A green walking signal means it is safe to cross, while still looking out for turning vehicles."
+  },
+  {
+    "id": 96,
+    "section": "Section 6: Traffic & Road Safety",
+    "subject": "traffic",
+    "question": "Which part of the road should you walk on?",
+    "options": [
+      "A) Right in the middle of the road",
+      "B) The sidewalk or footpath",
+      "C) The curb next to moving cars"
+    ],
+    "correct_letter": "B",
+    "correct": "B) The sidewalk or footpath",
+    "explanation": "Sidewalks keep pedestrians separated from vehicle traffic."
+  },
+  {
+    "id": 97,
+    "section": "Section 6: Traffic & Road Safety",
+    "subject": "traffic",
+    "question": "If there is no sidewalk, how should you walk on the road?",
+    "options": [
+      "A) Facing oncoming traffic so you can see cars",
+      "B) With your back to the traffic",
+      "C) Skipping in circles"
+    ],
+    "correct_letter": "A",
+    "correct": "A) Facing oncoming traffic so you can see cars",
+    "explanation": "Walking facing traffic lets you see incoming vehicles and move aside if needed."
+  },
+  {
+    "id": 98,
+    "section": "Section 6: Traffic & Road Safety",
+    "subject": "traffic",
+    "question": "Is it safe to play tag or ball near a busy road?",
+    "options": [
+      "A) Yes, it is fun",
+      "B) No, because you might accidentally trip or run into the street",
+      "C) Only if you are fast"
+    ],
+    "correct_letter": "B",
+    "correct": "B) No, because you might accidentally trip or run into the street",
+    "explanation": "Chasing balls into streets is dangerous; always play in parks or fenced yards."
+  },
+  {
+    "id": 99,
+    "section": "Section 6: Traffic & Road Safety",
+    "subject": "traffic",
+    "question": "Why shouldn't you cross the road from behind a big bus or truck?",
+    "options": [
+      "A) The drivers in other cars cannot see you",
+      "B) The bus might tickle you",
+      "C) It takes too long"
+    ],
+    "correct_letter": "A",
+    "correct": "A) The drivers in other cars cannot see you",
+    "explanation": "Large vehicles block visibility, making it hard for incoming drivers to spot crossing children."
+  },
+  {
+    "id": 100,
+    "section": "Section 6: Traffic & Road Safety",
+    "subject": "traffic",
+    "question": "When walking at night, what kind of clothes should you wear?",
+    "options": [
+      "A) Pitch black clothes",
+      "B) Bright or reflective clothes so drivers can see you",
+      "C) A superhero cape"
+    ],
+    "correct_letter": "B",
+    "correct": "B) Bright or reflective clothes so drivers can see you",
+    "explanation": "Bright colors and retroreflective strips shine in headlights, keeping you visible."
+  },
+  {
+    "id": 101,
+    "section": "Section 6: Traffic & Road Safety",
+    "subject": "traffic",
+    "question": "What is the very first thing you should do when you get into a car?",
+    "options": [
+      "A) Turn on the radio",
+      "B) Put on your seatbelt",
+      "C) Ask for snacks"
+    ],
+    "correct_letter": "B",
+    "correct": "B) Put on your seatbelt",
+    "explanation": "Buckling your seatbelt protects you immediately before the car begins moving."
+  },
+  {
+    "id": 102,
+    "section": "Section 6: Traffic & Road Safety",
+    "subject": "traffic",
+    "question": "Where is the safest place for small kids to sit in a car?",
+    "options": [
+      "A) In the front passenger seat",
+      "B) In the back seat, in a car seat or booster seat",
+      "C) In the trunk"
+    ],
+    "correct_letter": "B",
+    "correct": "B) In the back seat, in a car seat or booster seat",
+    "explanation": "The back seat with an age-appropriate booster protects children away from front airbag impacts."
+  },
+  {
+    "id": 103,
+    "section": "Section 6: Traffic & Road Safety",
+    "subject": "traffic",
+    "question": "Is it safe to stick your hands or head out of a moving car window?",
+    "options": [
+      "A) Yes, to feel the wind",
+      "B) No, it is very dangerous",
+      "C) Only if you wave at people"
+    ],
+    "correct_letter": "B",
+    "correct": "B) No, it is very dangerous",
+    "explanation": "Limbs outside windows can be struck by passing vehicles, debris, or trees."
+  },
+  {
+    "id": 104,
+    "section": "Section 6: Traffic & Road Safety",
+    "subject": "traffic",
+    "question": "Which side of the car should you get out of when parking on a street?",
+    "options": [
+      "A) The side facing the sidewalk",
+      "B) The side facing the traffic",
+      "C) Through the sunroof"
+    ],
+    "correct_letter": "A",
+    "correct": "A) The side facing the sidewalk",
+    "explanation": "Exiting onto the sidewalk side prevents opening doors into moving traffic."
+  },
+  {
+    "id": 105,
+    "section": "Section 6: Traffic & Road Safety",
+    "subject": "traffic",
+    "question": "Why shouldn't you throw trash out of a car window?",
+    "options": [
+      "A) It litters and can distract or hit other drivers",
+      "B) The wind will blow it back in",
+      "C) It makes the car go slower"
+    ],
+    "correct_letter": "A",
+    "correct": "A) It litters and can distract or hit other drivers",
+    "explanation": "Littering pollutes the environment and can create dangerous hazards for drivers behind."
+  },
+  {
+    "id": 106,
+    "section": "Section 6: Traffic & Road Safety",
+    "subject": "traffic",
+    "question": "What must you always wear on your head when riding a bike or scooter?",
+    "options": [
+      "A) A baseball cap",
+      "B) A helmet",
+      "C) A crown"
+    ],
+    "correct_letter": "B",
+    "correct": "B) A helmet",
+    "explanation": "A certified helmet protects your head and brain in case of accidental falls."
+  },
+  {
+    "id": 107,
+    "section": "Section 6: Traffic & Road Safety",
+    "subject": "traffic",
+    "question": "Where should you ride your bicycle if you are a very small child?",
+    "options": [
+      "A) On the highway",
+      "B) On the sidewalk or in a park with an adult",
+      "C) On the roof"
+    ],
+    "correct_letter": "B",
+    "correct": "B) On the sidewalk or in a park with an adult",
+    "explanation": "Young children should ride in parks or quiet footpaths under adult supervision."
+  },
+  {
+    "id": 108,
+    "section": "Section 6: Traffic & Road Safety",
+    "subject": "traffic",
+    "question": "What should your bike have if you ride it when it starts getting dark?",
+    "options": [
+      "A) Stickers",
+      "B) A loud bell only",
+      "C) Front lights and rear reflectors"
+    ],
+    "correct_letter": "C",
+    "correct": "C) Front lights and rear reflectors",
+    "explanation": "A white front light and red rear reflectors allow drivers to see you in dim lighting."
+  },
+  {
+    "id": 109,
+    "section": "Section 6: Traffic & Road Safety",
+    "subject": "traffic",
+    "question": "How many people should be on a bicycle seat built for one?",
+    "options": [
+      "A) One person",
+      "B) Two friends",
+      "C) Three people"
+    ],
+    "correct_letter": "A",
+    "correct": "A) One person",
+    "explanation": "Single-rider bicycles are balanced for one person only."
+  },
+  {
+    "id": 110,
+    "section": "Section 6: Traffic & Road Safety",
+    "subject": "traffic",
+    "question": "What should you do before riding past a driveway?",
+    "options": [
+      "A) Speed up",
+      "B) Slow down and look out for cars backing out",
+      "C) Close your eyes"
+    ],
+    "correct_letter": "B",
+    "correct": "B) Slow down and look out for cars backing out",
+    "explanation": "Drivers reversing out of driveways often have blind spots; slow down to stay safe."
+  },
+  {
+    "id": 111,
+    "section": "Section 6: Traffic & Road Safety",
+    "subject": "traffic",
+    "question": "Who is the person in uniform that helps direct traffic and keeps roads safe?",
+    "options": [
+      "A) A firefighter",
+      "B) A traffic police officer",
+      "C) A doctor"
+    ],
+    "correct_letter": "B",
+    "correct": "B) A traffic police officer",
+    "explanation": "Traffic police officers guide vehicles and help pedestrians cross safely."
+  },
+  {
+    "id": 112,
+    "section": "Section 6: Traffic & Road Safety",
+    "subject": "traffic",
+    "question": "What sound does an emergency vehicle (like an ambulance or fire truck) make to warn people to move out of the way?",
+    "options": [
+      "A) A loud siren",
+      "B) A whistle",
+      "C) Music"
+    ],
+    "correct_letter": "A",
+    "correct": "A) A loud siren",
+    "explanation": "Sirens warn drivers and pedestrians that emergency responders need immediate clear passage."
+  },
+  {
+    "id": 113,
+    "section": "Section 6: Traffic & Road Safety",
+    "subject": "traffic",
+    "question": "What should cars do when they hear an ambulance siren?",
+    "options": [
+      "A) Drive faster",
+      "B) Pull over safely to let it pass",
+      "C) Stop right in the middle of the road"
+    ],
+    "correct_letter": "B",
+    "correct": "B) Pull over safely to let it pass",
+    "explanation": "Vehicles must pull safely to the side of the road to allow the emergency vehicle to pass."
+  },
+  {
+    "id": 114,
+    "section": "Section 6: Traffic & Road Safety",
+    "subject": "traffic",
+    "question": "Why should you always hold an adult's hand when crossing the street?",
+    "options": [
+      "A) To help them walk faster",
+      "B) Because adults can see over cars better and keep you safe",
+      "C) To play a game"
+    ],
+    "correct_letter": "B",
+    "correct": "B) Because adults can see over cars better and keep you safe",
+    "explanation": "Adults can judge vehicle speeds and distances and guide young children safely."
+  },
+  {
+    "id": 115,
+    "section": "Section 6: Traffic & Road Safety",
+    "subject": "traffic",
+    "question": "What is the golden rule of road safety?",
+    "options": [
+      "A) Always be alert and careful",
+      "B) Run as fast as you can everywhere",
+      "C) Never look at traffic signs"
+    ],
+    "correct_letter": "A",
+    "correct": "A) Always be alert and careful",
+    "explanation": "Staying alert, paying attention, and never rushing on roadways keeps everyone safe."
+  }
+]

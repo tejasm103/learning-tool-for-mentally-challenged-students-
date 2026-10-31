@@ -1,0 +1,2 @@
+from backend.services.curriculum_service import curriculum_service
+from backend.services.progress_service import ProgressService, RecommendationService, ReportingService

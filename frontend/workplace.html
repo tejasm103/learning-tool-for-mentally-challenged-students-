@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Working Places & Helpers — MindVerse Inclusive Learning Lab</title>
+  
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+  <link rel="stylesheet" href="css/classroom.css">
+
+  <script src="js/api.js"></script>
+  <script src="js/speech.js"></script>
+  <script src="js/accessibility.js"></script>
+  <script src="js/mindbot.js"></script>
+  <script src="js/feedback.js"></script>
+
+  <style>
+    .workplace-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-xl);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .workplace-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 240, 255, 0.18);
+    }
+    .place-header {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    .place-icon {
+      width: 68px;
+      height: 68px;
+      border-radius: var(--radius-lg);
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid var(--border-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      flex-shrink: 0;
+    }
+    .place-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 0;
+    }
+    .helper-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.35rem;
+      font-size: 0.9rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+    .tool-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-light);
+      padding: 0.25rem 0.65rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.78rem;
+      color: #cbd5e1;
+      margin: 0.2rem 0.2rem 0.2rem 0;
+    }
+    .fun-fact-box {
+      background: rgba(245, 158, 11, 0.08);
+      border-left: 3px solid #f59e0b;
+      padding: 0.65rem 0.85rem;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 0.85rem;
+      color: #fbbf24;
+      margin-top: 1rem;
+    }
+    .filter-pills {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .filter-pill {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-light);
+      padding: 0.6rem 1.25rem;
+      border-radius: var(--radius-full);
+      color: var(--text-muted);
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: var(--transition-normal);
+    }
+    .filter-pill:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+    }
+    .filter-pill.active {
+      background: var(--primary);
+      color: #060912;
+      border-color: var(--primary);
+      box-shadow: 0 0 15px var(--primary-glow);
+    }
+  </style>
+</head>
+<body>
+  <a href="#workplace-main" class="skip-link">Skip to working places</a>
+
+  <!-- Header Navigation -->
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🏥</div>
+        <div class="brand-text">MindVerse <span>Working Places</span></div>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link"><span>🏠</span> Home</a></li>
+          <li><a href="classroom_3d.html" class="nav-link"><span>🏫</span> 3D Classroom</a></li>
+          <li><a href="lessons.html" class="nav-link"><span>📚</span> All Stations</a></li>
+          <li><a href="workspace.html" class="nav-link" style="color:#38bdf8; font-weight:700;"><span>📝</span> My Working Place (Desk)</a></li>
+          <li><a href="videos.html" class="nav-link"><span>🎬</span> Videos</a></li>
+          <li><a href="student_dashboard.html" class="nav-link"><span>🎒</span> Dashboard</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="workspace.html" class="btn btn-accent" style="padding:0.5rem 1rem; font-size:0.9rem;"><span>📝</span> Student Working Desk</a>
+        <button class="btn-icon" id="open-a11y-btn" title="Accessibility settings">♿</button>
+        <button class="btn btn-secondary" onclick="readPageOverview()"><span>🔊</span> Read Aloud</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="workplace-main" class="content-container">
+    <!-- Banner -->
+    <div style="margin-bottom:2.5rem; display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1.5rem;">
+      <div>
+        <div class="badge badge-cyan" style="margin-bottom:0.5rem;">Station 16 — Life Skills & Social Studies</div>
+        <h1 style="font-size:2.4rem; font-weight:800; color:#fff; margin:0 0 0.5rem 0;">Our Working Places & Community Helpers</h1>
+        <p style="color:var(--text-muted); font-size:1.05rem; margin:0; max-width:750px;">
+          Explore where people go to work every day! From hospitals and fire stations to farms and bakeries, learn about their tools and how they help our community.
+        </p>
+      </div>
+
+      <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+        <a href="workspace.html" class="btn btn-primary btn-lg">
+          <span>📝</span> Open Student Working Desk
+        </a>
+        <a href="#quiz-section" class="btn btn-secondary btn-lg">
+          <span>🎮</span> "Where Do I Work?" Quiz
+        </a>
+      </div>
+    </div>
+
+    <!-- Category Filter Pills -->
+    <div class="filter-pills" role="tablist">
+      <button class="filter-pill active" onclick="filterPlaces('all', this)">All Working Places</button>
+      <button class="filter-pill" onclick="filterPlaces('health_emergency', this)">🚑 Health & Emergency</button>
+      <button class="filter-pill" onclick="filterPlaces('education_public', this)">🏫 Education & Public</button>
+      <button class="filter-pill" onclick="filterPlaces('food_production', this)">🌾 Food & Markets</button>
+      <button class="filter-pill" onclick="filterPlaces('science_travel', this)">🚀 Science, Travel & Building</button>
+    </div>
+
+    <!-- Working Places Grid -->
+    <div class="classroom-grid" id="places-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.75rem;">
+      <!-- Populated dynamically via JS -->
+    </div>
+
+    <!-- Interactive "Where Do I Work?" Quiz Section -->
+    <section id="quiz-section" style="margin-top: 4.5rem;">
+      <div class="card" style="padding: 2.5rem; background: linear-gradient(135deg, rgba(14,21,40,0.95), rgba(30,41,59,0.9)); border: 1px solid rgba(0,240,255,0.3); border-radius: var(--radius-xl);">
+        <div style="text-align: center; max-width: 650px; margin: 0 auto 2rem;">
+          <div class="badge badge-amber" style="margin-bottom: 0.5rem;">Interactive Challenge</div>
+          <h2 style="font-size: 2rem; font-weight: 800; color: #fff; margin: 0 0 0.5rem 0;">🎮 "Where Is My Working Place?" Quiz</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">
+            Listen to the clues and match the community helper to their correct working place!
+          </p>
+        </div>
+
+        <div id="quiz-container" style="max-width: 600px; margin: 0 auto;">
+          <div id="quiz-card" style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 1.75rem; text-align: center;">
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;" id="quiz-counter">Question 1 of 5</div>
+            <div style="font-size: 1.25rem; font-weight: 800; color: #fff; margin-bottom: 1.5rem;" id="quiz-question-text">
+              Loading question...
+            </div>
+            <div id="quiz-options-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+              <!-- Options injected here -->
+            </div>
+            <div id="quiz-feedback" style="display: none; padding: 0.75rem 1rem; border-radius: var(--radius-md); font-weight: 700; margin-bottom: 1rem;"></div>
+            <button class="btn btn-primary" id="quiz-next-btn" style="display: none; margin: 0 auto;" onclick="nextQuestion()">Next Question ➜</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer" style="margin-top: 5rem;">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="brand-logo" style="margin-bottom: 0.75rem;">
+          <div class="brand-icon">🏥</div>
+          <div class="brand-text">MindVerse <span>Inclusive Learning</span></div>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">
+          Dedicated to teaching practical life skills, community helpers, and workplace awareness in an inclusive, supportive environment.
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 MindVerse Inclusive Learning Lab • Station 16 Working Places</div>
+      <div>Designed for all learners • Audio Guided</div>
+    </div>
+  </footer>
+
+  <script>
+    let workplaceData = null;
+    let currentQuizIndex = 0;
+    let quizScore = 0;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadWorkplaceData();
+      initQuiz();
+    });
+
+    async function loadWorkplaceData() {
+      try {
+        const res = await fetch('data/workplaces.json');
+        workplaceData = await res.json();
+        renderPlaces('all');
+      } catch (err) {
+        console.error('Failed to load workplaces data:', err);
+      }
+    }
+
+    function renderPlaces(category) {
+      const container = document.getElementById('places-grid');
+      if (!workplaceData || !container) return;
+
+      let allPlaces = [];
+      workplaceData.modules.forEach(mod => {
+        if (category === 'all' || mod.id === category) {
+          mod.places.forEach(p => {
+            allPlaces.push({ ...p, categoryId: mod.id, categoryName: mod.category });
+          });
+        }
+      });
+
+      container.innerHTML = allPlaces.map(p => {
+        const toolsList = p.tools.split(',').map(t => `<span class="tool-badge">🛠️ ${t.trim()}</span>`).join('');
+        return `
+          <div class="workplace-card" data-category="${p.categoryId}">
+            <div>
+              <div class="place-header">
+                <div class="place-icon">${p.icon}</div>
+                <div>
+                  <h3 class="place-title">${p.name}</h3>
+                  <div class="helper-tag">${p.helper_icon} ${p.helper}</div>
+                </div>
+              </div>
+
+              <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.5; margin: 0 0 1rem 0;">
+                ${p.description}
+              </p>
+
+              <div>
+                <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.35rem; text-transform: uppercase;">
+                  Key Tools & Equipment:
+                </div>
+                <div>${toolsList}</div>
+              </div>
+
+              <div class="fun-fact-box">
+                💡 <strong>Fun Fact:</strong> ${p.fun_fact}
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 0.5rem; margin-top: 1.5rem; justify-content: space-between; align-items: center;">
+              <button class="btn btn-secondary" onclick="speakPlace('${escapeQuote(p.audio_text)}')" style="padding: 0.5rem 1rem; font-size: 0.85rem;">
+                <span>🔊</span> Listen & Learn
+              </button>
+              <button class="btn btn-outline" onclick="playPlaceChime()" style="padding: 0.5rem 0.85rem; font-size: 0.85rem; border-color: rgba(255,255,255,0.2);">
+                <span>🔔</span> Bell
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function filterPlaces(cat, btn) {
+      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      renderPlaces(cat);
+    }
+
+    function speakPlace(text) {
+      if (typeof MindVerseSpeech !== 'undefined' && MindVerseSpeech.speak) {
+        MindVerseSpeech.speak(text);
+      }
+    }
+
+    function playPlaceChime() {
+      if (typeof MindVerseSpeech !== 'undefined' && MindVerseSpeech.playTeacherChime) {
+        MindVerseSpeech.playTeacherChime();
+      }
+    }
+
+    function readPageOverview() {
+      if (typeof MindVerseSpeech !== 'undefined' && MindVerseSpeech.speak) {
+        MindVerseSpeech.speak("Welcome to Our Working Places and Community Helpers! Here you will explore where doctors, firefighters, teachers, farmers, and pilots work every day to support our community.");
+      }
+    }
+
+    function escapeQuote(str) {
+      return (str || '').replace(/'/g, "\\'").replace(/"/g, '&quot;');
+    }
+
+    // Quiz functions
+    function initQuiz() {
+      if (!workplaceData || !workplaceData.quizzes) return;
+      currentQuizIndex = 0;
+      quizScore = 0;
+      showQuestion();
+    }
+
+    function showQuestion() {
+      const q = workplaceData.quizzes[currentQuizIndex];
+      const counter = document.getElementById('quiz-counter');
+      const questionText = document.getElementById('quiz-question-text');
+      const optionsContainer = document.getElementById('quiz-options-container');
+      const feedback = document.getElementById('quiz-feedback');
+      const nextBtn = document.getElementById('quiz-next-btn');
+
+      counter.textContent = `Question ${currentQuizIndex + 1} of ${workplaceData.quizzes.length}`;
+      questionText.textContent = q.question;
+      feedback.style.display = 'none';
+      nextBtn.style.display = 'none';
+
+      optionsContainer.innerHTML = q.options.map(opt => `
+        <button class="btn btn-secondary" onclick="checkQuizAnswer('${escapeQuote(opt)}', this)" style="padding: 1rem; font-size: 1rem; font-weight: 700; width: 100%; text-align: center;">
+          ${opt}
+        </button>
+      `).join('');
+
+      // Voice prompt
+      if (typeof MindVerseSpeech !== 'undefined') {
+        MindVerseSpeech.speak(q.question);
+      }
+    }
+
+    function checkQuizAnswer(selected, btn) {
+      const q = workplaceData.quizzes[currentQuizIndex];
+      const feedback = document.getElementById('quiz-feedback');
+      const nextBtn = document.getElementById('quiz-next-btn');
+      const buttons = document.querySelectorAll('#quiz-options-container button');
+
+      buttons.forEach(b => b.disabled = true);
+
+      if (selected === q.correct) {
+        quizScore += 20;
+        btn.style.background = 'rgba(16, 185, 129, 0.3)';
+        btn.style.borderColor = '#10b981';
+        btn.style.color = '#34d399';
+
+        feedback.style.display = 'block';
+        feedback.style.background = 'rgba(16, 185, 129, 0.15)';
+        feedback.style.border = '1px solid #10b981';
+        feedback.style.color = '#34d399';
+        feedback.innerHTML = `🎉 <strong>Correct!</strong> ${q.explanation}`;
+
+        if (typeof MindVerseSpeech !== 'undefined') {
+          MindVerseSpeech.playRewardSound();
+          MindVerseSpeech.speak("Correct! " + q.explanation);
+        }
+      } else {
+        btn.style.background = 'rgba(239, 68, 68, 0.3)';
+        btn.style.borderColor = '#ef4444';
+        btn.style.color = '#f87171';
+
+        buttons.forEach(b => {
+          if (b.textContent.trim() === q.correct) {
+            b.style.borderColor = '#10b981';
+            b.style.color = '#34d399';
+          }
+        });
+
+        feedback.style.display = 'block';
+        feedback.style.background = 'rgba(239, 68, 68, 0.15)';
+        feedback.style.border = '1px solid #ef4444';
+        feedback.style.color = '#f87171';
+        feedback.innerHTML = `Nice try! The correct working place is <strong>${q.correct}</strong>. ${q.explanation}`;
+
+        if (typeof MindVerseSpeech !== 'undefined') {
+          MindVerseSpeech.playTryAgainSound();
+          MindVerseSpeech.speak("Good try! The correct working place is " + q.correct);
+        }
+      }
+
+      nextBtn.style.display = 'block';
+    }
+
+    function nextQuestion() {
+      currentQuizIndex++;
+      if (currentQuizIndex < workplaceData.quizzes.length) {
+        showQuestion();
+      } else {
+        showQuizResults();
+      }
+    }
+
+    function showQuizResults() {
+      const container = document.getElementById('quiz-card');
+      container.innerHTML = `
+        <div style="font-size: 3rem; margin-bottom: 0.5rem;">🏆</div>
+        <h3 style="font-size: 1.8rem; font-weight: 800; color: #fff; margin: 0 0 0.5rem 0;">Quiz Complete!</h3>
+        <p style="color: var(--primary); font-size: 1.35rem; font-weight: 800; margin-bottom: 1.5rem;">
+          You scored ${quizScore} / 100!
+        </p>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">
+          You have mastered our community working places! Great learning effort.
+        </p>
+        <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+          <button class="btn btn-secondary" onclick="initQuiz()">🔄 Try Again</button>
+          <a href="workspace.html" class="btn btn-primary">📝 Go to My Working Desk</a>
+          <a href="student_dashboard.html" class="btn btn-accent">🎒 View in Dashboard</a>
+        </div>
+      `;
+
+      if (typeof MindVerseSpeech !== 'undefined') {
+        MindVerseSpeech.playRewardSound();
+        MindVerseSpeech.speak(`Congratulations! You completed the Working Places Quiz with a score of ${quizScore} percent.`);
+      }
+
+      // Record activity result if logged in
+      if (typeof MindVerseAPI !== 'undefined' && MindVerseAPI.submitStudentActivity) {
+        MindVerseAPI.submitStudentActivity(null, {
+          activity_type: 'quiz',
+          title: 'Working Places & Helpers Quiz',
+          subject: 'Life Skills',
+          score: quizScore,
+          answers: []
+        }).catch(() => {});
+      }
+    }
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Virtual Classroom — MindVerse Inclusive Learning Lab</title>
+  
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+  <link rel="stylesheet" href="css/classroom.css">
+
+  <script src="js/libs/three.min.js"></script>
+  <script src="js/libs/OrbitControls.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/speech.js"></script>
+  <script src="js/accessibility.js"></script>
+  <script src="js/classroom_3d.js"></script>
+  <script src="js/mindbot.js"></script>
+</head>
+<body style="overflow: hidden;">
+  <a href="#classroom-canvas" class="skip-link">Skip to classroom</a>
+
+  <!-- Minimal Classroom Top Bar -->
+  <header class="main-header" style="position:relative; z-index:1001; padding:0.6rem 1.5rem;">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🧠</div>
+        <div class="brand-text">MindVerse <span>3D Classroom</span></div>
+      </a>
+
+      <div style="display:flex; align-items:center; gap:0.75rem;">
+        <button class="btn btn-secondary" onclick="toggle2DFallback()" style="padding:0.4rem 0.8rem; font-size:0.85rem;" title="Switch between 3D WebGL and 2D lightweight classroom">
+          2D/3D Mode
+        </button>
+        <button class="btn-icon" id="open-a11y-btn" title="Accessibility settings">♿</button>
+        <a href="quiz.html" class="btn btn-accent" style="padding:0.4rem 0.8rem; font-size:0.85rem;">🏆 Master Quiz (115 Qs)</a>
+        <a href="lessons.html" class="btn btn-secondary" style="padding:0.4rem 0.8rem; font-size:0.85rem;">All Lessons</a>
+        <a href="index.html" class="btn btn-primary" style="padding:0.4rem 0.8rem; font-size:0.85rem;">Exit Room</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3D Classroom Viewport -->
+  <main class="classroom-container">
+    <canvas id="classroom-canvas"></canvas>
+
+    <!-- 3D Heads-Up Display (HUD) -->
+    <div class="classroom-hud">
+      <div class="hud-panel">
+        <div class="hud-title"><span>🏫</span> MindVerse 3D Virtual Classroom</div>
+        <div class="hud-subtitle">Click the chalkboard, desks, globe, telescope, or backpack to explore lessons!</div>
+      </div>
+
+      <div class="hud-panel">
+        <div class="hud-controls">
+          <button class="hud-btn active" data-camera-mode="student" onclick="setCameraMode('student')">
+            <span>🎓</span> Student View
+          </button>
+          <button class="hud-btn" data-camera-mode="teacher" onclick="setCameraMode('teacher')">
+            <span>👨‍🏫</span> Teacher View
+          </button>
+          <button class="hud-btn" data-camera-mode="desk" onclick="setCameraMode('desk')">
+            <span>💻</span> Front Desk
+          </button>
+          <button class="hud-btn" data-camera-mode="orbit" onclick="setCameraMode('orbit')">
+            <span>🌐</span> Free Orbit
+          </button>
+          <button class="hud-btn" data-camera-mode="cinematic" onclick="setCameraMode('cinematic')">
+            <span>🎬</span> Video Tour
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Station Bar -->
+    <div class="classroom-stations-bar">
+      <a href="quiz.html" class="station-pill" style="border-color:#fbbf24; color:#fbbf24; font-weight:700;"><span>🏆</span> Master Quiz (115 Qs)</a>
+      <a href="alphabet.html" class="station-pill"><span>🔤</span> 1. Alphabet (A-Z)</a>
+      <a href="kannada.html" class="station-pill"><span>ಅ</span> 2. Kannada Varnamala</a>
+      <a href="kannada.html#kagunita" class="station-pill"><span>ಕ</span> 3. Kannada Kagunita</a>
+      <a href="hindi.html" class="station-pill"><span>अ</span> 4. Hindi Varnamala</a>
+      <a href="hindi.html#matras" class="station-pill"><span>का</span> 5. Hindi Matras</a>
+      <a href="math.html" class="station-pill"><span>🔢</span> 6. Math & Numbers</a>
+      <a href="multiplication.html" class="station-pill"><span>✖️</span> 7. Multiplication Tables</a>
+      <a href="alphabet.html#vocab" class="station-pill"><span>🍎</span> 8. English Vocabulary</a>
+      <a href="stories.html" class="station-pill"><span>📖</span> 9. Rhymes & Stories</a>
+      <a href="emotions.html" class="station-pill"><span>😊</span> 10. Facial Expressions</a>
+      <a href="body_parts.html" class="station-pill"><span>👤</span> 11. Human Body</a>
+      <a href="traffic.html" class="station-pill"><span>🚦</span> 12. Traffic Rules</a>
+      <a href="games.html" class="station-pill"><span>🧩</span> 13. Matching & Memory</a>
+      <a href="games.html#puzzles" class="station-pill"><span>🔍</span> 14. Puzzles & Search</a>
+      <a href="chess.html" class="station-pill"><span>♟️</span> 15. Playable Chess</a>
+      <a href="workplace.html" class="station-pill" style="border-color:#38bdf8; color:#38bdf8;"><span>🏥</span> 16. Working Places & Helpers</a>
+      <a href="workspace.html" class="station-pill" style="border-color:#00f0ff; color:#00f0ff;"><span>📝</span> Student Working Desk</a>
+    </div>
+  </main>
+
+  <!-- 2D Lightweight Fallback Classroom (for low-power devices) -->
+  <div class="fallback-classroom" id="fallback-classroom">
+    <div style="text-align:center; margin-bottom:2rem;">
+      <h2 style="font-size:2.2rem; color:var(--primary);">🏫 MindVerse 2D Classroom Stations</h2>
+      <p style="color:var(--text-muted);">Lightweight, responsive learning stations for touchscreens and battery-saving mode.</p>
+    </div>
+
+    <div class="classroom-grid">
+      <a href="alphabet.html" class="station-card">
+        <div class="station-card-icon">🔤</div>
+        <div class="station-card-title">1. English Alphabet A-Z</div>
+        <div class="station-card-desc">Letter cards, phonetics, and picture matching.</div>
+        <span class="badge badge-cyan">Open Lesson</span>
+      </a>
+
+      <a href="kannada.html" class="station-card">
+        <div class="station-card-icon">ಅ</div>
+        <div class="station-card-title">2. Kannada Varnamala</div>
+        <div class="station-card-desc">Vowels and consonants with audio guidance.</div>
+        <span class="badge badge-green">Open Lesson</span>
+      </a>
+
+      <a href="kannada.html#kagunita" class="station-card">
+        <div class="station-card-icon">ಕ</div>
+        <div class="station-card-title">3. Kannada Kagunita</div>
+        <div class="station-card-desc">Interactive consonant-vowel combinations.</div>
+        <span class="badge badge-green">Open Lesson</span>
+      </a>
+
+      <a href="hindi.html" class="station-card">
+        <div class="station-card-icon">अ</div>
+        <div class="station-card-title">4. Hindi Varnamala</div>
+        <div class="station-card-desc">Swar and Vyanjan with examples.</div>
+        <span class="badge badge-amber">Open Lesson</span>
+      </a>
+
+      <a href="hindi.html#matras" class="station-card">
+        <div class="station-card-icon">का</div>
+        <div class="station-card-title">5. Hindi Matras</div>
+        <div class="station-card-desc">Learn how vowel marks transform sounds.</div>
+        <span class="badge badge-amber">Open Lesson</span>
+      </a>
+
+      <a href="math.html" class="station-card">
+        <div class="station-card-icon">🔢</div>
+        <div class="station-card-title">6. Math & Numbers</div>
+        <div class="station-card-desc">Visual counting, addition, and shapes.</div>
+        <span class="badge badge-cyan">Open Lesson</span>
+      </a>
+
+      <a href="multiplication.html" class="station-card">
+        <div class="station-card-icon">✖️</div>
+        <div class="station-card-title">7. Multiplication 1-20</div>
+        <div class="station-card-desc">Tables with repeated practice and missing numbers.</div>
+        <span class="badge badge-cyan">Open Lesson</span>
+      </a>
+
+      <a href="traffic.html" class="station-card">
+        <div class="station-card-icon">🚦</div>
+        <div class="station-card-title">8. Traffic Rules & Safety</div>
+        <div class="station-card-desc">Zebra crossings, road signs, and passenger safety.</div>
+        <span class="badge badge-amber">Open Lesson</span>
+      </a>
+
+      <a href="emotions.html" class="station-card">
+        <div class="station-card-icon">😊</div>
+        <div class="station-card-title">9. Facial Expressions</div>
+        <div class="station-card-desc">Explore feelings and respectful empathy.</div>
+        <span class="badge badge-purple">Open Lesson</span>
+      </a>
+
+      <a href="body_parts.html" class="station-card">
+        <div class="station-card-icon">👤</div>
+        <div class="station-card-title">10. Human Body</div>
+        <div class="station-card-desc">Body parts, personal safety, and health habits.</div>
+        <span class="badge badge-cyan">Open Lesson</span>
+      </a>
+
+      <a href="stories.html" class="station-card">
+        <div class="station-card-icon">📖</div>
+        <div class="station-card-title">11. Rhymes & Stories</div>
+        <div class="station-card-desc">Narrated stories with comprehension Q&A.</div>
+        <span class="badge badge-purple">Open Lesson</span>
+      </a>
+
+      <a href="games.html" class="station-card">
+        <div class="station-card-icon">🎮</div>
+        <div class="station-card-title">12. Games & Matching</div>
+        <div class="station-card-desc">Play memory cards, word search, and puzzles.</div>
+        <span class="badge badge-green">Open Games</span>
+      </a>
+
+      <a href="chess.html" class="station-card">
+        <div class="station-card-icon">♟️</div>
+        <div class="station-card-title">15. Playable Chess</div>
+        <div class="station-card-desc">Legal moves chess against MindBot.</div>
+        <span class="badge badge-cyan">Play Chess</span>
+      </a>
+
+      <a href="workplace.html" class="station-card">
+        <div class="station-card-icon">🏥</div>
+        <div class="station-card-title">16. Our Working Places</div>
+        <div class="station-card-desc">Hospitals, fire stations, farms, bakeries, and community helpers.</div>
+        <span class="badge badge-amber">Open Lesson</span>
+      </a>
+
+      <a href="workspace.html" class="station-card">
+        <div class="station-card-icon">📝</div>
+        <div class="station-card-title">Student Working Desk</div>
+        <div class="station-card-desc">Interactive blackboard, focus timer, and notes.</div>
+        <span class="badge badge-cyan">Open Working Place</span>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    // Greet the student on entering the classroom
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        if (typeof MindVerseAudio !== 'undefined') {
+          MindVerseAudio.speak("Welcome to the MindVerse 3D Virtual Classroom! Click any learning station to begin.");
+        }
+      }, 1000);
+    });
+  </script>
+</body>
+</html>

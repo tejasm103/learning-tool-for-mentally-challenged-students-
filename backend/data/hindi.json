@@ -1,0 +1,453 @@
+{
+  "title": "Hindi Varnamala & Matra Learning",
+  "vowels": [
+    {
+      "char": "अ",
+      "translit": "a",
+      "word": "अनार",
+      "meaning": "Pomegranate",
+      "icon": "🍎",
+      "audio": "अ से अनार"
+    },
+    {
+      "char": "आ",
+      "translit": "aa",
+      "word": "आम",
+      "meaning": "Mango",
+      "icon": "🥭",
+      "audio": "आ से आम"
+    },
+    {
+      "char": "इ",
+      "translit": "i",
+      "word": "इमली",
+      "meaning": "Tamarind",
+      "icon": "🌿",
+      "audio": "इ से इमली"
+    },
+    {
+      "char": "ई",
+      "translit": "ee",
+      "word": "ईख",
+      "meaning": "Sugarcane",
+      "icon": "🎋",
+      "audio": "ई से ईख"
+    },
+    {
+      "char": "उ",
+      "translit": "u",
+      "word": "उल्लू",
+      "meaning": "Owl",
+      "icon": "🦉",
+      "audio": "उ से उल्लू"
+    },
+    {
+      "char": "ऊ",
+      "translit": "oo",
+      "word": "ऊन",
+      "meaning": "Wool",
+      "icon": "🧶",
+      "audio": "ऊ से ऊन"
+    },
+    {
+      "char": "ऋ",
+      "translit": "ri",
+      "word": "ऋषि",
+      "meaning": "Sage",
+      "icon": "🧘",
+      "audio": "ऋ से ऋषि"
+    },
+    {
+      "char": "ए",
+      "translit": "e",
+      "word": "एड़ी",
+      "meaning": "Heel",
+      "icon": "🦶",
+      "audio": "ए से एड़ी"
+    },
+    {
+      "char": "ऐ",
+      "translit": "ai",
+      "word": "ऐनक",
+      "meaning": "Spectacles",
+      "icon": "👓",
+      "audio": "ऐ से ऐनक"
+    },
+    {
+      "char": "ओ",
+      "translit": "o",
+      "word": "ओखली",
+      "meaning": "Mortar",
+      "icon": "🥣",
+      "audio": "ओ से ओखली"
+    },
+    {
+      "char": "औ",
+      "translit": "au",
+      "word": "औरत",
+      "meaning": "Woman",
+      "icon": "👩",
+      "audio": "औ से औरत"
+    },
+    {
+      "char": "अं",
+      "translit": "am",
+      "word": "अंगूर",
+      "meaning": "Grapes",
+      "icon": "🍇",
+      "audio": "अं से अंगूर"
+    },
+    {
+      "char": "अः",
+      "translit": "ah",
+      "word": "नमः",
+      "meaning": "Salutation",
+      "icon": "🙏",
+      "audio": "अः से नमः"
+    }
+  ],
+  "consonants": [
+    {
+      "char": "क",
+      "translit": "ka",
+      "word": "कबूतर",
+      "meaning": "Pigeon",
+      "icon": "🕊️"
+    },
+    {
+      "char": "ख",
+      "translit": "kha",
+      "word": "खरगोश",
+      "meaning": "Rabbit",
+      "icon": "🐇"
+    },
+    {
+      "char": "ग",
+      "translit": "ga",
+      "word": "गमला",
+      "meaning": "Flowerpot",
+      "icon": "🪴"
+    },
+    {
+      "char": "घ",
+      "translit": "gha",
+      "word": "घड़ी",
+      "meaning": "Clock",
+      "icon": "⏰"
+    },
+    {
+      "char": "ङ",
+      "translit": "nga",
+      "word": "ङ",
+      "meaning": "Nasal consonant",
+      "icon": "✨"
+    },
+    {
+      "char": "च",
+      "translit": "cha",
+      "word": "चम्मच",
+      "meaning": "Spoon",
+      "icon": "🥄"
+    },
+    {
+      "char": "छ",
+      "translit": "chha",
+      "word": "छतरी",
+      "meaning": "Umbrella",
+      "icon": "☂️"
+    },
+    {
+      "char": "ज",
+      "translit": "ja",
+      "word": "जहाज",
+      "meaning": "Ship",
+      "icon": "🚢"
+    },
+    {
+      "char": "झ",
+      "translit": "jha",
+      "word": "झंडा",
+      "meaning": "Flag",
+      "icon": "🚩"
+    },
+    {
+      "char": "ञ",
+      "translit": "nya",
+      "word": "ञ",
+      "meaning": "Nasal consonant",
+      "icon": "✨"
+    },
+    {
+      "char": "ट",
+      "translit": "ta",
+      "word": "टमाटर",
+      "meaning": "Tomato",
+      "icon": "🍅"
+    },
+    {
+      "char": "ठ",
+      "translit": "tha",
+      "word": "ठठेरा",
+      "meaning": "Tinsmith",
+      "icon": "🔨"
+    },
+    {
+      "char": "ड",
+      "translit": "da",
+      "word": "डमरू",
+      "meaning": "Small drum",
+      "icon": "🪘"
+    },
+    {
+      "char": "ढ",
+      "translit": "dha",
+      "word": "ढक्कन",
+      "meaning": "Lid",
+      "icon": "🍲"
+    },
+    {
+      "char": "ण",
+      "translit": "na",
+      "word": "बाण",
+      "meaning": "Arrow",
+      "icon": "🏹"
+    },
+    {
+      "char": "त",
+      "translit": "ta",
+      "word": "तरबूज",
+      "meaning": "Watermelon",
+      "icon": "🍉"
+    },
+    {
+      "char": "थ",
+      "translit": "tha",
+      "word": "थर्मस",
+      "meaning": "Flask",
+      "icon": "🍶"
+    },
+    {
+      "char": "द",
+      "translit": "da",
+      "word": "दवात",
+      "meaning": "Inkpot",
+      "icon": "🖋️"
+    },
+    {
+      "char": "ध",
+      "translit": "dha",
+      "word": "धनुष",
+      "meaning": "Bow",
+      "icon": "🏹"
+    },
+    {
+      "char": "न",
+      "translit": "na",
+      "word": "नल",
+      "meaning": "Water tap",
+      "icon": "🚰"
+    },
+    {
+      "char": "प",
+      "translit": "pa",
+      "word": "पतंग",
+      "meaning": "Kite",
+      "icon": "🪁"
+    },
+    {
+      "char": "फ",
+      "translit": "pha",
+      "word": "फल",
+      "meaning": "Fruit",
+      "icon": "🍎"
+    },
+    {
+      "char": "ब",
+      "translit": "ba",
+      "word": "बतख",
+      "meaning": "Duck",
+      "icon": "🦆"
+    },
+    {
+      "char": "भ",
+      "translit": "bha",
+      "word": "भालू",
+      "meaning": "Bear",
+      "icon": "🐻"
+    },
+    {
+      "char": "म",
+      "translit": "ma",
+      "word": "मछली",
+      "meaning": "Fish",
+      "icon": "🐟"
+    },
+    {
+      "char": "य",
+      "translit": "ya",
+      "word": "यज्ञ",
+      "meaning": "Yajna",
+      "icon": "🔥"
+    },
+    {
+      "char": "र",
+      "translit": "ra",
+      "word": "रथ",
+      "meaning": "Chariot",
+      "icon": "🎠"
+    },
+    {
+      "char": "ल",
+      "translit": "la",
+      "word": "लट्टू",
+      "meaning": "Spinning Top",
+      "icon": "🪀"
+    },
+    {
+      "char": "व",
+      "translit": "va",
+      "word": "वकील",
+      "meaning": "Lawyer",
+      "icon": "⚖️"
+    },
+    {
+      "char": "श",
+      "translit": "sha",
+      "word": "शलजम",
+      "meaning": "Turnip",
+      "icon": "🥗"
+    },
+    {
+      "char": "ष",
+      "translit": "shha",
+      "word": "षट्कोण",
+      "meaning": "Hexagon",
+      "icon": "🛑"
+    },
+    {
+      "char": "स",
+      "translit": "sa",
+      "word": "सपेरा",
+      "meaning": "Snake charmer",
+      "icon": "🎶"
+    },
+    {
+      "char": "ह",
+      "translit": "ha",
+      "word": "हल",
+      "meaning": "Plough",
+      "icon": "🌾"
+    },
+    {
+      "char": "क्ष",
+      "translit": "ksha",
+      "word": "क्षत्रिय",
+      "meaning": "Warrior",
+      "icon": "🛡️"
+    },
+    {
+      "char": "त्र",
+      "translit": "tra",
+      "word": "त्रिशूल",
+      "meaning": "Trident",
+      "icon": "🔱"
+    },
+    {
+      "char": "ज्ञ",
+      "translit": "gya",
+      "word": "ज्ञानी",
+      "meaning": "Wise Scholar",
+      "icon": "🎓"
+    },
+    {
+      "char": "श्र",
+      "translit": "shra",
+      "word": "श्रमिक",
+      "meaning": "Worker",
+      "icon": "👷"
+    }
+  ],
+  "matras": {
+    "consonant": "क",
+    "combinations": [
+      {
+        "char": "क",
+        "matra": "",
+        "vowel": "अ",
+        "sound": "ka"
+      },
+      {
+        "char": "का",
+        "matra": "ा",
+        "vowel": "आ",
+        "sound": "kaa"
+      },
+      {
+        "char": "कि",
+        "matra": "ि",
+        "vowel": "इ",
+        "sound": "ki"
+      },
+      {
+        "char": "की",
+        "matra": "ी",
+        "vowel": "ई",
+        "sound": "kee"
+      },
+      {
+        "char": "कु",
+        "matra": "ु",
+        "vowel": "उ",
+        "sound": "ku"
+      },
+      {
+        "char": "कू",
+        "matra": "ू",
+        "vowel": "ऊ",
+        "sound": "koo"
+      },
+      {
+        "char": "कृ",
+        "matra": "ृ",
+        "vowel": "ऋ",
+        "sound": "kri"
+      },
+      {
+        "char": "के",
+        "matra": "े",
+        "vowel": "ए",
+        "sound": "ke"
+      },
+      {
+        "char": "कै",
+        "matra": "ै",
+        "vowel": "ऐ",
+        "sound": "kai"
+      },
+      {
+        "char": "को",
+        "matra": "ो",
+        "vowel": "ओ",
+        "sound": "ko"
+      },
+      {
+        "char": "कौ",
+        "matra": "ौ",
+        "vowel": "औ",
+        "sound": "kau"
+      },
+      {
+        "char": "कं",
+        "matra": "ं",
+        "vowel": "अं",
+        "sound": "kam"
+      },
+      {
+        "char": "कः",
+        "matra": "ः",
+        "vowel": "अः",
+        "sound": "kaha"
+      }
+    ]
+  }
+}

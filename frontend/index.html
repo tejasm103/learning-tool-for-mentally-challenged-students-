@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindVerse — Inclusive Learning Lab</title>
+  <meta name="description" content="An Immersive 3D, AI-Assisted, Computer-Based Learning Platform for Inclusive Schools.">
+  
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+  <link rel="stylesheet" href="css/classroom.css">
+
+  <script src="js/libs/three.min.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/speech.js"></script>
+  <script src="js/accessibility.js"></script>
+  <script src="js/neural_brain_3d.js"></script>
+  <script src="js/mindbot.js"></script>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header Navigation -->
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🧠</div>
+        <div class="brand-text">MindVerse <span>Learning Lab</span></div>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="classroom_3d.html" class="nav-link highlight"><span>🏫</span> 3D Classroom</a></li>
+          <li><a href="lessons.html" class="nav-link"><span>📚</span> Curriculum</a></li>
+          <li><a href="alphabet.html" class="nav-link"><span>🔤</span> Alphabet</a></li>
+          <li><a href="kannada.html" class="nav-link"><span>ಕ</span> Kannada</a></li>
+          <li><a href="hindi.html" class="nav-link"><span>अ</span> Hindi</a></li>
+          <li><a href="math.html" class="nav-link"><span>🔢</span> Math</a></li>
+          <li><a href="traffic.html" class="nav-link"><span>🚦</span> Road Safety</a></li>
+          <li><a href="emotions.html" class="nav-link"><span>😊</span> Emotions</a></li>
+          <li><a href="games.html" class="nav-link"><span>🎮</span> Games</a></li>
+          <li><a href="quiz.html" class="nav-link" style="color: #fbbf24; font-weight: 700;"><span>🏆</span> Master Quiz</a></li>
+          <li><a href="workplace.html" class="nav-link"><span>🏥</span> Working Places</a></li>
+          <li><a href="workspace.html" class="nav-link" style="color: #00f0ff; font-weight: 700;"><span>📝</span> Working Desk</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn btn-secondary" onclick="openMindVerseFeedback()" style="padding: 0.5rem 0.95rem; font-size: 0.88rem; border-color: rgba(245, 158, 11, 0.5); color: #fbbf24; font-weight: 700;" title="Open Feedback & Google Form"><span>📋</span> Feedback</button>
+        <a href="videos.html" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.9rem;"><span>🎬</span> Videos</a>
+        <a href="quiz.html" class="btn btn-accent" style="padding: 0.5rem 1rem; font-size: 0.9rem;"><span>🏆</span> 115-Q Quiz</a>
+        <button class="btn-icon" id="open-a11y-btn" title="Accessibility & Sensory Settings" aria-label="Open accessibility settings">♿</button>
+        <a href="login.html" class="btn btn-secondary" id="auth-btn">Log In</a>
+        <a href="student_dashboard.html" class="btn btn-primary" id="dash-btn" style="display:none;">Dashboard</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main id="main-content" class="main-content">
+    <section class="hero-section" style="padding: 4rem 1.5rem; max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: center;">
+      <div class="hero-content">
+        <div class="badge badge-cyan" style="margin-bottom: 1.25rem;">✨ Inclusive Computer-Based Education</div>
+        <h1 style="font-size: 3.2rem; font-weight: 800; line-height: 1.15; margin-bottom: 1.25rem; letter-spacing: -1px;">
+          Every learner deserves a <span style="background: linear-gradient(135deg, var(--primary), #a855f7); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">world of discovery</span>.
+        </h1>
+        <p style="font-size: 1.2rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 2rem;">
+          An immersive, accessible learning environment that helps children explore letters, numbers, Kannada, Hindi, emotions, road safety, and life skills through friendly 3D virtual teaching and playful activities.
+        </p>
+
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="classroom_3d.html" class="btn btn-primary btn-lg">
+            <span>🏫</span> Enter 3D Classroom
+          </a>
+          <a href="quiz.html" class="btn btn-accent btn-lg">
+            <span>🏆</span> 115-Q Master Quiz
+          </a>
+          <a href="alphabet.html" class="btn btn-secondary btn-lg">
+            <span>🔤</span> Start Learning A-Z
+          </a>
+          <a href="login.html?role=student" class="btn btn-secondary btn-lg">
+            <span>👤</span> Student Login
+          </a>
+          <a href="login.html?role=teacher" class="btn btn-secondary btn-lg">
+            <span>👩‍🏫</span> Teacher Portal
+          </a>
+          <a href="workspace.html" class="btn btn-secondary btn-lg" style="border-color: #00f0ff; color: #00f0ff;">
+            <span>📝</span> Student Working Desk
+          </a>
+          <a href="workplace.html" class="btn btn-secondary btn-lg">
+            <span>🏥</span> Our Working Places
+          </a>
+        </div>
+
+        <div style="margin-top: 2.5rem; display: flex; gap: 2rem; flex-wrap: wrap;">
+          <div>
+            <div style="font-size: 1.8rem; font-weight: 800; color: var(--primary);">100%</div>
+            <div style="font-size: 0.9rem; color: var(--text-dim);">Inclusive & Accessible</div>
+          </div>
+          <div>
+            <div style="font-size: 1.8rem; font-weight: 800; color: #10b981;">15+</div>
+            <div style="font-size: 0.9rem; color: var(--text-dim);">Learning Stations</div>
+          </div>
+          <div>
+            <div style="font-size: 1.8rem; font-weight: 800; color: #fbbf24;">3D & Audio</div>
+            <div style="font-size: 0.9rem; color: var(--text-dim);">Multi-sensory Guidance</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3D Holographic AI Neural Brain Canvas (Reference Image 3 Inspiration) -->
+      <div style="position: relative; width: 100%; height: 480px; background: rgba(14, 21, 40, 0.4); border-radius: var(--radius-xl); border: 1px solid var(--border-glow); box-shadow: 0 0 35px var(--primary-glow); display: flex; align-items: center; justify-content: center; overflow: hidden;">
+        <canvas id="neural-brain-canvas" style="width: 100%; height: 100%;"></canvas>
+        <div style="position: absolute; bottom: 20px; left: 20px; background: rgba(10, 14, 26, 0.85); backdrop-filter: blur(8px); padding: 0.5rem 1rem; border-radius: var(--radius-full); border: 1px solid var(--border-light); font-size: 0.85rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem;">
+          <span>🤖</span> Neural AI Teacher Brain • Real-time WebGL
+        </div>
+      </div>
+    </section>
+
+    <!-- Classroom 3D Preview & Teacher Welcome Card (Reference Image 1) -->
+    <section style="background: rgba(15, 23, 42, 0.6); padding: 4rem 1.5rem; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);">
+      <div style="max-width: 1400px; margin: 0 auto;">
+        <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">
+          <div class="badge badge-purple" style="margin-bottom: 0.75rem;">Virtual Classroom Experience</div>
+          <h2 style="font-size: 2.4rem; font-weight: 800; color: #fff;">Interactive 3D Classroom & Stations</h2>
+          <p style="color: var(--text-muted); font-size: 1.05rem;">
+            Inspired by our futuristic classroom: sit on colorful book desks with laptops, interact with the friendly AI robot teacher, and explore 15 dedicated learning stations.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center;">
+          <div class="card" style="padding: 1.5rem; text-align: center;">
+            <img src="images/classroom_teacher.jpg" alt="MindBot Teacher and smiling children in 3D classroom" style="width: 100%; height: 340px; object-fit: cover; border-radius: var(--radius-lg); margin-bottom: 1.25rem; border: 1px solid var(--border-glow);">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div style="text-align: left;">
+                <h4 style="font-size: 1.25rem; color: #fff;">MindBot Teacher & Classroom</h4>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">Interactive computer-based inclusive classroom</p>
+              </div>
+              <a href="classroom_3d.html" class="btn btn-primary">Open 3D Room 🚀</a>
+            </div>
+          </div>
+
+          <!-- The Teaching Cycle -->
+          <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+            <div class="card" style="display: flex; gap: 1.25rem; align-items: flex-start;">
+              <div style="font-size: 2rem; background: rgba(0, 240, 255, 0.15); width: 56px; height: 56px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">👁️</div>
+              <div>
+                <h3 style="font-size: 1.15rem; color: #fff; margin-bottom: 0.3rem;">1. Show & Explain</h3>
+                <p style="font-size: 0.95rem; color: var(--text-muted);">Clear, large visual representations with gentle audio pronunciation and child-friendly explanations.</p>
+              </div>
+            </div>
+
+            <div class="card" style="display: flex; gap: 1.25rem; align-items: flex-start;">
+              <div style="font-size: 2rem; background: rgba(16, 185, 129, 0.15); width: 56px; height: 56px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">🎮</div>
+              <div>
+                <h3 style="font-size: 1.15rem; color: #fff; margin-bottom: 0.3rem;">2. Demonstrate & Practise</h3>
+                <p style="font-size: 0.95rem; color: var(--text-muted);">Interactive games, picture-word matching, word search, and puzzles with untimed and supportive modes.</p>
+              </div>
+            </div>
+
+            <div class="card" style="display: flex; gap: 1.25rem; align-items: flex-start;">
+              <div style="font-size: 2rem; background: rgba(245, 158, 11, 0.15); width: 56px; height: 56px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">📈</div>
+              <div>
+                <h3 style="font-size: 1.15rem; color: #fff; margin-bottom: 0.3rem;">3. Review & Progress</h3>
+                <p style="font-size: 0.95rem; color: var(--text-muted);">Encouraging feedback, star badges, and private progress tracking for teachers and caregivers.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 15 Stations Directory -->
+    <section class="content-container">
+      <div style="text-align: center; margin-bottom: 2.5rem;">
+        <h2 style="font-size: 2.2rem; font-weight: 800;">Explore Learning Stations</h2>
+        <p style="color: var(--text-muted); font-size: 1.05rem;">Select any station below to start an interactive lesson or game.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
+        <a href="alphabet.html" class="card" style="text-decoration:none; color:inherit;">
+          <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">🔤</div>
+          <h3 class="card-title">English Alphabet A-Z</h3>
+          <p class="card-desc">All 26 letters with phonetic sounds, 4 example words, audio, and matching.</p>
+          <span class="badge badge-cyan">Explore Station →</span>
+        </a>
+
+        <a href="kannada.html" class="card" style="text-decoration:none; color:inherit;">
+          <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">ಅ</div>
+          <h3 class="card-title">Kannada Varnamala</h3>
+          <p class="card-desc">Vowels (ಸ್ವರಗಳು), consonants (ವ್ಯಂಜನಗಳು), and audio transliteration.</p>
+          <span class="badge badge-green">Explore Station →</span>
+        </a>
+
+        <a href="kannada.html#kagunita" class="card" style="text-decoration:none; color:inherit;">
+          <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">ಕ</div>
+          <h3 class="card-title">Kannada Kagunita</h3>
+          <p class="card-desc">Consonant-vowel combinations (ಕಾಗುಣಿತ) with step-by-step interactive builder.</p>
+          <span class="badge badge-green">Explore Station →</span>
+        </a>
+
+        <a href="hindi.html" class="card" style="text-decoration:none; color:inherit;">
+          <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">अ</div>
+          <h3 class="card-title">Hindi Varnamala</h3>
+          <p class="card-desc">Hindi vowels (स्वर), consonants (व्यंजन), examples, and pronunciations.</p>
+          <span class="badge badge-amber">Explore Station →</span>
+        </a>
+
+        <a href="hindi.html#matras" class="card" style="text-decoration:none; color:inherit;">
+          <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">का</div>
+          <h3 class="card-title">Hindi Matras</h3>
+          <p class="card-desc">Matra combinations with visual changes and audio demonstrations.</p>
+          <span class="badge badge-amber">Explore Station →</span>
+        </a>
+
+        <a href="math.html" class="card" style="text-decoration:none; color:inherit;">
+          <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">🔢</div>
+          <h3 class="card-title">Mathematics & Numbers</h3>
+          <p class="card-desc">Count visual objects, numbers 0-100, addition, shapes, and place value.</p>
+          <span class="badge badge-cyan">Explore Station →</span>
+        </a>
+
+        <a href="multiplication.html" class="card" style="text-decoration:none; color:inherit;">
+          <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">✖️</div>
+          <h3 class="card-title">Multiplication Tables 1-20</h3>
+          <p class="card-desc">Interactive tables 1 to 20 with equations, audio, and missing-number exercises.</p>
+          <span class="badge badge-cyan">Explore Station →</span>
+        </a>
+
+        <a href="traffic.html" class="card" style="text-decoration:none; color:inherit;">
+          <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">🚦</div>
+          <h3 class="card-title">Traffic Rules & Safety</h3>
+          <p class="card-desc">Interactive street scene, signals, zebra crossing, and vehicle safety.</p>
+          <span class="badge badge-amber">Explore Station →</span>
+        </a>
+
+        <a href="emotions.html" class="card" style="text-decoration:none; color:inherit;">
+          <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">😊</div>
+          <h3 class="card-title">Facial Expressions</h3>
+          <p class="card-desc">11 friendly emotion characters with supportive empathetic messages.</p>
+          <span class="badge badge-purple">Explore Station →</span>
+        </a>
+
+        <a href="body_parts.html" class="card" style="text-decoration:none; color:inherit;">
+          <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">👤</div>
+          <h3 class="card-title">Human Body & Health</h3>
+          <p class="card-desc">Interactive body parts, healthy habits, and safe boundaries guidance.</p>
+          <span class="badge badge-cyan">Explore Station →</span>
+        </a>
+
+        <a href="stories.html" class="card" style="text-decoration:none; color:inherit;">
+          <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">📖</div>
+          <h3 class="card-title">Short Rhymes & Stories</h3>
+          <p class="card-desc">Narrated stories with sentence highlighting and comprehension questions.</p>
+          <span class="badge badge-purple">Explore Station →</span>
+        </a>
+
+        <a href="games.html" class="card" style="text-decoration:none; color:inherit;">
+          <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">🎮</div>
+          <h3 class="card-title">Interactive Games Hub</h3>
+          <p class="card-desc">Memory cards, picture matching, word search, and puzzles.</p>
+          <span class="badge badge-green">Explore Station →</span>
+        </a>
+
+        <a href="chess.html" class="card" style="text-decoration:none; color:inherit;">
+          <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">♟️</div>
+          <h3 class="card-title">Playable Chess vs MindBot</h3>
+          <p class="card-desc">Interactive 8x8 chessboard with legal move validation against AI.</p>
+          <span class="badge badge-cyan">Play Chess →</span>
+        </a>
+
+        <a href="quiz.html" class="card" style="text-decoration:none; color:inherit;">
+          <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">📝</div>
+          <h3 class="card-title">Educational Quiz Bank</h3>
+          <p class="card-desc">Multi-subject assessments with immediate feedback and explanations.</p>
+          <span class="badge badge-amber">Take Quiz →</span>
+        </a>
+
+        <a href="videos.html" class="card" style="text-decoration:none; color:inherit;">
+          <div style="font-size: 2.2rem; margin-bottom: 0.75rem;">🎬</div>
+          <h3 class="card-title">Video Lessons & Classroom Tour</h3>
+          <p class="card-desc">Watch classroom flythrough video tour and interactive media with captions.</p>
+          <span class="badge badge-purple">Watch Videos →</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h3>MindVerse — Inclusive Learning Lab</h3>
+        <p>An interactive educational world empowering schools, teachers, caregivers, and children with diverse learning needs.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Learning</h4>
+        <ul>
+          <li><a href="classroom_3d.html">3D Classroom</a></li>
+          <li><a href="alphabet.html">English Alphabet</a></li>
+          <li><a href="kannada.html">Kannada Varnamala</a></li>
+          <li><a href="hindi.html">Hindi Varnamala</a></li>
+          <li><a href="math.html">Math & Numbers</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Life Skills</h4>
+        <ul>
+          <li><a href="traffic.html">Traffic Safety</a></li>
+          <li><a href="emotions.html">Facial Expressions</a></li>
+          <li><a href="body_parts.html">Human Body</a></li>
+          <li><a href="stories.html">Rhymes & Stories</a></li>
+          <li><a href="workplace.html" style="color: #38bdf8; font-weight: 700;">Working Places & Helpers</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Portals & Community</h4>
+        <ul>
+          <li><a href="student_dashboard.html">Student Dashboard</a></li>
+          <li><a href="workspace.html" style="color: #00f0ff; font-weight: 700;">Student Working Desk</a></li>
+          <li><a href="teacher_dashboard.html">Teacher Portal</a></li>
+          <li><a href="caregiver.html">Caregiver Hub</a></li>
+          <li><a href="login.html">Login & Register</a></li>
+          <li><a href="javascript:void(0)" onclick="openMindVerseFeedback()" style="color: #fbbf24; font-weight: 700;">📋 Feedback</a></li>
+          <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfb-2O-TEctAq7829dByeEHdkf_Xn2EbVHKvghs1v46WKe1xA/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; font-weight: 700;">📋 Official Google Feedback Form ↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 MindVerse Inclusive Learning Lab. Designed for all learners.</div>
+      <div>WCAG 2.1 Accessible • WebGL & Audio Powered</div>
+    </div>
+  </footer>
+
+  <script>
+    // Check login state and update navigation
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const auth = await MindVerseAPI.getCurrentUser();
+        if (auth && auth.logged_in && auth.user) {
+          const authBtn = document.getElementById('auth-btn');
+          const dashBtn = document.getElementById('dash-btn');
+          if (authBtn) authBtn.style.display = 'none';
+          if (dashBtn) {
+            dashBtn.style.display = 'inline-flex';
+            dashBtn.href = auth.user.role === 'teacher' ? 'teacher_dashboard.html' : 'student_dashboard.html';
+            dashBtn.textContent = `${auth.user.display_name.split(' ')[0]}'s Portal`;
+          }
+        }
+      } catch (e) {}
+    });
+  </script>
+  <script src="js/feedback.js"></script>
+</body>
+</html>

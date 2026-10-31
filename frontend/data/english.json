@@ -1,0 +1,624 @@
+[
+  {
+    "letter": "A",
+    "lowercase": "a",
+    "phonetic": "ay",
+    "sound": "ah",
+    "primary_word": "Apple",
+    "icon": "🍎",
+    "sentence": "An apple is a sweet, crunchy fruit.",
+    "example_words": [
+      "Apple",
+      "Ant",
+      "Acorn",
+      "Airplane"
+    ],
+    "fact": "Apples give you healthy energy to play and learn!",
+    "audio_text": "A is for Apple. An apple is a fruit.",
+    "quiz_question": "Which word begins with the letter A?",
+    "options": [
+      "Apple",
+      "Ball",
+      "Car"
+    ],
+    "correct": "Apple"
+  },
+  {
+    "letter": "B",
+    "lowercase": "b",
+    "phonetic": "bee",
+    "sound": "buh",
+    "primary_word": "Ball",
+    "icon": "⚽",
+    "sentence": "A ball is round and fun to bounce.",
+    "example_words": [
+      "Ball",
+      "Bat",
+      "Bear",
+      "Butterfly"
+    ],
+    "fact": "Bouncing a ball helps practice hand-eye coordination!",
+    "audio_text": "B is for Ball. We bounce the colorful ball.",
+    "quiz_question": "Which word begins with the letter B?",
+    "options": [
+      "Dog",
+      "Ball",
+      "Egg"
+    ],
+    "correct": "Ball"
+  },
+  {
+    "letter": "C",
+    "lowercase": "c",
+    "phonetic": "see",
+    "sound": "kuh",
+    "primary_word": "Cat",
+    "icon": "🐱",
+    "sentence": "A cat is a soft and friendly pet.",
+    "example_words": [
+      "Cat",
+      "Cup",
+      "Car",
+      "Cake"
+    ],
+    "fact": "Cats purr gently when they feel happy and safe.",
+    "audio_text": "C is for Cat. The little cat says meow.",
+    "quiz_question": "Which word begins with the letter C?",
+    "options": [
+      "Cat",
+      "Fish",
+      "Goat"
+    ],
+    "correct": "Cat"
+  },
+  {
+    "letter": "D",
+    "lowercase": "d",
+    "phonetic": "dee",
+    "sound": "duh",
+    "primary_word": "Dog",
+    "icon": "🐶",
+    "sentence": "A dog is a loyal animal friend.",
+    "example_words": [
+      "Dog",
+      "Duck",
+      "Door",
+      "Drum"
+    ],
+    "fact": "Dogs have an amazing sense of smell and love to play fetch.",
+    "audio_text": "D is for Dog. A dog wags its tail happily.",
+    "quiz_question": "Which word begins with the letter D?",
+    "options": [
+      "Hat",
+      "Dog",
+      "Jug"
+    ],
+    "correct": "Dog"
+  },
+  {
+    "letter": "E",
+    "lowercase": "e",
+    "phonetic": "ee",
+    "sound": "eh",
+    "primary_word": "Elephant",
+    "icon": "🐘",
+    "sentence": "An elephant is the largest land animal with big ears.",
+    "example_words": [
+      "Egg",
+      "Elephant",
+      "Envelope",
+      "Eagle"
+    ],
+    "fact": "Elephants communicate with gentle rumbles and love water baths.",
+    "audio_text": "E is for Elephant. The gentle elephant has a long trunk.",
+    "quiz_question": "Which word begins with the letter E?",
+    "options": [
+      "Elephant",
+      "Lion",
+      "Kite"
+    ],
+    "correct": "Elephant"
+  },
+  {
+    "letter": "F",
+    "lowercase": "f",
+    "phonetic": "ef",
+    "sound": "fuh",
+    "primary_word": "Fish",
+    "icon": "🐟",
+    "sentence": "A fish swims gracefully underwater.",
+    "example_words": [
+      "Fish",
+      "Fan",
+      "Frog",
+      "Fire"
+    ],
+    "fact": "Fish breathe through gills and have shiny scales.",
+    "audio_text": "F is for Fish. Fish swim happily in cool blue water.",
+    "quiz_question": "Which word begins with the letter F?",
+    "options": [
+      "Moon",
+      "Fish",
+      "Nest"
+    ],
+    "correct": "Fish"
+  },
+  {
+    "letter": "G",
+    "lowercase": "g",
+    "phonetic": "jee",
+    "sound": "guh",
+    "primary_word": "Giraffe",
+    "icon": "🦒",
+    "sentence": "A giraffe is tall and reaches green leaves high in trees.",
+    "example_words": [
+      "Goat",
+      "Giraffe",
+      "Grape",
+      "Gift"
+    ],
+    "fact": "A giraffe has a long neck and gentle spots on its coat.",
+    "audio_text": "G is for Giraffe. The tall giraffe smiles from above.",
+    "quiz_question": "Which word begins with the letter G?",
+    "options": [
+      "Giraffe",
+      "Owl",
+      "Pen"
+    ],
+    "correct": "Giraffe"
+  },
+  {
+    "letter": "H",
+    "lowercase": "h",
+    "phonetic": "aych",
+    "sound": "huh",
+    "primary_word": "Hat",
+    "icon": "👒",
+    "sentence": "A hat keeps your head warm in the breeze or shaded in the sun.",
+    "example_words": [
+      "Hat",
+      "House",
+      "Horse",
+      "Heart"
+    ],
+    "fact": "Hats come in many cheerful shapes, sizes, and colors.",
+    "audio_text": "H is for Hat. Put on your favorite sunny hat.",
+    "quiz_question": "Which word begins with the letter H?",
+    "options": [
+      "Queen",
+      "Hat",
+      "Rat"
+    ],
+    "correct": "Hat"
+  },
+  {
+    "letter": "I",
+    "lowercase": "i",
+    "phonetic": "eye",
+    "sound": "ih",
+    "primary_word": "Ice cream",
+    "icon": "🍦",
+    "sentence": "Ice cream is sweet, cool, and delicious.",
+    "example_words": [
+      "Ice",
+      "Igloo",
+      "Island",
+      "Insect"
+    ],
+    "fact": "Ice turns into water when it gets warm!",
+    "audio_text": "I is for Ice. Ice is cool and sparkling.",
+    "quiz_question": "Which word begins with the letter I?",
+    "options": [
+      "Ice",
+      "Sun",
+      "Train"
+    ],
+    "correct": "Ice"
+  },
+  {
+    "letter": "J",
+    "lowercase": "j",
+    "phonetic": "jay",
+    "sound": "juh",
+    "primary_word": "Jug",
+    "icon": "🏺",
+    "sentence": "A jug holds refreshing cool water.",
+    "example_words": [
+      "Jug",
+      "Jacket",
+      "Juice",
+      "Jellyfish"
+    ],
+    "fact": "Jellyfish glow in the dark ocean depths!",
+    "audio_text": "J is for Jug. Pour clean water from the jug.",
+    "quiz_question": "Which word begins with the letter J?",
+    "options": [
+      "Jug",
+      "Umbrella",
+      "Van"
+    ],
+    "correct": "Jug"
+  },
+  {
+    "letter": "K",
+    "lowercase": "k",
+    "phonetic": "kay",
+    "sound": "kuh",
+    "primary_word": "Kite",
+    "icon": "🪁",
+    "sentence": "A kite soars high into the bright blue sky.",
+    "example_words": [
+      "Kite",
+      "Kangaroo",
+      "Key",
+      "Kitten"
+    ],
+    "fact": "Kangaroos carry their sweet babies in a warm pouch.",
+    "audio_text": "K is for Kite. Watch the colorful kite dance in the wind.",
+    "quiz_question": "Which word begins with the letter K?",
+    "options": [
+      "Whale",
+      "Kite",
+      "Yak"
+    ],
+    "correct": "Kite"
+  },
+  {
+    "letter": "L",
+    "lowercase": "l",
+    "phonetic": "el",
+    "sound": "luh",
+    "primary_word": "Lion",
+    "icon": "🦁",
+    "sentence": "A lion has a majestic golden mane.",
+    "example_words": [
+      "Lion",
+      "Leaf",
+      "Lamp",
+      "Ladybug"
+    ],
+    "fact": "Lions live together in warm, loving family groups called prides.",
+    "audio_text": "L is for Lion. The friendly lion rests in the savanna.",
+    "quiz_question": "Which word begins with the letter L?",
+    "options": [
+      "Lion",
+      "Zebra",
+      "Apple"
+    ],
+    "correct": "Lion"
+  },
+  {
+    "letter": "M",
+    "lowercase": "m",
+    "phonetic": "em",
+    "sound": "muh",
+    "primary_word": "Moon",
+    "icon": "🌙",
+    "sentence": "The moon shines gently at night.",
+    "example_words": [
+      "Moon",
+      "Monkey",
+      "Milk",
+      "Mouse"
+    ],
+    "fact": "The moon reflects light from the sun like a peaceful night lamp.",
+    "audio_text": "M is for Moon. Good night, glowing moon in the sky.",
+    "quiz_question": "Which word begins with the letter M?",
+    "options": [
+      "Ball",
+      "Moon",
+      "Cat"
+    ],
+    "correct": "Moon"
+  },
+  {
+    "letter": "N",
+    "lowercase": "n",
+    "phonetic": "en",
+    "sound": "nuh",
+    "primary_word": "Nest",
+    "icon": "🪺",
+    "sentence": "A nest is a cozy home built by birds for their eggs.",
+    "example_words": [
+      "Net",
+      "Nest",
+      "Nurse",
+      "Nose"
+    ],
+    "fact": "Birds weave twigs and soft leaves together to build their nests.",
+    "audio_text": "N is for Nest. Little baby birds rest in the cozy nest.",
+    "quiz_question": "Which word begins with the letter N?",
+    "options": [
+      "Dog",
+      "Nest",
+      "Fish"
+    ],
+    "correct": "Nest"
+  },
+  {
+    "letter": "O",
+    "lowercase": "o",
+    "phonetic": "oh",
+    "sound": "ah",
+    "primary_word": "Owl",
+    "icon": "🦉",
+    "sentence": "An owl has wide curious eyes and sees well at night.",
+    "example_words": [
+      "Owl",
+      "Orange",
+      "Octopus",
+      "Oven"
+    ],
+    "fact": "An octopus has three hearts and eight clever arms!",
+    "audio_text": "O is for Owl. The wise owl hoots gently in the tree.",
+    "quiz_question": "Which word begins with the letter O?",
+    "options": [
+      "Owl",
+      "Goat",
+      "Hat"
+    ],
+    "correct": "Owl"
+  },
+  {
+    "letter": "P",
+    "lowercase": "p",
+    "phonetic": "pee",
+    "sound": "puh",
+    "primary_word": "Pen",
+    "icon": "🖊️",
+    "sentence": "A pen helps us write kind words and draw pictures.",
+    "example_words": [
+      "Pen",
+      "Penguin",
+      "Pizza",
+      "Piano"
+    ],
+    "fact": "Penguins waddle together on ice and slide on their bellies!",
+    "audio_text": "P is for Pen. We write and learn with a pen.",
+    "quiz_question": "Which word begins with the letter P?",
+    "options": [
+      "Pen",
+      "Jug",
+      "Kite"
+    ],
+    "correct": "Pen"
+  },
+  {
+    "letter": "Q",
+    "lowercase": "q",
+    "phonetic": "cue",
+    "sound": "kwuh",
+    "primary_word": "Queen",
+    "icon": "👑",
+    "sentence": "A queen wears a sparkling crown of gems.",
+    "example_words": [
+      "Queen",
+      "Quilt",
+      "Quiet",
+      "Quail"
+    ],
+    "fact": "A warm quilt keeps you comfortable on chilly winter nights.",
+    "audio_text": "Q is for Queen. The gentle queen wears a crown.",
+    "quiz_question": "Which word begins with the letter Q?",
+    "options": [
+      "Lion",
+      "Queen",
+      "Moon"
+    ],
+    "correct": "Queen"
+  },
+  {
+    "letter": "R",
+    "lowercase": "r",
+    "phonetic": "ar",
+    "sound": "ruh",
+    "primary_word": "Rainbow",
+    "icon": "🌈",
+    "sentence": "A rainbow fills the sky with seven vibrant colors.",
+    "example_words": [
+      "Rat",
+      "Rainbow",
+      "Rabbit",
+      "Robot"
+    ],
+    "fact": "Rainbows appear when sunshine passes through raindrops!",
+    "audio_text": "R is for Rainbow. Red, orange, yellow, green, blue, indigo, violet.",
+    "quiz_question": "Which word begins with the letter R?",
+    "options": [
+      "Rainbow",
+      "Nest",
+      "Owl"
+    ],
+    "correct": "Rainbow"
+  },
+  {
+    "letter": "S",
+    "lowercase": "s",
+    "phonetic": "es",
+    "sound": "suh",
+    "primary_word": "Sun",
+    "icon": "☀️",
+    "sentence": "The sun brings bright light and warmth to plants and animals.",
+    "example_words": [
+      "Sun",
+      "Star",
+      "Sock",
+      "Snake"
+    ],
+    "fact": "Plants use sunlight every day to make their own food through photosynthesis!",
+    "audio_text": "S is for Sun. The bright morning sun brings a brand new day.",
+    "quiz_question": "Which word begins with the letter S?",
+    "options": [
+      "Pen",
+      "Sun",
+      "Train"
+    ],
+    "correct": "Sun"
+  },
+  {
+    "letter": "T",
+    "lowercase": "t",
+    "phonetic": "tee",
+    "sound": "tuh",
+    "primary_word": "Tree",
+    "icon": "🌳",
+    "sentence": "A tree gives us shade, sweet fruits, and fresh air.",
+    "example_words": [
+      "Train",
+      "Tiger",
+      "Tree",
+      "Table"
+    ],
+    "fact": "Trees talk to each other underground through gentle root networks.",
+    "audio_text": "T is for Tree. Tall green trees reach for the sky.",
+    "quiz_question": "Which word begins with the letter T?",
+    "options": [
+      "Tree",
+      "Umbrella",
+      "Van"
+    ],
+    "correct": "Tree"
+  },
+  {
+    "letter": "U",
+    "lowercase": "u",
+    "phonetic": "you",
+    "sound": "uh",
+    "primary_word": "Umbrella",
+    "icon": "☂️",
+    "sentence": "An umbrella shields us from raindrops.",
+    "example_words": [
+      "Umbrella",
+      "Unicorn",
+      "Uniform",
+      "Urn"
+    ],
+    "fact": "Umbrellas were invented thousands of years ago to provide shade from sunshine too!",
+    "audio_text": "U is for Umbrella. Open your umbrella when rain drops fall.",
+    "quiz_question": "Which word begins with the letter U?",
+    "options": [
+      "Whale",
+      "Umbrella",
+      "X-ray"
+    ],
+    "correct": "Umbrella"
+  },
+  {
+    "letter": "V",
+    "lowercase": "v",
+    "phonetic": "vee",
+    "sound": "vuh",
+    "primary_word": "Violin",
+    "icon": "🎻",
+    "sentence": "A violin plays melodious musical notes.",
+    "example_words": [
+      "Van",
+      "Violin",
+      "Vase",
+      "Volcano"
+    ],
+    "fact": "Music from a violin can help relax our minds and improve focus.",
+    "audio_text": "V is for Violin. The violin makes sweet melodies.",
+    "quiz_question": "Which word begins with the letter V?",
+    "options": [
+      "Violin",
+      "Yak",
+      "Zebra"
+    ],
+    "correct": "Violin"
+  },
+  {
+    "letter": "W",
+    "lowercase": "w",
+    "phonetic": "double-u",
+    "sound": "wuh",
+    "primary_word": "Whale",
+    "icon": "🐋",
+    "sentence": "A whale is a magnificent ocean mammal.",
+    "example_words": [
+      "Whale",
+      "Watch",
+      "Water",
+      "Window"
+    ],
+    "fact": "Blue whales are the largest creatures that have ever lived on Earth!",
+    "audio_text": "W is for Whale. The blue whale sings songs across the sea.",
+    "quiz_question": "Which word begins with the letter W?",
+    "options": [
+      "Whale",
+      "Apple",
+      "Ball"
+    ],
+    "correct": "Whale"
+  },
+  {
+    "letter": "X",
+    "lowercase": "x",
+    "phonetic": "ex",
+    "sound": "ks",
+    "primary_word": "Xylophone",
+    "icon": "🪵",
+    "sentence": "A xylophone produces chime sounds when tapped with mallets.",
+    "example_words": [
+      "Xylophone",
+      "X-ray"
+    ],
+    "fact": "The wooden bars of a xylophone are tuned to different musical pitches.",
+    "audio_text": "X is for Xylophone. Ding ding dong goes the xylophone.",
+    "quiz_question": "Which word begins with the letter X?",
+    "options": [
+      "Xylophone",
+      "Cat",
+      "Dog"
+    ],
+    "correct": "Xylophone"
+  },
+  {
+    "letter": "Y",
+    "lowercase": "y",
+    "phonetic": "wye",
+    "sound": "yuh",
+    "primary_word": "Yak",
+    "icon": "🐂",
+    "sentence": "A yak has long warm fur to live comfortably in high mountains.",
+    "example_words": [
+      "Yak",
+      "Yellow",
+      "Yacht",
+      "Yo-yo"
+    ],
+    "fact": "Yaks live high in the Himalayas where the air is cool and crisp.",
+    "audio_text": "Y is for Yak. The woolly yak climbs snowy peaks.",
+    "quiz_question": "Which word begins with the letter Y?",
+    "options": [
+      "Elephant",
+      "Yak",
+      "Fish"
+    ],
+    "correct": "Yak"
+  },
+  {
+    "letter": "Z",
+    "lowercase": "z",
+    "phonetic": "zed",
+    "sound": "zuh",
+    "primary_word": "Zebra",
+    "icon": "🦓",
+    "sentence": "A zebra has beautiful black and white stripes.",
+    "example_words": [
+      "Zebra",
+      "Zero",
+      "Zoo",
+      "Zip"
+    ],
+    "fact": "Every single zebra has a unique pattern of stripes, just like human fingerprints!",
+    "audio_text": "Z is for Zebra. The zebra runs swiftly across the green field.",
+    "quiz_question": "Which word begins with the letter Z?",
+    "options": [
+      "Giraffe",
+      "Zebra",
+      "Hat"
+    ],
+    "correct": "Zebra"
+  }
+]

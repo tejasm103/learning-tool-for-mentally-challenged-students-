@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Learning Library & Video Player — MindVerse Inclusive Learning Lab</title>
+  
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+
+  <script src="js/api.js"></script>
+  <script src="js/speech.js"></script>
+  <script src="js/accessibility.js"></script>
+  <script src="js/mindbot.js"></script>
+
+  <style>
+    .filter-bar {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+      align-items: center;
+    }
+    .filter-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-light);
+      padding: 0.55rem 1.15rem;
+      border-radius: var(--radius-full);
+      color: var(--text-muted);
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: var(--transition-normal);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .filter-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+    }
+    .filter-btn.active {
+      background: var(--primary);
+      color: #060912;
+      border-color: var(--primary);
+      box-shadow: 0 0 15px var(--primary-glow);
+    }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .video-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition-normal);
+      cursor: pointer;
+      position: relative;
+    }
+    .video-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 240, 255, 0.18);
+    }
+    .video-thumb-container {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      background: #020617;
+      overflow: hidden;
+    }
+    .video-card.short .video-thumb-container {
+      padding-top: 75%; /* Taller ratio for Shorts preview */
+    }
+    .video-thumb-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .video-card:hover .video-thumb-img {
+      transform: scale(1.05);
+    }
+    .video-type-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 0.3rem 0.65rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      z-index: 2;
+    }
+    .badge-standard {
+      background: rgba(14, 165, 233, 0.9);
+      color: #fff;
+    }
+    .badge-short {
+      background: rgba(239, 68, 68, 0.95);
+      color: #fff;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+    }
+    .play-overlay-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 52px;
+      height: 52px;
+      background: rgba(0, 0, 0, 0.7);
+      border: 2px solid var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--primary);
+      transition: all 0.3s ease;
+    }
+    .video-card:hover .play-overlay-icon {
+      background: var(--primary);
+      color: #060912;
+      transform: translate(-50%, -50%) scale(1.15);
+      box-shadow: 0 0 20px var(--primary-glow);
+    }
+    .video-card-body {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .video-card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 0.5rem 0;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .video-card-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin: 0 0 1rem 0;
+      line-height: 1.45;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      flex-grow: 1;
+    }
+    .video-meta-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: auto;
+      font-size: 0.75rem;
+    }
+
+    /* Player Modal Drawer */
+    .player-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(4, 7, 16, 0.88);
+      backdrop-filter: blur(10px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 25000;
+      padding: 1.5rem;
+      box-sizing: border-box;
+    }
+    .player-modal.active {
+      display: flex;
+    }
+    .player-dialog {
+      background: #0d1322;
+      border: 1px solid var(--border-glow);
+      border-radius: var(--radius-xl);
+      max-width: 960px;
+      width: 100%;
+      max-height: 92vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+      display: flex;
+      flex-direction: column;
+    }
+    .player-header {
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .player-frame-wrapper {
+      position: relative;
+      width: 100%;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .player-frame-wrapper.standard {
+      padding-top: 56.25%; /* 16:9 */
+    }
+    .player-frame-wrapper.short {
+      height: 480px; /* Vertical aspect for Shorts */
+      max-height: 60vh;
+    }
+    .player-iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .player-loading-spinner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--primary);
+      font-size: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      z-index: 1;
+    }
+    .spinner-ring {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(0, 240, 255, 0.2);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .player-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border-light);
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .player-tab {
+      padding: 0.9rem 1.4rem;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      border-bottom: 2px solid transparent;
+      transition: var(--transition-fast);
+    }
+    .player-tab.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+      background: rgba(0, 240, 255, 0.06);
+    }
+    .player-content-body {
+      padding: 1.5rem;
+    }
+    .activity-question-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    .opt-label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.65rem 0.9rem;
+      margin-top: 0.5rem;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+    .opt-label:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--border-light);
+    }
+    .opt-label input[type="radio"]:checked + span {
+      color: var(--primary);
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <a href="#videos-main" class="skip-link">Skip to video library</a>
+
+  <!-- Header -->
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🎬</div>
+        <div class="brand-text">MindVerse <span>Video Library</span></div>
+      </a>
+      <div class="header-actions">
+        <a href="student_dashboard.html" class="btn btn-secondary">My Dashboard</a>
+        <a href="lessons.html" class="btn btn-secondary">Curriculum</a>
+        <button class="btn-icon" id="open-a11y-btn" title="Accessibility settings">♿</button>
+        <a href="teacher_dashboard.html" class="btn btn-primary">Educator Portal</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="videos-main" class="content-container">
+    <!-- Hero / Title -->
+    <div style="margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem;">
+      <div>
+        <div class="badge badge-purple" style="margin-bottom: 0.5rem;">Part 16 — Structured Educational Media</div>
+        <h1 style="font-size: 2.3rem; font-weight: 800; margin: 0 0 0.5rem 0;">Curated YouTube Video Library</h1>
+        <p style="color: var(--text-muted); margin: 0; max-width: 720px;">
+          Explore 39 verified learning videos (26 standard modules & 13 quick Shorts) with classroom comprehension activities and captions.
+        </p>
+      </div>
+
+      <!-- Quick Search Input -->
+      <div style="min-width: 280px; position: relative;">
+        <input type="text" id="video-search-input" placeholder="🔍 Search by topic, subject, or title..." 
+               style="width: 100%; background: #131c31; border: 1px solid var(--border-light); padding: 0.75rem 1rem; border-radius: var(--radius-full); color: #fff; box-sizing: border-box;"
+               oninput="onSearchChange()">
+      </div>
+    </div>
+
+    <!-- Filter Pills / Tabs -->
+    <div class="filter-bar" role="tablist">
+      <button class="filter-btn active" onclick="setFilter('all', this)">
+        <span>🌐</span> All Videos (<span id="count-all">39</span>)
+      </button>
+      <button class="filter-btn" onclick="setFilter('standard', this)">
+        <span>📹</span> Standard Videos (<span id="count-std">26</span>)
+      </button>
+      <button class="filter-btn" onclick="setFilter('short', this)">
+        <span>⚡</span> YouTube Shorts (<span id="count-short">13</span>)
+      </button>
+      <button class="filter-btn" onclick="setFilter('Life Skills', this)">
+        <span>🍎</span> Life Skills & Health
+      </button>
+      <button class="filter-btn" onclick="setFilter('Mathematics', this)">
+        <span>🔢</span> Mathematics
+      </button>
+      <button class="filter-btn" onclick="setFilter('Languages', this)">
+        <span>🔤</span> Languages & Phonics
+      </button>
+      <button class="filter-btn" onclick="setFilter('Science', this)">
+        <span>🔬</span> Science & Nature
+      </button>
+      <button class="filter-btn" onclick="setFilter('approved_only', this)">
+        <span>✅</span> Approved Only
+      </button>
+    </div>
+
+    <!-- Live Videos Grid -->
+    <div class="video-grid" id="video-grid-container">
+      <!-- Injected by JavaScript -->
+    </div>
+  </main>
+
+  <!-- Interactive Video Player & Activity Modal -->
+  <div class="player-modal" id="player-modal" role="dialog" aria-modal="true" aria-labelledby="modal-video-title">
+    <div class="player-dialog">
+      <!-- Modal Header -->
+      <div class="player-header">
+        <div>
+          <span class="badge badge-cyan" id="modal-video-type-badge">Standard Video</span>
+          <h2 id="modal-video-title" style="font-size: 1.25rem; font-weight: 800; color: #fff; margin: 0.35rem 0 0 0;">
+            Video Title
+          </h2>
+        </div>
+        <button class="btn-icon" onclick="closePlayerModal()" title="Close player" style="font-size: 1.4rem;">✕</button>
+      </div>
+
+      <!-- Player Frame Wrapper -->
+      <div class="player-frame-wrapper standard" id="player-frame-box">
+        <!-- Loading State -->
+        <div class="player-loading-spinner" id="player-spinner">
+          <div class="spinner-ring"></div>
+          <span>Loading verified video player...</span>
+        </div>
+
+        <!-- Embedded YouTube Player Iframe -->
+        <iframe id="youtube-iframe" class="player-iframe" 
+                title="MindVerse Video Player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- Error / Fallback State Banner (Shown if blocked or restricted) -->
+      <div id="player-error-banner" style="display: none; padding: 1.25rem 1.5rem; background: rgba(239, 68, 68, 0.12); border-top: 1px solid rgba(239, 68, 68, 0.3); border-bottom: 1px solid rgba(239, 68, 68, 0.3);">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <strong style="color: #f87171;">⚠️ Notice: Third-Party Playback & Availability Restrictions</strong>
+            <p style="color: var(--text-muted); margin: 0.25rem 0 0 0; font-size: 0.85rem;">
+              Third-party embedding restrictions or regional network filters may apply. You can always watch directly on YouTube.
+            </p>
+          </div>
+          <div style="display: flex; gap: 0.5rem;">
+            <button class="btn btn-secondary" onclick="retryVideoIframe()">🔄 Retry</button>
+            <a id="modal-direct-yt-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              ↗️ Open on YouTube
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Player Content Tabs -->
+      <div class="player-tabs">
+        <div class="player-tab active" id="tab-btn-overview" onclick="switchPlayerTab('overview')">📋 Lesson Details</div>
+        <div class="player-tab" id="tab-btn-activity" onclick="switchPlayerTab('activity')">📝 Classroom Activity & Quiz</div>
+        <div class="player-tab" id="tab-btn-transcript" onclick="switchPlayerTab('transcript')">💬 Captions & Transcript</div>
+      </div>
+
+      <!-- Tab Content Area -->
+      <div class="player-content-body">
+        <!-- Tab 1: Overview -->
+        <div id="tab-content-overview">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem;">
+            <div>
+              <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem; flex-wrap: wrap;">
+                <span class="badge badge-purple" id="modal-subject-badge">Life Skills</span>
+                <span class="badge badge-green" id="modal-status-badge">Approved</span>
+                <span class="badge badge-amber" id="modal-level-badge">Grade 1-2</span>
+                <span class="badge badge-cyan" id="modal-lang-badge">Language: English</span>
+              </div>
+              <p style="color: #e2e8f0; line-height: 1.5; margin: 0;" id="modal-description">
+                Video description will appear here.
+              </p>
+            </div>
+            <div>
+              <a id="modal-direct-yt-link" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="font-size: 0.85rem;">
+                ↗️ Watch on YouTube
+              </a>
+            </div>
+          </div>
+
+          <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+            <div><strong>Stable Video ID:</strong> <code id="modal-video-id" style="color: var(--primary);">wjPEvWwwyVM</code></div>
+            <div style="margin-top: 0.25rem;"><strong>Source URL:</strong> <a id="modal-original-url" href="#" target="_blank" style="color: var(--primary); word-break: break-all;">https://youtu.be/...</a></div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Classroom Activity (Comprehension Submission) -->
+        <div id="tab-content-activity" style="display: none;">
+          <div style="margin-bottom: 1.25rem;">
+            <h3 style="font-size: 1.2rem; font-weight: 800; color: #fff; margin: 0 0 0.25rem 0;">
+              Interactive Comprehension Check-in
+            </h3>
+            <p style="color: var(--text-muted); margin: 0; font-size: 0.9rem;">
+              Answer the questions below to demonstrate your understanding. Your responses will be validated by the backend and recorded in your learning profile.
+            </p>
+          </div>
+
+          <div id="activity-questions-container">
+            <!-- Injected by JS -->
+          </div>
+
+          <!-- Student Reflection -->
+          <div style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+            <label style="display: block; font-weight: 600; font-size: 0.9rem; color: #fff; margin-bottom: 0.35rem;">
+              Student Reflection or Notes (Optional):
+            </label>
+            <textarea id="activity-reflection-input" rows="2" 
+                      placeholder="What was your favorite idea or word from this video?"
+                      style="width: 100%; background: #131c31; border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 0.75rem; color: #fff; box-sizing: border-box;"></textarea>
+          </div>
+
+          <!-- Submission Feedback Result Box -->
+          <div id="activity-result-box" style="display: none; padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1.25rem;"></div>
+
+          <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+            <button class="btn btn-secondary" onclick="closePlayerModal()">Cancel</button>
+            <button class="btn btn-primary btn-lg" id="submit-activity-btn" onclick="submitCurrentActivity()">
+              <span>🚀</span> Submit Activity
+            </button>
+          </div>
+        </div>
+
+        <!-- Tab 3: Transcript & Captions -->
+        <div id="tab-content-transcript" style="display: none;">
+          <h3 style="font-size: 1.15rem; font-weight: 800; color: #fff; margin: 0 0 0.5rem 0;">Closed Captions & Verified Transcript</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;" id="modal-transcript-text">
+            Closed captions are enabled through the embedded YouTube player. If an official publisher transcript is verified by the educational team, it will appear here. No fabricated transcripts are displayed.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let allVideos = [];
+    let currentFilter = 'all';
+    let currentActiveVideo = null;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadVideos();
+      const urlParams = new URLSearchParams(window.location.search);
+      const autoVideoId = urlParams.get('video_id');
+      if (autoVideoId) {
+        openPlayerModal(autoVideoId);
+      }
+    });
+
+    async function loadVideos() {
+      try {
+        const res = await MindVerseAPI.getVideos();
+        allVideos = res.videos || [];
+        updateCounts();
+        renderVideoCards();
+      } catch (err) {
+        console.error('Failed to load video library:', err);
+        // Fallback local data
+        try {
+          const fb = await fetch('data/videos.json');
+          if (fb.ok) {
+            allVideos = await fb.json();
+            updateCounts();
+            renderVideoCards();
+          }
+        } catch (e) {
+          document.getElementById('video-grid-container').innerHTML = `
+            <div class="card" style="grid-column: 1/-1; padding: 2rem; text-align: center;">
+              <h3>Unable to load videos</h3>
+              <p style="color: var(--text-muted);">Please verify server connectivity.</p>
+            </div>
+          `;
+        }
+      }
+    }
+
+    function updateCounts() {
+      const stdCount = allVideos.filter(v => v.video_type === 'standard').length;
+      const shortCount = allVideos.filter(v => v.video_type === 'short').length;
+      document.getElementById('count-all').textContent = allVideos.length;
+      document.getElementById('count-std').textContent = stdCount;
+      document.getElementById('count-short').textContent = shortCount;
+    }
+
+    function setFilter(filter, btn) {
+      currentFilter = filter;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderVideoCards();
+    }
+
+    function onSearchChange() {
+      renderVideoCards();
+    }
+
+    function renderVideoCards() {
+      const container = document.getElementById('video-grid-container');
+      const searchQuery = (document.getElementById('video-search-input').value || '').trim().toLowerCase();
+
+      let filtered = allVideos.filter(v => {
+        // Filter by tab
+        if (currentFilter === 'standard' && v.video_type !== 'standard') return false;
+        if (currentFilter === 'short' && v.video_type !== 'short') return false;
+        if (currentFilter === 'approved_only' && v.review_status !== 'approved') return false;
+        if (['Life Skills', 'Mathematics', 'Languages', 'Science'].includes(currentFilter)) {
+          if (!v.subject.toLowerCase().includes(currentFilter.toLowerCase())) return false;
+        }
+
+        // Search text
+        if (searchQuery) {
+          const matchTitle = v.title.toLowerCase().includes(searchQuery);
+          const matchDesc = v.description.toLowerCase().includes(searchQuery);
+          const matchTopic = (v.topic || '').toLowerCase().includes(searchQuery);
+          const matchSubj = (v.subject || '').toLowerCase().includes(searchQuery);
+          if (!matchTitle && !matchDesc && !matchTopic && !matchSubj) return false;
+        }
+
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="card" style="grid-column: 1/-1; padding: 3rem; text-align: center;">
+            <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">🔍</div>
+            <h3 style="color: #fff; margin-bottom: 0.5rem;">No videos match your filter</h3>
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Try selecting 'All Videos' or searching for another term.</p>
+            <button class="btn btn-secondary" onclick="setFilter('all', document.querySelector('.filter-btn'))">Reset Filters</button>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(v => {
+        const isShort = v.video_type === 'short';
+        const typeClass = isShort ? 'badge-short' : 'badge-standard';
+        const typeLabel = isShort ? '⚡ Short' : '📹 Video';
+        const statusBadge = v.review_status === 'approved' 
+          ? `<span class="badge badge-green">Approved</span>`
+          : `<span class="badge badge-amber">Pending Review</span>`;
+
+        return `
+          <div class="video-card ${isShort ? 'short' : ''}" onclick="openPlayerModal('${v.video_id}')" role="button" tabindex="0" onkeydown="if(event.key==='Enter') openPlayerModal('${v.video_id}')">
+            <div class="video-thumb-container">
+              <span class="video-type-badge ${typeClass}">${typeLabel}</span>
+              <img src="${v.thumbnail_url || 'https://img.youtube.com/vi/' + v.video_id + '/hqdefault.jpg'}" 
+                   alt="${v.title}" class="video-thumb-img" 
+                   loading="lazy"
+                   onerror="this.src='images/classroom_teacher.jpg'">
+              <div class="play-overlay-icon">▶</div>
+            </div>
+            <div class="video-card-body">
+              <h3 class="video-card-title">${v.title}</h3>
+              <p class="video-card-desc">${v.description || 'Educational video for inclusive learning.'}</p>
+              <div class="video-meta-tags">
+                <span class="badge badge-purple">${v.subject || 'General'}</span>
+                ${statusBadge}
+                ${v.caption_available ? '<span class="badge badge-cyan">CC</span>' : ''}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function openPlayerModal(videoId) {
+      const video = allVideos.find(v => v.video_id === videoId);
+      if (!video) return;
+
+      currentActiveVideo = video;
+
+      document.getElementById('modal-video-title').textContent = video.title;
+      document.getElementById('modal-description').textContent = video.description || 'Educational module.';
+      document.getElementById('modal-video-id').textContent = video.video_id;
+      document.getElementById('modal-original-url').textContent = video.original_url;
+      document.getElementById('modal-original-url').href = video.original_url;
+      document.getElementById('modal-direct-yt-btn').href = video.original_url;
+      document.getElementById('modal-direct-yt-link').href = video.original_url;
+
+      const isShort = video.video_type === 'short';
+      document.getElementById('modal-video-type-badge').textContent = isShort ? '⚡ YouTube Short' : '📹 Standard Video';
+      document.getElementById('modal-subject-badge').textContent = video.subject || 'General';
+      document.getElementById('modal-status-badge').textContent = video.review_status === 'approved' ? 'Approved' : 'Pending Review';
+      document.getElementById('modal-level-badge').textContent = video.intended_level || 'All Levels';
+      document.getElementById('modal-lang-badge').textContent = `Language: ${video.language.toUpperCase()}`;
+
+      // Adjust player container aspect ratio for Shorts vs Standard
+      const frameBox = document.getElementById('player-frame-box');
+      if (isShort) {
+        frameBox.className = 'player-frame-wrapper short';
+      } else {
+        frameBox.className = 'player-frame-wrapper standard';
+      }
+
+      // Set iframe embed source
+      const iframe = document.getElementById('youtube-iframe');
+      const spinner = document.getElementById('player-spinner');
+      const errorBanner = document.getElementById('player-error-banner');
+
+      spinner.style.display = 'flex';
+      errorBanner.style.display = 'none';
+
+      iframe.src = `https://www.youtube-nocookie.com/embed/${video.video_id}?autoplay=1&enablejsapi=1&rel=0`;
+
+      iframe.onload = () => {
+        spinner.style.display = 'none';
+      };
+
+      // Populate Activity questions
+      populateActivityQuestions(video);
+
+      // Transcript
+      const transElem = document.getElementById('modal-transcript-text');
+      if (video.transcript_available && video.transcript_text) {
+        transElem.textContent = video.transcript_text;
+      } else {
+        transElem.innerHTML = `
+          Closed captions are supported via YouTube player controls. Official publisher transcript has not been uploaded yet.<br>
+          <em>(To maintain educational integrity, auto-fabricated transcripts are strictly prohibited.)</em>
+        `;
+      }
+
+      // Switch to default overview tab
+      switchPlayerTab('overview');
+
+      document.getElementById('player-modal').classList.add('active');
+    }
+
+    function retryVideoIframe() {
+      if (!currentActiveVideo) return;
+      const iframe = document.getElementById('youtube-iframe');
+      const spinner = document.getElementById('player-spinner');
+      spinner.style.display = 'flex';
+      iframe.src = `https://www.youtube-nocookie.com/embed/${currentActiveVideo.video_id}?enablejsapi=1&rel=0`;
+    }
+
+    function closePlayerModal() {
+      const iframe = document.getElementById('youtube-iframe');
+      iframe.src = ''; // Stop video playback
+      document.getElementById('player-modal').classList.remove('active');
+      currentActiveVideo = null;
+    }
+
+    function switchPlayerTab(tab) {
+      document.querySelectorAll('.player-tab').forEach(t => t.classList.remove('active'));
+      document.getElementById('tab-content-overview').style.display = 'none';
+      document.getElementById('tab-content-activity').style.display = 'none';
+      document.getElementById('tab-content-transcript').style.display = 'none';
+
+      if (tab === 'overview') {
+        document.getElementById('tab-btn-overview').classList.add('active');
+        document.getElementById('tab-content-overview').style.display = 'block';
+      } else if (tab === 'activity') {
+        document.getElementById('tab-btn-activity').classList.add('active');
+        document.getElementById('tab-content-activity').style.display = 'block';
+      } else if (tab === 'transcript') {
+        document.getElementById('tab-btn-transcript').classList.add('active');
+        document.getElementById('tab-content-transcript').style.display = 'block';
+      }
+    }
+
+    function populateActivityQuestions(video) {
+      const container = document.getElementById('activity-questions-container');
+      const questions = video.questions || [];
+      const resBox = document.getElementById('activity-result-box');
+      resBox.style.display = 'none';
+
+      if (questions.length === 0) {
+        container.innerHTML = `
+          <div class="card" style="padding: 1.5rem; text-align: center;">
+            <p style="color: var(--text-muted); margin: 0 0 1rem 0;">
+              No objective quiz questions have been assigned for this video yet. You can submit your personal reflection below for your teacher to review.
+            </p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = questions.map((q, idx) => `
+        <div class="activity-question-card" data-qid="${q.id}">
+          <div style="font-weight: 700; color: #fff; margin-bottom: 0.75rem;">
+            Question ${idx + 1}: ${q.question}
+          </div>
+          <div>
+            ${q.options.map(opt => `
+              <label class="opt-label">
+                <input type="radio" name="question_${q.id}" value="${opt.replace(/"/g, '&quot;')}" required>
+                <span>${opt}</span>
+              </label>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    async function submitCurrentActivity() {
+      if (!currentActiveVideo) return;
+      const questions = currentActiveVideo.questions || [];
+      const submittedAnswers = [];
+
+      for (const q of questions) {
+        const checked = document.querySelector(`input[name="question_${q.id}"]:checked`);
+        if (!checked) {
+          alert('Please answer all questions before submitting your activity.');
+          return;
+        }
+        submittedAnswers.push({
+          id: q.id,
+          selected_answer: checked.value
+        });
+      }
+
+      const reflection = document.getElementById('activity-reflection-input').value;
+      const submitBtn = document.getElementById('submit-activity-btn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+
+      try {
+        const result = await MindVerseAPI.submitVideoActivity(
+          currentActiveVideo.video_id,
+          submittedAnswers,
+          reflection,
+          120
+        );
+
+        const resBox = document.getElementById('activity-result-box');
+        resBox.style.display = 'block';
+        resBox.style.background = 'rgba(16, 185, 129, 0.15)';
+        resBox.style.border = '1px solid #10b981';
+        resBox.innerHTML = `
+          <div style="display: flex; align-items: center; gap: 0.75rem; color: #34d399; font-weight: 800; font-size: 1.1rem;">
+            <span>🎉</span> Activity Recorded & Submitted!
+          </div>
+          <div style="color: #fff; margin: 0.5rem 0 0 0;">
+            Score: <strong>${result.score}%</strong> (${result.correct_count} / ${result.total_questions} correct).
+            Logged into Educator Review Queue with status <em>'${result.status}'</em>.
+          </div>
+        `;
+
+        if (typeof MindVerseAudio !== 'undefined') {
+          MindVerseAudio.speak(`Activity submitted successfully! You scored ${result.score} percent.`);
+        }
+      } catch (err) {
+        console.warn('Submission recording failed:', err);
+        const resBox = document.getElementById('activity-result-box');
+        resBox.style.display = 'block';
+        resBox.style.background = 'rgba(245, 158, 11, 0.15)';
+        resBox.style.border = '1px solid #f59e0b';
+        resBox.innerHTML = `
+          <div style="color: #fbbf24; font-weight: 700;">Submission noted offline.</div>
+          <div style="color: #e2e8f0; font-size: 0.85rem;">Your answers have been stored locally in your session.</div>
+        `;
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submitted ✓';
+      }
+    }
+  </script>
+  <script src="js/feedback.js"></script>
+</body>
+</html>

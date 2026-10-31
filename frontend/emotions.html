@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facial Expressions & Emotions — MindVerse Learning Lab</title>
+  
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+  <link rel="stylesheet" href="css/games.css">
+
+  <script src="js/api.js"></script>
+  <script src="js/speech.js"></script>
+  <script src="js/accessibility.js"></script>
+  <script src="js/games.js"></script>
+  <script src="js/mindbot.js"></script>
+</head>
+<body>
+  <a href="#emotions-main" class="skip-link">Skip to emotions lesson</a>
+
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">😊</div>
+        <div class="brand-text">MindVerse <span>Emotions Lab</span></div>
+      </a>
+      <div class="header-actions">
+        <a href="classroom_3d.html" class="btn btn-secondary">🏫 3D Classroom</a>
+        <button class="btn-icon" id="open-a11y-btn" title="Accessibility settings">♿</button>
+        <a href="student_dashboard.html" class="btn btn-primary">My Dashboard</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="emotions-main" class="content-container">
+    <div style="margin-bottom:2rem;">
+      <div class="badge badge-purple" style="margin-bottom:0.5rem;">Social & Emotional Understanding</div>
+      <h1 style="font-size:2.2rem; font-weight:800;">Facial Expressions & Feelings</h1>
+      
+      <!-- Core Educational Message from prompt -->
+      <div style="background:rgba(121,40,202,0.15); border:1px solid var(--border-glow); border-radius:var(--radius-lg); padding:1rem 1.5rem; margin-top:1rem; display:flex; align-items:center; gap:1rem;">
+        <span style="font-size:2rem;">💬</span>
+        <div style="font-size:1.1rem; color:#fff; font-weight:600;">
+          “Expressions can give us clues, but asking kindly is the best way to understand how someone feels.”
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Emotion Explorer Stage -->
+    <div class="card" style="padding:2.5rem; max-width:850px; margin:0 auto 3rem; text-align:center;">
+      <div id="active-emotion-icon" style="font-size:6rem; margin-bottom:0.5rem;">😊</div>
+      <h2 id="active-emotion-title" style="font-size:2.2rem; color:var(--primary); margin-bottom:0.5rem;">Happiness</h2>
+      
+      <div style="max-width:600px; margin:0 auto 1.5rem; text-align:left;">
+        <p style="margin-bottom:0.75rem;"><strong style="color:#fff;">👀 Facial Clues:</strong> <span id="active-emotion-clues" style="color:var(--text-muted);">Smiling mouth, lifted cheeks, warm sparkling eyes.</span></p>
+        <p style="margin-bottom:0.75rem;"><strong style="color:#fff;">🌟 Example Situation:</strong> <span id="active-emotion-example" style="color:var(--text-muted);">When you finish a fun puzzle or share a snack with a friend.</span></p>
+        <p style="margin-bottom:0.75rem;"><strong style="color:#10b981;">🤝 Kind Response:</strong> <span id="active-emotion-response" style="color:var(--text-muted);">Smile back or say: I am glad you are happy!</span></p>
+      </div>
+
+      <button class="btn btn-primary btn-lg" id="emotion-speak-btn">
+        <span>🔊</span> Hear Explanation & Kind Response
+      </button>
+    </div>
+
+    <!-- 11 Emotions Grid (Reference Image 3 Inspiration) -->
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:1.25rem; margin-bottom:3rem;" id="emotions-grid">
+      <!-- 11 emotions rendered via JS -->
+    </div>
+
+    <!-- Emotion Exploration Game -->
+    <div class="card" style="padding:2rem;">
+      <h3 style="color:#fff; font-size:1.4rem; margin-bottom:0.5rem;">🎮 Emotion Discovery Activity</h3>
+      <p style="color:var(--text-muted); margin-bottom:1.5rem;">Look at this scenario and choose the most empathetic and supportive reaction.</p>
+
+      <div style="background:rgba(255,255,255,0.04); border-radius:var(--radius-lg); padding:1.5rem; margin-bottom:1.5rem;">
+        <div style="font-size:1.2rem; font-weight:700; color:#fff; margin-bottom:0.5rem;">
+          "Your classmate Maya is sitting quietly alone in the corner with downturned lips."
+        </div>
+        <p style="color:var(--text-muted); font-size:0.95rem;">What is the kindest way to support her?</p>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:0.75rem; max-width:650px;" id="scenario-options">
+        <button class="btn btn-secondary" style="text-align:left; justify-content:flex-start; padding:1rem;" onclick="checkScenario(true, this)">
+          A) Walk over gently and ask: "Would you like a friendly quiet break or someone to sit with you?"
+        </button>
+        <button class="btn btn-secondary" style="text-align:left; justify-content:flex-start; padding:1rem;" onclick="checkScenario(false, this)">
+          B) Shout loudly across the room to ask what is wrong.
+        </button>
+        <button class="btn btn-secondary" style="text-align:left; justify-content:flex-start; padding:1rem;" onclick="checkScenario(false, this)">
+          C) Ignore her completely.
+        </button>
+      </div>
+
+      <div id="scenario-feedback" style="margin-top:1.25rem; font-size:1.1rem; font-weight:700; min-height:30px;"></div>
+    </div>
+  </main>
+
+  <script>
+    let emotions = [];
+    let activeIdx = 0;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const data = await MindVerseAPI.getEmotions();
+        emotions = data.items || [];
+        renderGrid();
+        showEmotion(0);
+
+        document.getElementById('emotion-speak-btn').onclick = () => {
+          const em = emotions[activeIdx];
+          if (typeof MindVerseAudio !== 'undefined') {
+            MindVerseAudio.speak(`${em.emotion}. ${em.clues}. Example: ${em.example}. Kind response: ${em.kind_response}`);
+          }
+        };
+      } catch (e) {
+        console.error(e);
+      }
+    });
+
+    function renderGrid() {
+      const grid = document.getElementById('emotions-grid');
+      grid.innerHTML = '';
+
+      emotions.forEach((em, idx) => {
+        const card = document.createElement('div');
+        card.className = `card ${idx === 0 ? 'active' : ''}`;
+        card.style.cssText = 'text-align:center; padding:1.25rem; cursor:pointer;';
+        card.innerHTML = `
+          <div style="font-size:3rem; margin-bottom:0.5rem;">${em.icon}</div>
+          <h4 style="color:#fff; font-size:1.15rem; margin-bottom:0.25rem;">${em.emotion}</h4>
+          <span class="badge" style="background:rgba(255,255,255,0.08); color:var(--text-muted); font-size:0.75rem;">Explore</span>
+        `;
+        card.onclick = () => showEmotion(idx);
+        grid.appendChild(card);
+      });
+    }
+
+    function showEmotion(idx) {
+      activeIdx = idx;
+      const em = emotions[idx];
+
+      document.querySelectorAll('#emotions-grid .card').forEach((c, i) => {
+        c.style.borderColor = (i === idx) ? 'var(--primary)' : 'var(--border-light)';
+      });
+
+      document.getElementById('active-emotion-icon').textContent = em.icon;
+      document.getElementById('active-emotion-title').textContent = em.emotion;
+      document.getElementById('active-emotion-clues').textContent = em.clues;
+      document.getElementById('active-emotion-example').textContent = em.example;
+      document.getElementById('active-emotion-response').textContent = em.kind_response;
+
+      if (typeof MindVerseAudio !== 'undefined') {
+        MindVerseAudio.playClickSound();
+        MindVerseAudio.speak(em.emotion);
+      }
+    }
+
+    function checkScenario(isCorrect, btn) {
+      const fb = document.getElementById('scenario-feedback');
+      if (isCorrect) {
+        btn.className = 'btn btn-primary';
+        fb.style.color = 'var(--accent-green)';
+        fb.textContent = '🌟 Excellent! Gentle, respectful questions help our friends feel safe and cared for.';
+        if (typeof MindVerseAudio !== 'undefined') MindVerseAudio.playSuccessSound();
+      } else {
+        btn.style.borderColor = 'var(--accent-pink)';
+        fb.style.color = 'var(--accent-pink)';
+        fb.textContent = 'Think about what would make someone feel comfortable and respected.';
+        if (typeof MindVerseAudio !== 'undefined') MindVerseAudio.playGentleTryAgain();
+      }
+    }
+  </script>
+</body>
+</html>

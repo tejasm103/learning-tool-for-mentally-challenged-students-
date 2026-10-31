@@ -1,0 +1,76 @@
+{
+  "title": "Human Body Learning & Personal Safety",
+  "core_safety_message": "Our bodies belong to us. We care for our health, and we speak to a trusted adult if anything ever feels unsafe.",
+  "parts": [
+    {
+      "name": "Head",
+      "icon": "👤",
+      "function": "Holds our brain which thinks, dreams, and learns."
+    },
+    {
+      "name": "Eyes",
+      "icon": "👀",
+      "function": "Allow us to see colors, books, shapes, and smiles."
+    },
+    {
+      "name": "Ears",
+      "icon": "👂",
+      "function": "Help us hear music, bird songs, and words."
+    },
+    {
+      "name": "Nose",
+      "icon": "👃",
+      "function": "Breathes fresh air and smells delicious food."
+    },
+    {
+      "name": "Mouth",
+      "icon": "👄",
+      "function": "Helps us speak kind words, smile, and eat healthy meals."
+    },
+    {
+      "name": "Hands",
+      "icon": "🤲",
+      "function": "Wave hello, draw art, write, and hold loved ones."
+    },
+    {
+      "name": "Arms",
+      "icon": "💪",
+      "function": "Help us reach, carry school bags, and give warm hugs."
+    },
+    {
+      "name": "Legs",
+      "icon": "🦵",
+      "function": "Help us walk, jump, climb stairs, and dance."
+    },
+    {
+      "name": "Feet",
+      "icon": "🦶",
+      "function": "Keep us balanced on the ground as we stand and walk."
+    },
+    {
+      "name": "Fingers",
+      "icon": "☝️",
+      "function": "Turn book pages and type on computer keyboards."
+    },
+    {
+      "name": "Toes",
+      "icon": "👣",
+      "function": "Help us stay steady when we run and walk."
+    },
+    {
+      "name": "Shoulders",
+      "icon": "🧍",
+      "function": "Connect our arms to our body and help us stretch."
+    },
+    {
+      "name": "Knees",
+      "icon": "🧎",
+      "function": "Bend smoothly so we can sit down and stand up."
+    },
+    {
+      "name": "Elbows",
+      "icon": "🦾",
+      "function": "Bend our arms so we can drink water and eat."
+    }
+  ]
+}

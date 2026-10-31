@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Learning Dashboard — MindVerse Inclusive Learning Lab</title>
+  
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+
+  <script src="js/api.js"></script>
+  <script src="js/speech.js"></script>
+  <script src="js/accessibility.js"></script>
+  <script src="js/mindbot.js"></script>
+  <style>
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      transition: var(--transition-normal);
+    }
+    .stat-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 240, 255, 0.15);
+    }
+    .stat-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid var(--border-glow);
+    }
+    .badge-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      transition: var(--transition-normal);
+    }
+    .badge-item.unlocked {
+      border-color: var(--primary);
+      background: rgba(0, 240, 255, 0.08);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+    }
+    .badge-item.locked {
+      opacity: 0.4;
+      filter: grayscale(1);
+    }
+    .progress-bar-container {
+      width: 100%;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      margin: 0.5rem 0;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), #a855f7);
+      border-radius: var(--radius-full);
+      transition: width 0.6s ease;
+    }
+    .activity-card-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      transition: var(--transition-normal);
+    }
+    .activity-card-item:hover {
+      border-color: var(--primary);
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 8px 25px rgba(0, 240, 255, 0.12);
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 0.28rem 0.65rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .status-assigned { background: rgba(148, 163, 184, 0.2); color: #cbd5e1; }
+    .status-in_progress { background: rgba(14, 165, 233, 0.2); color: #38bdf8; border: 1px solid rgba(14, 165, 233, 0.4); }
+    .status-submitted { background: rgba(168, 85, 247, 0.2); color: #c084fc; }
+    .status-awaiting_review { background: rgba(245, 158, 11, 0.25); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4); }
+    .status-approved { background: rgba(16, 185, 129, 0.25); color: #34d399; }
+    .status-reviewed { background: rgba(59, 130, 246, 0.25); color: #60a5fa; }
+    .status-needs_more_practice { background: rgba(239, 68, 68, 0.25); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); }
+  </style>
+</head>
+<body>
+  <a href="#dash-main" class="skip-link">Skip to student dashboard</a>
+
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🎒</div>
+        <div class="brand-text">MindVerse <span>Student Portal</span></div>
+      </a>
+      <div class="header-actions">
+        <a href="workspace.html" class="btn btn-accent" style="border-color:#00f0ff; color:#00f0ff;"><span>📝</span> My Working Place</a>
+        <a href="videos.html" class="btn btn-secondary">🎬 Video Library</a>
+        <a href="quiz.html" class="btn btn-accent">🏆 Master Quiz (115 Qs)</a>
+        <a href="classroom_3d.html" class="btn btn-primary">🏫 Enter 3D Classroom</a>
+        <a href="lessons.html" class="btn btn-secondary">All Lessons</a>
+        <button class="btn-icon" id="open-a11y-btn" title="Accessibility settings">♿</button>
+        <button class="btn btn-secondary" onclick="MindVerseAPI.logout()">Sign Out</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="dash-main" class="content-container">
+    <!-- Student Profile Header Banner -->
+    <div class="card" style="padding:2rem; margin-bottom:2rem; background:linear-gradient(135deg, rgba(14,21,40,0.9), rgba(30,41,59,0.8)); border-color:var(--border-glow); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.5rem;">
+      <div style="display:flex; align-items:center; gap:1.5rem;">
+        <div style="width:72px; height:72px; border-radius:50%; background:linear-gradient(135deg, var(--primary), #a855f7); display:flex; align-items:center; justify-content:center; font-size:2.6rem; border:2px solid #fff; box-shadow:0 0 20px var(--primary-glow);">
+          🦁
+        </div>
+        <div>
+          <div style="display:flex; align-items:center; gap:0.75rem;">
+            <h1 style="font-size:2rem; font-weight:800; color:#fff; margin:0;" id="student-name">Aarav Patel</h1>
+            <span class="badge badge-cyan" id="student-id-badge">MV-STU-101</span>
+          </div>
+          <p style="color:var(--text-muted); margin:0.35rem 0 0 0;" id="student-grade-desc">
+            Primary Learner • Special Individualized Educational Plan (IEP)
+          </p>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+        <a href="workspace.html" class="btn btn-primary" style="background: linear-gradient(135deg, #00f0ff 0%, #3b82f6 100%); color: #0f172a; font-weight: 800;">
+          <span>📝</span> Open Working Desk
+        </a>
+        <a href="workplace.html" class="btn btn-secondary">
+          <span>🏥</span> Working Places
+        </a>
+        <button class="btn btn-secondary" onclick="readDashboardSummary()">
+          <span>🔊</span> Read My Progress
+        </button>
+        <a href="videos.html" class="btn btn-secondary">
+          <span>🎬</span> Watch Videos
+        </a>
+        <a href="quiz.html" class="btn btn-accent">
+          <span>🏆</span> Take 115-Q Quiz
+        </a>
+        <a href="classroom_3d.html" class="btn btn-primary">
+          <span>🚀</span> Resume Lessons
+        </a>
+      </div>
+    </div>
+
+    <!-- Quick Stats Grid -->
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1.25rem; margin-bottom:2.5rem;">
+      <div class="stat-card">
+        <div class="stat-icon" style="background:rgba(251,191,36,0.15); border-color:#fbbf24;">⭐</div>
+        <div>
+          <div style="font-size:1.8rem; font-weight:800; color:#fbbf24;" id="stat-stars">—</div>
+          <div style="font-size:0.85rem; color:var(--text-muted);">Total Stars Earned</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon" style="background:rgba(16,185,129,0.15); border-color:#10b981;">✅</div>
+        <div>
+          <div style="font-size:1.8rem; font-weight:800; color:#10b981;" id="stat-completed">—</div>
+          <div style="font-size:0.85rem; color:var(--text-muted);">Completed Lessons</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon" style="background:rgba(239,68,68,0.15); border-color:#ef4444;">🔥</div>
+        <div>
+          <div style="font-size:1.8rem; font-weight:800; color:#ef4444;" id="stat-streak">Active</div>
+          <div style="font-size:0.85rem; color:var(--text-muted);">Learning Streak</div>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon" style="background:rgba(0,240,255,0.15); border-color:var(--primary);">⏱️</div>
+        <div>
+          <div style="font-size:1.8rem; font-weight:800; color:var(--primary);" id="stat-time">— min</div>
+          <div style="font-size:0.85rem; color:var(--text-muted);">Learning Time</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PART 17.1: Assigned Activities & Verification Workflow -->
+    <div class="card" style="padding:2rem; margin-bottom:2.5rem;" id="assigned-activities-section">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem; flex-wrap:wrap; gap:1rem;">
+        <div>
+          <div class="badge badge-amber" style="margin-bottom:0.35rem;">Part 17.1 — Learning Workflow & Assignments</div>
+          <h2 style="font-size:1.4rem; font-weight:800; color:#fff; margin:0;">Assigned Learning Activities & Practice</h2>
+          <p style="color:var(--text-muted); margin:0.25rem 0 0 0; font-size:0.9rem;">
+            Open your assigned video activities and lessons. Your submissions are recorded and reviewed by your teacher.
+          </p>
+        </div>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap;" id="activity-filter-buttons">
+          <button class="btn btn-secondary active" style="padding:0.4rem 0.8rem; font-size:0.8rem;" onclick="filterStudentActivities('all', this)">All</button>
+          <button class="btn btn-secondary" style="padding:0.4rem 0.8rem; font-size:0.8rem;" onclick="filterStudentActivities('to_do', this)">To Do</button>
+          <button class="btn btn-secondary" style="padding:0.4rem 0.8rem; font-size:0.8rem;" onclick="filterStudentActivities('needs_more_practice', this)">Needs Practice</button>
+          <button class="btn btn-secondary" style="padding:0.4rem 0.8rem; font-size:0.8rem;" onclick="filterStudentActivities('completed', this)">Completed</button>
+        </div>
+      </div>
+
+      <!-- Activity Cards Container -->
+      <div id="student-activities-list">
+        <!-- Injected by JS -->
+      </div>
+    </div>
+
+    <!-- 2 Column Section: Badges & IEP Goals -->
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem; margin-bottom:2.5rem;">
+      <!-- Badges Showcase -->
+      <div class="card" style="padding:1.75rem;">
+        <h3 style="color:#fff; font-size:1.3rem; font-weight:800; margin-bottom:1.25rem; display:flex; align-items:center; gap:0.5rem;">
+          <span>🏆</span> Earned Badges & Medals
+        </h3>
+        <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1rem;" id="badges-container">
+          <div class="badge-item unlocked">
+            <span style="font-size:2.4rem; margin-bottom:0.4rem;">🔤</span>
+            <span style="font-weight:700; font-size:0.85rem; color:#fff;">Alphabet Explorer</span>
+            <span style="font-size:0.75rem; color:var(--primary);">Completed A-Z</span>
+          </div>
+          <div class="badge-item unlocked">
+            <span style="font-size:2.4rem; margin-bottom:0.4rem;">🚦</span>
+            <span style="font-weight:700; font-size:0.85rem; color:#fff;">Road Safety Hero</span>
+            <span style="font-size:0.75rem; color:var(--primary);">Passed Crossing</span>
+          </div>
+          <div class="badge-item unlocked">
+            <span style="font-size:2.4rem; margin-bottom:0.4rem;">😊</span>
+            <span style="font-weight:700; font-size:0.85rem; color:#fff;">Empathy Master</span>
+            <span style="font-size:0.75rem; color:var(--primary);">Recognized Emotions</span>
+          </div>
+          <div class="badge-item unlocked">
+            <span style="font-size:2.4rem; margin-bottom:0.4rem;">ಕ</span>
+            <span style="font-weight:700; font-size:0.85rem; color:#fff;">Kannada Star</span>
+            <span style="font-size:0.75rem; color:var(--primary);">Varnamala Explorer</span>
+          </div>
+          <div class="badge-item unlocked">
+            <span style="font-size:2.4rem; margin-bottom:0.4rem;">🔢</span>
+            <span style="font-weight:700; font-size:0.85rem; color:#fff;">Math Whiz</span>
+            <span style="font-size:0.75rem; color:var(--primary);">Table 5 Mastered</span>
+          </div>
+          <div class="badge-item locked">
+            <span style="font-size:2.4rem; margin-bottom:0.4rem;">♟️</span>
+            <span style="font-weight:700; font-size:0.85rem; color:#fff;">Chess Grandmaster</span>
+            <span style="font-size:0.75rem; color:var(--text-muted);">Defeat MindBot</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- IEP Goal Mastery -->
+      <div class="card" style="padding:1.75rem;">
+        <h3 style="color:#fff; font-size:1.3rem; font-weight:800; margin-bottom:1.25rem; display:flex; align-items:center; gap:0.5rem;">
+          <span>🎯</span> Individualized IEP Learning Goals
+        </h3>
+
+        <div style="margin-bottom:1.25rem;">
+          <div style="display:flex; justify-content:space-between; font-weight:600; font-size:0.95rem; margin-bottom:0.25rem;">
+            <span>English Phonics & Word Association</span>
+            <span style="color:var(--primary);">92%</span>
+          </div>
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill" style="width: 92%;"></div>
+          </div>
+        </div>
+
+        <div style="margin-bottom:1.25rem;">
+          <div style="display:flex; justify-content:space-between; font-weight:600; font-size:0.95rem; margin-bottom:0.25rem;">
+            <span>Kannada & Hindi Varnamala Recognition</span>
+            <span style="color:var(--primary);">85%</span>
+          </div>
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill" style="width: 85%;"></div>
+          </div>
+        </div>
+
+        <div style="margin-bottom:1.25rem;">
+          <div style="display:flex; justify-content:space-between; font-weight:600; font-size:0.95rem; margin-bottom:0.25rem;">
+            <span>Number Sense & Basic Addition</span>
+            <span style="color:var(--primary);">78%</span>
+          </div>
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill" style="width: 78%;"></div>
+          </div>
+        </div>
+
+        <div style="margin-bottom:1.25rem;">
+          <div style="display:flex; justify-content:space-between; font-weight:600; font-size:0.95rem; margin-bottom:0.25rem;">
+            <span>Social-Emotional Emotion Regulation</span>
+            <span style="color:var(--primary);">90%</span>
+          </div>
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill" style="width: 90%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recommendations Section -->
+    <div class="card" style="padding:1.75rem; margin-bottom:2rem;">
+      <h3 style="color:#fff; font-size:1.3rem; font-weight:800; margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem;">
+        <span>💡</span> Recommended Next Steps
+      </h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1rem;" id="recommendations-grid">
+        <a href="videos.html" class="station-card" style="margin:0;">
+          <div class="station-card-icon">🎬</div>
+          <div class="station-card-title">Watch Healthy Habits Video</div>
+          <div class="station-card-desc">Learn about morning routines and healthy brushing habits.</div>
+          <span class="badge badge-purple">Watch Video</span>
+        </a>
+        <a href="multiplication.html" class="station-card" style="margin:0;">
+          <div class="station-card-icon">✖️</div>
+          <div class="station-card-title">Practice 3x Table</div>
+          <div class="station-card-desc">Strengthen arithmetic memory with interactive visual tiles.</div>
+          <span class="badge badge-cyan">Continue</span>
+        </a>
+        <a href="games.html#memory" class="station-card" style="margin:0;">
+          <div class="station-card-icon">🧠</div>
+          <div class="station-card-title">Memory Card Challenge</div>
+          <div class="station-card-desc">Train working memory and visual focus with friendly animal cards.</div>
+          <span class="badge badge-green">Play Game</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    let studentActivities = [];
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const userRes = await MindVerseAPI.getCurrentUser();
+        if (userRes && userRes.user) {
+          document.getElementById('student-name').textContent = userRes.user.display_name;
+          if (userRes.user.student_id) {
+            document.getElementById('student-id-badge').textContent = userRes.user.student_id;
+          }
+        }
+
+        const summary = await MindVerseAPI.getProgressSummary();
+        if (summary) {
+          document.getElementById('stat-stars').textContent = summary.total_stars !== undefined ? summary.total_stars : '0';
+          document.getElementById('stat-completed').textContent = summary.completed_count !== undefined ? summary.completed_count : '0';
+          document.getElementById('stat-time').textContent = summary.time_spent_minutes !== undefined ? `${summary.time_spent_minutes}` : '0 min';
+        }
+
+        // Load Assigned Activities (Part 17.1)
+        await loadStudentActivities();
+
+      } catch (e) {
+        console.warn('Dashboard sync note:', e);
+      }
+    });
+
+    async function loadStudentActivities() {
+      try {
+        const res = await MindVerseAPI.getActivities();
+        studentActivities = res.activities || [];
+        renderActivitiesList(studentActivities);
+      } catch (e) {
+        console.warn('Activity load error:', e);
+      }
+    }
+
+    function renderActivitiesList(activities) {
+      const container = document.getElementById('student-activities-list');
+      container.innerHTML = '';
+
+      if (activities.length === 0) {
+        container.innerHTML = `
+          <div style="text-align:center; padding:2.5rem 1rem; color:var(--text-muted);">
+            <div style="font-size:2.5rem; margin-bottom:0.5rem;">🎉</div>
+            <h4 style="color:#fff; margin:0 0 0.25rem 0;">No activities pending!</h4>
+            <p style="margin:0;">You are all caught up on your assignments. Enjoy free practice in any learning station.</p>
+          </div>
+        `;
+        return;
+      }
+
+      activities.forEach(act => {
+        const div = document.createElement('div');
+        div.className = 'activity-card-item';
+
+        const statusClass = `status-${act.status || 'assigned'}`;
+        const formattedStatus = (act.status || 'assigned').replace(/_/g, ' ');
+
+        // Action button destination
+        let actionBtn = '';
+        if (act.activity_type === 'video_activity') {
+          actionBtn = `
+            <a href="videos.html?video_id=${act.reference_id}" class="btn btn-primary" onclick="markActivityStarted(${act.id})">
+              🎬 Open Video Activity
+            </a>
+          `;
+        } else if (act.activity_type === 'lesson') {
+          let lessonUrl = 'lessons.html';
+          if (act.reference_id && act.reference_id.includes('alphabet')) lessonUrl = 'alphabet.html';
+          else if (act.reference_id && act.reference_id.includes('kannada')) lessonUrl = 'kannada.html';
+          else if (act.reference_id && act.reference_id.includes('hindi')) lessonUrl = 'hindi.html';
+          else if (act.reference_id && act.reference_id.includes('math')) lessonUrl = 'math.html';
+          actionBtn = `
+            <a href="${lessonUrl}" class="btn btn-primary" onclick="markActivityStarted(${act.id})">
+              📚 Open Lesson
+            </a>
+          `;
+        } else {
+          actionBtn = `
+            <a href="lessons.html" class="btn btn-secondary">
+              Explore Station
+            </a>
+          `;
+        }
+
+        div.innerHTML = `
+          <div style="max-width:650px;">
+            <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.35rem; flex-wrap:wrap;">
+              <span class="status-badge ${statusClass}">${formattedStatus}</span>
+              <span class="badge badge-purple">${act.subject || 'General'}</span>
+              ${act.score !== null ? `<span class="badge badge-cyan">Score: ${act.score}%</span>` : ''}
+            </div>
+            <h3 style="font-size:1.15rem; font-weight:800; color:#fff; margin:0 0 0.35rem 0;">${act.title}</h3>
+            <p style="color:var(--text-muted); margin:0 0 0.5rem 0; font-size:0.9rem;">
+              ${act.instructions || 'Complete the exercises for this station.'}
+            </p>
+            ${act.teacher_feedback ? `
+              <div style="background:rgba(0,240,255,0.06); border-left:3px solid var(--primary); padding:0.5rem 0.75rem; border-radius:0 var(--radius-sm) var(--radius-sm) 0; margin-top:0.4rem;">
+                <span style="color:var(--primary); font-size:0.8rem; font-weight:700;">Teacher Feedback:</span>
+                <span style="color:#e2e8f0; font-size:0.85rem; margin-left:0.35rem;">"${act.teacher_feedback}"</span>
+              </div>
+            ` : ''}
+          </div>
+          <div style="display:flex; align-items:center; gap:0.75rem;">
+            ${actionBtn}
+          </div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    async function markActivityStarted(actId) {
+      try {
+        await MindVerseAPI.startActivity(actId);
+      } catch (e) {
+        // pass
+      }
+    }
+
+    function filterStudentActivities(filter, btn) {
+      document.querySelectorAll('#activity-filter-buttons button').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+
+      if (filter === 'all') {
+        renderActivitiesList(studentActivities);
+      } else if (filter === 'to_do') {
+        renderActivitiesList(studentActivities.filter(a => ['assigned', 'in_progress', 'needs_more_practice'].includes(a.status)));
+      } else if (filter === 'needs_more_practice') {
+        renderActivitiesList(studentActivities.filter(a => a.status === 'needs_more_practice'));
+      } else if (filter === 'completed') {
+        renderActivitiesList(studentActivities.filter(a => ['approved', 'reviewed', 'submitted'].includes(a.status)));
+      }
+    }
+
+    function readDashboardSummary() {
+      const name = document.getElementById('student-name').textContent;
+      const stars = document.getElementById('stat-stars').textContent;
+      const completed = document.getElementById('stat-completed').textContent;
+
+      if (typeof MindVerseAudio !== 'undefined') {
+        MindVerseAudio.speak(`Hello ${name}! You have earned ${stars} stars and completed ${completed} lessons. Fantastic work!`);
+      }
+    }
+  </script>
+</body>
+</html>

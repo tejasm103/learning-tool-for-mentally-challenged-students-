@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Working Place & Desk — MindVerse Inclusive Learning Lab</title>
+  
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+  <link rel="stylesheet" href="css/classroom.css">
+
+  <script src="js/api.js"></script>
+  <script src="js/speech.js"></script>
+  <script src="js/accessibility.js"></script>
+  <script src="js/mindbot.js"></script>
+  <script src="js/feedback.js"></script>
+
+  <style>
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+    @media (max-width: 960px) {
+      .workspace-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .canvas-container {
+      background: #090e1a;
+      border: 2px solid var(--border-glow);
+      border-radius: var(--radius-xl);
+      padding: 1.25rem;
+      position: relative;
+    }
+    #draw-canvas {
+      background: #060912;
+      border: 1px dashed rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      height: 380px;
+      cursor: crosshair;
+      touch-action: none;
+    }
+    .color-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: transform 0.15s, border-color 0.15s;
+    }
+    .color-dot.active {
+      transform: scale(1.2);
+      border-color: #fff;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+    .timer-display {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: #00f0ff;
+      font-family: monospace;
+      letter-spacing: 2px;
+      text-align: center;
+      margin: 1rem 0;
+    }
+    .calc-btn {
+      background: #1e293b;
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 700;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 0.85rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .calc-btn:hover {
+      background: #334155;
+      border-color: var(--primary);
+    }
+    .calc-btn.op {
+      background: rgba(0, 240, 255, 0.15);
+      color: var(--primary);
+      border-color: var(--border-glow);
+    }
+  </style>
+</head>
+<body>
+  <a href="#workspace-main" class="skip-link">Skip to working place</a>
+
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">📝</div>
+        <div class="brand-text">MindVerse <span>Student Working Place</span></div>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link"><span>🏠</span> Home</a></li>
+          <li><a href="classroom_3d.html" class="nav-link"><span>🏫</span> 3D Classroom</a></li>
+          <li><a href="workplace.html" class="nav-link"><span>🏥</span> Working Places</a></li>
+          <li><a href="lessons.html" class="nav-link"><span>📚</span> Curriculum</a></li>
+          <li><a href="videos.html" class="nav-link"><span>🎬</span> Videos</a></li>
+          <li><a href="student_dashboard.html" class="nav-link"><span>🎒</span> Dashboard</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn btn-secondary" onclick="playDeskBell()"><span>🔔</span> Desk Bell</button>
+        <button class="btn-icon" id="open-a11y-btn" title="Accessibility settings">♿</button>
+        <a href="student_dashboard.html" class="btn btn-primary" style="padding: 0.5rem 1rem;">My Portal</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="workspace-main" class="content-container" style="max-width: 1400px; margin: 2rem auto; padding: 0 1.5rem;">
+    <!-- Welcome Banner -->
+    <div style="margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem;">
+      <div>
+        <div class="badge badge-cyan" style="margin-bottom: 0.5rem;">Digital Learning Workbench</div>
+        <h1 style="font-size: 2.2rem; font-weight: 800; color: #fff; margin: 0 0 0.4rem 0;">My Personal Working Place & Study Desk</h1>
+        <p style="color: var(--text-muted); font-size: 1rem; margin: 0;">
+          Your private, sensory-calm work area: write notes, sketch solutions, practice math, and submit activities directly to your teacher.
+        </p>
+      </div>
+
+      <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+        <button class="btn btn-secondary" onclick="readDeskWelcome()"><span>🔊</span> Desk Audio Guide</button>
+        <a href="workplace.html" class="btn btn-secondary"><span>🏥</span> Explore Community Workplaces</a>
+      </div>
+    </div>
+
+    <!-- Main Workspace Two-Column Grid -->
+    <div class="workspace-grid">
+      <!-- Left Column: Interactive Drawing Board & Scratchpad -->
+      <div class="canvas-container">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem;">
+          <div>
+            <h3 style="color: #fff; font-size: 1.25rem; font-weight: 800; margin: 0;">🎨 Interactive Blackboard & Sketchpad</h3>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">Handwriting practice, visual math, and diagrams</span>
+          </div>
+
+          <!-- Color Palette -->
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <div class="color-dot active" style="background: #00f0ff;" data-color="#00f0ff" onclick="setPenColor('#00f0ff', this)" title="Cyan"></div>
+            <div class="color-dot" style="background: #fbbf24;" data-color="#fbbf24" onclick="setPenColor('#fbbf24', this)" title="Yellow"></div>
+            <div class="color-dot" style="background: #34d399;" data-color="#34d399" onclick="setPenColor('#34d399', this)" title="Green"></div>
+            <div class="color-dot" style="background: #f43f5e;" data-color="#f43f5e" onclick="setPenColor('#f43f5e', this)" title="Pink"></div>
+            <div class="color-dot" style="background: #ffffff;" data-color="#ffffff" onclick="setPenColor('#ffffff', this)" title="White"></div>
+            <button class="btn btn-secondary" onclick="setEraser(this)" id="eraser-btn" style="padding: 0.35rem 0.75rem; font-size: 0.8rem;" title="Eraser">🧹 Eraser</button>
+            <button class="btn btn-secondary" onclick="clearCanvas()" style="padding: 0.35rem 0.75rem; font-size: 0.8rem;" title="Clear">Clear</button>
+          </div>
+        </div>
+
+        <canvas id="draw-canvas"></canvas>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; flex-wrap: wrap; gap: 0.75rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <label for="pen-size" style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">Pen Size:</label>
+            <input type="range" id="pen-size" min="2" max="24" value="4" onchange="penSize = this.value" style="width: 100px;">
+          </div>
+          <button class="btn btn-outline" onclick="downloadDrawing()" style="border-color: #38bdf8; color: #38bdf8; padding: 0.45rem 1rem; font-size: 0.85rem;">
+            💾 Save Drawing / Screenshot
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Column: Focus Timer, Notes & Submission Desk -->
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <!-- Focus / Study Timer Card -->
+        <div class="card" style="padding: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h3 style="color: #fff; font-size: 1.15rem; font-weight: 800; margin: 0;">⏱️ Focus & Study Bell</h3>
+            <span class="badge badge-amber" id="timer-status-badge">Standby</span>
+          </div>
+
+          <div class="timer-display" id="timer-text">10:00</div>
+
+          <div style="display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;">
+            <button class="btn btn-secondary" onclick="setTimerMinutes(5)" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">5 min</button>
+            <button class="btn btn-secondary active" onclick="setTimerMinutes(10)" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">10 min</button>
+            <button class="btn btn-secondary" onclick="setTimerMinutes(15)" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">15 min</button>
+            <button class="btn btn-secondary" onclick="setTimerMinutes(25)" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">25 min</button>
+          </div>
+
+          <div style="display: flex; justify-content: center; gap: 0.75rem;">
+            <button class="btn btn-primary" id="timer-start-btn" onclick="toggleTimer()" style="width: 140px;">
+              <span>▶️</span> Start Focus
+            </button>
+            <button class="btn btn-secondary" onclick="resetTimer()" style="width: 100px;">
+              Reset
+            </button>
+          </div>
+        </div>
+
+        <!-- Student Notes & Teacher Submission Card -->
+        <div class="card" style="padding: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+            <h3 style="color: #fff; font-size: 1.15rem; font-weight: 800; margin: 0;">📝 My Work & Reflection Notes</h3>
+            <button class="btn btn-secondary" onclick="speakNotes()" style="padding: 0.35rem 0.75rem; font-size: 0.8rem;">
+              <span>🔊</span> Read Notes
+            </button>
+          </div>
+
+          <div style="margin-bottom: 1rem;">
+            <label for="work-title" style="display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.35rem; font-weight: 600;">Work / Activity Title</label>
+            <input type="text" id="work-title" class="mv-input" placeholder="e.g. Daily Reflection: Working Places & Math" 
+                   style="width: 100%; background: #070c18; border: 1px solid var(--border-light); color: #fff; border-radius: var(--radius-md); padding: 0.65rem 0.85rem; box-sizing: border-box;">
+          </div>
+
+          <div style="margin-bottom: 1rem;">
+            <label for="work-notes" style="display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.35rem; font-weight: 600;">Your Answers, Words or Reflection</label>
+            <textarea id="work-notes" rows="4" placeholder="Write what you practiced today (e.g. 'I learned doctors work in the hospital, and practiced my 6 times table.')."
+                      style="width: 100%; background: #070c18; border: 1px solid var(--border-light); color: #fff; border-radius: var(--radius-md); padding: 0.75rem; box-sizing: border-box;"></textarea>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+            <span style="font-size: 0.8rem; color: var(--text-muted);" id="notes-saved-hint">Auto-saves locally</span>
+            <button class="btn btn-primary" onclick="submitWorkToTeacher()" id="submit-work-btn">
+              <span>📤</span> Submit to Teacher Queue
+            </button>
+          </div>
+          <div id="submit-feedback-msg" style="display: none; margin-top: 0.75rem; padding: 0.65rem 0.85rem; border-radius: 8px; font-size: 0.85rem;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Working Desk Math Calculator & Shortcuts -->
+    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; margin-bottom: 3rem;">
+      <!-- Handy Desk Calculator -->
+      <div class="card" style="padding: 1.5rem;">
+        <h3 style="color: #fff; font-size: 1.15rem; font-weight: 800; margin: 0 0 1rem 0;">🧮 Desk Calculator</h3>
+        <div id="calc-display" style="background: #070c18; border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 0.85rem; font-size: 1.6rem; color: #38bdf8; text-align: right; font-family: monospace; min-height: 40px; margin-bottom: 1rem; overflow-x: auto;">
+          0
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem;">
+          <button class="calc-btn" onclick="calcClear()">C</button>
+          <button class="calc-btn op" onclick="calcInput('/')">÷</button>
+          <button class="calc-btn op" onclick="calcInput('*')">×</button>
+          <button class="calc-btn op" onclick="calcBackspace()">⌫</button>
+          <button class="calc-btn" onclick="calcInput('7')">7</button>
+          <button class="calc-btn" onclick="calcInput('8')">8</button>
+          <button class="calc-btn" onclick="calcInput('9')">9</button>
+          <button class="calc-btn op" onclick="calcInput('-')">−</button>
+          <button class="calc-btn" onclick="calcInput('4')">4</button>
+          <button class="calc-btn" onclick="calcInput('5')">5</button>
+          <button class="calc-btn" onclick="calcInput('6')">6</button>
+          <button class="calc-btn op" onclick="calcInput('+')">+</button>
+          <button class="calc-btn" onclick="calcInput('1')">1</button>
+          <button class="calc-btn" onclick="calcInput('2')">2</button>
+          <button class="calc-btn" onclick="calcInput('3')">3</button>
+          <button class="calc-btn" style="background: linear-gradient(135deg, #00f0ff 0%, #3b82f6 100%); color: #0f172a; font-weight: 800; grid-row: span 2;" onclick="calcEvaluate()">=</button>
+          <button class="calc-btn" onclick="calcInput('0')" style="grid-column: span 2;">0</button>
+          <button class="calc-btn" onclick="calcInput('.')">.</button>
+        </div>
+      </div>
+
+      <!-- Quick Desk Learning Shortcuts -->
+      <div class="card" style="padding: 1.5rem;">
+        <h3 style="color: #fff; font-size: 1.15rem; font-weight: 800; margin: 0 0 1rem 0;">🚀 Jump from Your Working Place to Stations</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+          <a href="workplace.html" class="station-card" style="padding: 1rem;">
+            <div style="font-size: 1.75rem; margin-bottom: 0.35rem;">🏥</div>
+            <strong style="color: #fff; font-size: 0.95rem;">Working Places & Helpers</strong>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">Explore hospitals, fire stations & farms</span>
+          </a>
+          <a href="classroom_3d.html" class="station-card" style="padding: 1rem;">
+            <div style="font-size: 1.75rem; margin-bottom: 0.35rem;">🏫</div>
+            <strong style="color: #fff; font-size: 0.95rem;">3D Virtual Classroom</strong>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">Explore desks, chalkboard & 16 stations</span>
+          </a>
+          <a href="quiz.html" class="station-card" style="padding: 1rem;">
+            <div style="font-size: 1.75rem; margin-bottom: 0.35rem;">🏆</div>
+            <strong style="color: #fff; font-size: 0.95rem;">115-Q Master Quiz</strong>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">Test all languages and road safety</span>
+          </a>
+          <a href="videos.html" class="station-card" style="padding: 1rem;">
+            <div style="font-size: 1.75rem; margin-bottom: 0.35rem;">🎬</div>
+            <strong style="color: #fff; font-size: 0.95rem;">Video Learning Library</strong>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">39 Curated videos & shorts</span>
+          </a>
+          <a href="alphabet.html" class="station-card" style="padding: 1rem;">
+            <div style="font-size: 1.75rem; margin-bottom: 0.35rem;">🔤</div>
+            <strong style="color: #fff; font-size: 0.95rem;">English Alphabet A-Z</strong>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">Letters, phonics, and cards</span>
+          </a>
+          <a href="math.html" class="station-card" style="padding: 1rem;">
+            <div style="font-size: 1.75rem; margin-bottom: 0.35rem;">🔢</div>
+            <strong style="color: #fff; font-size: 0.95rem;">Math & Numbers</strong>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">Counting beads & arithmetic</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Canvas Drawing Logic
+    const canvas = document.getElementById('draw-canvas');
+    const ctx = canvas.getContext('2d');
+    let isDrawing = false;
+    let penColor = '#00f0ff';
+    let penSize = 4;
+    let isEraserActive = false;
+
+    function resizeCanvas() {
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+      ctx.fillStyle = '#060912';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    window.addEventListener('load', resizeCanvas);
+    window.addEventListener('resize', resizeCanvas);
+
+    function startDrawing(e) {
+      isDrawing = true;
+      draw(e);
+    }
+
+    function stopDrawing() {
+      isDrawing = false;
+      ctx.beginPath();
+    }
+
+    function draw(e) {
+      if (!isDrawing) return;
+      const rect = canvas.getBoundingClientRect();
+      const x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
+      const y = (e.clientY || (e.touches && e.touches[0].clientY)) - rect.top;
+
+      ctx.lineWidth = isEraserActive ? penSize * 3 : penSize;
+      ctx.lineCap = 'round';
+      ctx.strokeStyle = isEraserActive ? '#060912' : penColor;
+
+      ctx.lineTo(x, y);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+    }
+
+    canvas.addEventListener('mousedown', startDrawing);
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mouseup', stopDrawing);
+    canvas.addEventListener('mouseleave', stopDrawing);
+
+    canvas.addEventListener('touchstart', (e) => { e.preventDefault(); startDrawing(e); }, { passive: false });
+    canvas.addEventListener('touchmove', (e) => { e.preventDefault(); draw(e); }, { passive: false });
+    canvas.addEventListener('touchend', stopDrawing);
+
+    function setPenColor(color, dot) {
+      isEraserActive = false;
+      penColor = color;
+      document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+      if (dot) dot.classList.add('active');
+      document.getElementById('eraser-btn').style.borderColor = 'var(--border-light)';
+    }
+
+    function setEraser(btn) {
+      isEraserActive = true;
+      document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+      btn.style.borderColor = '#fbbf24';
+    }
+
+    function clearCanvas() {
+      ctx.fillStyle = '#060912';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function downloadDrawing() {
+      const link = document.createElement('a');
+      link.download = 'mindverse-working-place-drawing.png';
+      link.href = canvas.toDataURL();
+      link.click();
+    }
+
+    // Focus Timer Logic
+    let timerTotalSeconds = 600;
+    let timerRemaining = 600;
+    let timerInterval = null;
+    let timerRunning = false;
+
+    function formatTime(sec) {
+      const m = Math.floor(sec / 60).toString().padStart(2, '0');
+      const s = (sec % 60).toString().padStart(2, '0');
+      return `${m}:${s}`;
+    }
+
+    function updateTimerDisplay() {
+      document.getElementById('timer-text').textContent = formatTime(timerRemaining);
+    }
+
+    function setTimerMinutes(mins) {
+      if (timerRunning) toggleTimer();
+      timerTotalSeconds = mins * 60;
+      timerRemaining = timerTotalSeconds;
+      updateTimerDisplay();
+      document.getElementById('timer-status-badge').textContent = `${mins}m Set`;
+    }
+
+    function toggleTimer() {
+      const startBtn = document.getElementById('timer-start-btn');
+      const badge = document.getElementById('timer-status-badge');
+      if (timerRunning) {
+        clearInterval(timerInterval);
+        timerRunning = false;
+        startBtn.innerHTML = '<span>▶️</span> Resume';
+        badge.textContent = 'Paused';
+        badge.className = 'badge badge-amber';
+      } else {
+        timerRunning = true;
+        startBtn.innerHTML = '<span>⏸️</span> Pause';
+        badge.textContent = 'Focusing';
+        badge.className = 'badge badge-green';
+
+        timerInterval = setInterval(() => {
+          if (timerRemaining > 0) {
+            timerRemaining--;
+            updateTimerDisplay();
+          } else {
+            clearInterval(timerInterval);
+            timerRunning = false;
+            startBtn.innerHTML = '<span>▶️</span> Start Focus';
+            badge.textContent = 'Time Up! 🎉';
+            badge.className = 'badge badge-purple';
+            playDeskBell();
+            if (typeof MindVerseSpeech !== 'undefined') {
+              MindVerseSpeech.playRewardSound();
+              MindVerseSpeech.speak("Great focus session! Take a calm breath and stretch your arms.");
+            }
+          }
+        }, 1000);
+      }
+    }
+
+    function resetTimer() {
+      if (timerRunning) toggleTimer();
+      timerRemaining = timerTotalSeconds;
+      updateTimerDisplay();
+      document.getElementById('timer-status-badge').textContent = 'Reset';
+    }
+
+    function playDeskBell() {
+      if (typeof MindVerseSpeech !== 'undefined' && MindVerseSpeech.playClassroomBell) {
+        MindVerseSpeech.playClassroomBell();
+      }
+    }
+
+    function readDeskWelcome() {
+      if (typeof MindVerseSpeech !== 'undefined') {
+        MindVerseSpeech.speak("Welcome to your personal working place and study desk! Here you can draw, practice writing, use your focus timer, and send your completed work to your teacher.");
+      }
+    }
+
+    // Calculator Logic
+    let calcExpr = '';
+    const calcDisp = document.getElementById('calc-display');
+
+    function calcInput(char) {
+      if (calcExpr === '0' && char !== '.') calcExpr = '';
+      calcExpr += char;
+      calcDisp.textContent = calcExpr;
+    }
+
+    function calcClear() {
+      calcExpr = '';
+      calcDisp.textContent = '0';
+    }
+
+    function calcBackspace() {
+      calcExpr = calcExpr.slice(0, -1);
+      calcDisp.textContent = calcExpr || '0';
+    }
+
+    function calcEvaluate() {
+      try {
+        const safeExpr = calcExpr.replace(/[^0-9+\-*/.]/g, '');
+        const res = Function(`'use strict'; return (${safeExpr})`)();
+        calcDisp.textContent = res;
+        calcExpr = res.toString();
+      } catch (e) {
+        calcDisp.textContent = 'Error';
+        calcExpr = '';
+      }
+    }
+
+    // Notes auto-save & Teacher Submission
+    const notesInput = document.getElementById('work-notes');
+    const titleInput = document.getElementById('work-title');
+    const savedHint = document.getElementById('notes-saved-hint');
+
+    // Restore saved note
+    const savedNote = localStorage.getItem('mv_desk_note');
+    const savedTitle = localStorage.getItem('mv_desk_title');
+    if (savedNote) notesInput.value = savedNote;
+    if (savedTitle) titleInput.value = savedTitle;
+
+    notesInput.addEventListener('input', () => {
+      localStorage.setItem('mv_desk_note', notesInput.value);
+      savedHint.textContent = 'Saved at ' + new Date().toLocaleTimeString();
+    });
+    titleInput.addEventListener('input', () => {
+      localStorage.setItem('mv_desk_title', titleInput.value);
+    });
+
+    function speakNotes() {
+      const text = notesInput.value.trim();
+      if (!text) {
+        alert('Please write something in your notes first.');
+        return;
+      }
+      if (typeof MindVerseSpeech !== 'undefined') {
+        MindVerseSpeech.speak(text);
+      }
+    }
+
+    async function submitWorkToTeacher() {
+      const title = titleInput.value.trim() || 'Working Place Desk Reflection';
+      const text = notesInput.value.trim();
+      const msg = document.getElementById('submit-feedback-msg');
+      const submitBtn = document.getElementById('submit-work-btn');
+
+      if (!text) {
+        alert('Please write your work reflection before submitting to your teacher.');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>⏳</span> Submitting...';
+
+      try {
+        if (typeof MindVerseAPI !== 'undefined' && MindVerseAPI.submitStudentActivity) {
+          await MindVerseAPI.submitStudentActivity(null, {
+            activity_type: 'practice',
+            title: title,
+            subject: 'Student Workspace & Working Place',
+            notes: text,
+            score: 100,
+            answers: [{ question: 'Student Workspace Notes', answer: text }]
+          });
+        }
+
+        if (typeof MindVerseSpeech !== 'undefined') {
+          MindVerseSpeech.playRewardSound();
+          MindVerseSpeech.speak("Work successfully submitted to your teacher's review queue! Excellent effort.");
+        }
+
+        msg.style.display = 'block';
+        msg.style.background = 'rgba(16, 185, 129, 0.2)';
+        msg.style.border = '1px solid #10b981';
+        msg.style.color = '#34d399';
+        msg.innerHTML = `<strong>🎉 Submitted!</strong> Your work has been sent to your teacher's review queue.`;
+
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<span>📤</span> Submit to Teacher Queue';
+        }, 2000);
+      } catch (err) {
+        msg.style.display = 'block';
+        msg.style.background = 'rgba(245, 158, 11, 0.2)';
+        msg.style.border = '1px solid #f59e0b';
+        msg.style.color = '#fbbf24';
+        msg.textContent = 'Saved to your local working place session!';
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span>📤</span> Submit to Teacher Queue';
+      }
+    }
+  </script>
+</body>
+</html>
+

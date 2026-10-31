@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playable Chess against MindBot — MindVerse Learning Lab</title>
+  
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+  <link rel="stylesheet" href="css/games.css">
+
+  <script src="js/api.js"></script>
+  <script src="js/speech.js"></script>
+  <script src="js/accessibility.js"></script>
+  <script src="js/chess.js"></script>
+  <script src="js/mindbot.js"></script>
+  <style>
+    .chessboard-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 1.5rem auto;
+    }
+    .chess-tips-panel {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <a href="#chess-main" class="skip-link">Skip to chess game</a>
+
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">♟️</div>
+        <div class="brand-text">MindVerse <span>Chess Arena</span></div>
+      </a>
+      <div class="header-actions">
+        <a href="classroom_3d.html" class="btn btn-secondary">🏫 3D Classroom</a>
+        <a href="games.html" class="btn btn-secondary">🎮 Other Games</a>
+        <button class="btn-icon" id="open-a11y-btn" title="Accessibility settings">♿</button>
+        <a href="student_dashboard.html" class="btn btn-primary">My Dashboard</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="chess-main" class="content-container">
+    <div style="margin-bottom:1.5rem;">
+      <div class="badge badge-cyan" style="margin-bottom:0.5rem;">Strategic Thinking & Executive Function</div>
+      <h1 style="font-size:2.2rem; font-weight:800;">Chess vs. MindBot AI</h1>
+      <p style="color:var(--text-muted);">Play standard legal-rules chess with highlighted moves, undo support, and friendly audio advice.</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns: 1fr 340px; gap:2.5rem; align-items:start;">
+      <!-- Chessboard Area -->
+      <div class="card" style="padding:2rem; background:rgba(14,21,40,0.85); border-color:var(--border-glow); display:flex; justify-content:center;">
+        <div id="chess-container" style="width:100%;"></div>
+      </div>
+
+      <!-- Chess Rules & Advice -->
+      <div class="chess-tips-panel">
+        <h3 style="color:var(--primary); font-size:1.3rem; margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem;">
+          <span>🤖</span> MindBot Coach
+        </h3>
+        <p style="color:var(--text-muted); font-size:0.95rem; margin-bottom:1.5rem; line-height:1.6;">
+          "Take your time! Click any of your white pieces to see where it can safely move. Green dots show legal move targets."
+        </p>
+
+        <h4 style="color:#fff; font-size:1.05rem; margin-bottom:0.75rem;">Piece Guide</h4>
+        <div style="display:flex; flex-direction:column; gap:0.6rem; font-size:0.9rem; color:var(--text-muted);">
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <span style="font-size:1.4rem; color:#fff;">♙</span> <span><strong>Pawn:</strong> Moves 1 square forward, captures diagonally.</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <span style="font-size:1.4rem; color:#fff;">♖</span> <span><strong>Rook:</strong> Moves any distance horizontally or vertically.</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <span style="font-size:1.4rem; color:#fff;">♘</span> <span><strong>Knight:</strong> Jumps in an 'L' shape (2 squares then 1).</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <span style="font-size:1.4rem; color:#fff;">♗</span> <span><strong>Bishop:</strong> Moves any distance diagonally.</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <span style="font-size:1.4rem; color:#fff;">♕</span> <span><strong>Queen:</strong> Moves any distance in all directions.</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <span style="font-size:1.4rem; color:#fff;">♔</span> <span><strong>King:</strong> Moves 1 square in any direction. Protect him!</span>
+          </div>
+        </div>
+
+        <div style="margin-top:2rem; border-top:1px solid var(--border-light); padding-top:1.25rem;">
+          <button class="btn btn-primary" style="width:100%;" onclick="speakCoachTip()">
+            <span>🔊</span> Hear Coach Tip
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof MindVerseChess !== 'undefined') {
+        MindVerseChess.initChess('chess-container');
+      }
+    });
+
+    function speakCoachTip() {
+      if (typeof MindVerseAudio !== 'undefined') {
+        MindVerseAudio.speak("Control the center squares with your pawns and knights, and always protect your king!");
+      }
+    }
+  </script>
+</body>
+</html>
+

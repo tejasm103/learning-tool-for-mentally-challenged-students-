@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top 30 Inclusive Learning Games — MindVerse Learning Lab</title>
+  
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+  <link rel="stylesheet" href="css/games.css">
+
+  <script src="js/api.js"></script>
+  <script src="js/speech.js"></script>
+  <script src="js/accessibility.js"></script>
+  <script src="js/game_graphics.js"></script>
+  <script src="js/games.js"></script>
+  <script src="js/mindbot.js"></script>
+  <style>
+    .catalog-filter-bar {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin: 1.5rem 0 2rem 0;
+    }
+    .catalog-pill {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-light);
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-full);
+      color: var(--text-muted);
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: var(--transition-normal);
+    }
+    .catalog-pill:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+    }
+    .catalog-pill.active {
+      background: var(--primary);
+      color: #060912;
+      border-color: var(--primary);
+      box-shadow: 0 0 15px var(--primary-glow);
+    }
+    .game-catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1.5rem;
+    }
+    .game-item-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-xl);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition-normal);
+      position: relative;
+    }
+    .game-item-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-glow);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 240, 255, 0.18);
+    }
+    .game-num-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-full);
+      padding: 0.2rem 0.6rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+    .game-skills-tag {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .active-arena-card {
+      background: rgba(14, 21, 40, 0.95);
+      border: 2px solid var(--border-glow);
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      margin-bottom: 3rem;
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.7);
+    }
+    .arena-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .scoreboard-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(6, 9, 18, 0.85);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 25000;
+    }
+    .scoreboard-modal-overlay.active {
+      display: flex;
+    }
+    .scoreboard-box {
+      background: #0f172a;
+      border: 2px solid var(--border-glow);
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      max-width: 550px;
+      width: 90%;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    }
+  </style>
+</head>
+<body>
+  <a href="#games-main" class="skip-link">Skip to educational games</a>
+
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🎮</div>
+        <div class="brand-text">MindVerse <span>Games Lab</span></div>
+      </a>
+      <div class="header-actions">
+        <a href="classroom_3d.html" class="btn btn-secondary">🏫 3D Classroom</a>
+        <a href="chess.html" class="btn btn-secondary">♟️ Chess Arena</a>
+        <button class="btn-icon" id="open-a11y-btn" title="Accessibility settings">♿</button>
+        <a href="student_dashboard.html" class="btn btn-primary">My Dashboard</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="games-main" class="content-container">
+    <div style="margin-bottom:1.5rem;">
+      <div class="badge badge-green" style="margin-bottom:0.5rem;">Inclusive & Sensory-Friendly Cognitive Play</div>
+      <h1 style="font-size:2.2rem; font-weight:800;">Top 30 Educational Games</h1>
+      <p style="color:var(--text-muted);">Explore 30 activities designed for attention, motor practice, language, counting, and routines.</p>
+    </div>
+
+    <!-- Active Game Arena Viewport -->
+    <section class="active-arena-card" id="arena-section">
+      <div class="arena-header">
+        <div style="display:flex; align-items:center; gap:1rem;">
+          <span id="arena-game-icon" style="font-size:2.8rem; background:rgba(0,240,255,0.1); border:1px solid var(--border-glow); border-radius:var(--radius-lg); padding:0.4rem 0.7rem;">🔤</span>
+          <div>
+            <h2 id="arena-game-title" style="font-size:1.6rem; color:#fff; margin:0;">1. Alphabet Adventure</h2>
+            <div id="arena-game-skills" style="color:var(--primary); font-size:0.85rem; font-weight:600; margin-top:0.25rem;">Letter recognition, phonics, visual attention</div>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:0.5rem; align-items:center;">
+          <button class="btn btn-secondary" onclick="openScoreboardModal()" title="View your high scores & achievements">
+            <span>🏆</span> Scores
+          </button>
+          <a href="#catalog-section" class="btn btn-secondary" style="font-size:0.9rem;">
+            <span>📚</span> All 30 Games
+          </a>
+        </div>
+      </div>
+
+      <!-- Extra Controls Toolbar -->
+      <div class="arena-controls-toolbar">
+        <div class="arena-toolbar-group">
+          <button class="btn btn-primary" onclick="askMindBotHint()" title="Press H for Hint">
+            <span>🤖</span> MindBot Hint
+          </button>
+          <div class="streak-meter">
+            <span id="arena-streak-val">0 Streak 🔥</span>
+          </div>
+        </div>
+
+        <div class="arena-toolbar-group">
+          <button class="btn btn-secondary" id="arena-zen-btn" onclick="toggleZenMode()" title="Switch between timed and relaxed zen play (Key: Z)">
+            <span>🍃</span> Relaxed Zen Mode
+          </button>
+          <button class="btn btn-secondary" id="arena-calm-btn" onclick="toggleCalmSensory()" title="Toggle soft sensory mode (Key: C)">
+            <span>👁️</span> Soft Sensory
+          </button>
+          <span id="arena-timer-display" style="font-weight:700; color:var(--text-muted); font-size:0.9rem; padding:0 0.5rem;">⏱️ 0:00</span>
+        </div>
+      </div>
+
+      <!-- MindBot Spoken & Visual Hint Speech Bubble -->
+      <div class="mindbot-hint-bubble" id="arena-hint-bubble" style="display:none;">
+        <span style="font-size:2rem;">🤖</span>
+        <div style="flex:1;">
+          <strong style="color:var(--primary); display:block; font-size:0.95rem; margin-bottom:0.2rem;">MindBot Coach Advice:</strong>
+          <span id="arena-hint-text" style="color:#fff; font-size:1rem; line-height:1.5;">Take your time! You are doing great.</span>
+        </div>
+        <button class="btn btn-secondary" style="padding:0.4rem 0.8rem; font-size:0.85rem;" onclick="askMindBotHint()">
+          <span>🔊</span> Repeat
+        </button>
+      </div>
+
+      <!-- Mount Target for Game Engine -->
+      <div id="arena-viewport"></div>
+    </section>
+
+    <!-- Top 30 Games Catalog & Selector -->
+    <section id="catalog-section" style="margin-top:3.5rem;">
+      <!-- Daily Surprise Challenge Banner -->
+      <div class="daily-challenge-banner">
+        <div style="display:flex; align-items:center; gap:1.25rem;">
+          <div style="font-size:3.5rem; background:rgba(236,72,153,0.25); border-radius:50%; width:75px; height:75px; display:flex; align-items:center; justify-content:center; border:2px solid #ec4899;">
+            🌟
+          </div>
+          <div>
+            <div class="badge badge-purple" style="margin-bottom:0.35rem;">Daily Featured Quest</div>
+            <h3 style="font-size:1.4rem; font-weight:800; color:#fff; margin:0;" id="daily-game-title">#3 Shape Puzzle World</h3>
+            <p style="color:var(--text-muted); margin:0.25rem 0 0 0; font-size:0.9rem;">
+              Complete today's featured challenge to earn an instant <strong>+50 Bonus Stars</strong> and a Mystery Medal!
+            </p>
+          </div>
+        </div>
+
+        <button class="btn btn-accent btn-lg" id="daily-launch-btn" onclick="playDailyChallenge()">
+          <span>🚀</span> Play Daily Quest
+        </button>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem;">
+        <div>
+          <h2 style="font-size:1.8rem; font-weight:800; color:#fff; margin:0;">Explore All 30 Game Activities</h2>
+          <p style="color:var(--text-muted); margin:0.35rem 0 0 0;">Pick any game below to launch it instantly in the game arena.</p>
+        </div>
+
+        <input type="text" id="game-search-input" placeholder="🔍 Search games..." oninput="handleSearch(this.value)" style="background:#1e293b; color:#fff; border:1px solid var(--border-light); padding:0.6rem 1.25rem; border-radius:var(--radius-full); font-size:0.95rem; width:220px; outline:none;">
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="catalog-filter-bar" role="tablist">
+        <button class="catalog-pill active" onclick="filterGames('all', this)">All (30)</button>
+        <button class="catalog-pill" onclick="filterGames('language', this)">Language & Literacy</button>
+        <button class="catalog-pill" onclick="filterGames('math', this)">Mathematics</button>
+        <button class="catalog-pill" onclick="filterGames('logic', this)">Shapes & Logic</button>
+        <button class="catalog-pill" onclick="filterGames('life_skills', this)">Life Skills & Routines</button>
+        <button class="catalog-pill" onclick="filterGames('social', this)">Social-Emotional & Safety</button>
+        <button class="catalog-pill" onclick="filterGames('nature', this)">Nature & Science</button>
+        <button class="catalog-pill" onclick="filterGames('creative', this)">Creative & Sensory</button>
+        <button class="catalog-pill" onclick="filterGames('fine_motor', this)">Fine Motor & Writing</button>
+      </div>
+
+      <!-- 30 Games Grid -->
+      <div class="game-catalog-grid" id="games-catalog-grid">
+        <!-- Injected via JS -->
+      </div>
+    </section>
+  </main>
+
+  <!-- High Scores & Achievements Modal -->
+  <div class="scoreboard-modal-overlay" id="scoreboard-modal">
+    <div class="scoreboard-box">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+        <h3 style="color:#fff; font-size:1.4rem; margin:0; display:flex; align-items:center; gap:0.5rem;">
+          <span>🏆</span> Your Game Trophies & Records
+        </h3>
+        <button class="btn-icon" onclick="closeScoreboardModal()" style="font-size:1.2rem;">✕</button>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:1rem; margin-bottom:1.5rem; text-align:center;">
+        <div style="background:#1e293b; padding:1rem; border-radius:var(--radius-md);">
+          <div style="font-size:1.6rem; font-weight:800; color:#fbbf24;" id="sc-total-stars">48 ⭐</div>
+          <div style="font-size:0.75rem; color:var(--text-muted);">Total Stars</div>
+        </div>
+        <div style="background:#1e293b; padding:1rem; border-radius:var(--radius-md);">
+          <div style="font-size:1.6rem; font-weight:800; color:#10b981;" id="sc-played-count">14</div>
+          <div style="font-size:0.75rem; color:var(--text-muted);">Games Mastered</div>
+        </div>
+        <div style="background:#1e293b; padding:1rem; border-radius:var(--radius-md);">
+          <div style="font-size:1.6rem; font-weight:800; color:var(--primary);" id="sc-streak-record">5x 🔥</div>
+          <div style="font-size:0.75rem; color:var(--text-muted);">Best Streak</div>
+        </div>
+      </div>
+
+      <h4 style="color:#fff; font-size:1rem; margin-bottom:0.75rem;">Recent Game Achievements</h4>
+      <div id="sc-recent-list" style="display:flex; flex-direction:column; gap:0.6rem; max-height:220px; overflow-y:auto;">
+        <div style="background:rgba(255,255,255,0.03); padding:0.6rem 0.8rem; border-radius:var(--radius-md); display:flex; justify-content:space-between; align-items:center;">
+          <span>🔤 Alphabet Adventure</span>
+          <span style="color:#10b981; font-weight:700;">100 pts • ⭐⭐⭐</span>
+        </div>
+        <div style="background:rgba(255,255,255,0.03); padding:0.6rem 0.8rem; border-radius:var(--radius-md); display:flex; justify-content:space-between; align-items:center;">
+          <span>🧺 Number Catcher</span>
+          <span style="color:#10b981; font-weight:700;">120 pts • ⭐⭐⭐</span>
+        </div>
+        <div style="background:rgba(255,255,255,0.03); padding:0.6rem 0.8rem; border-radius:var(--radius-md); display:flex; justify-content:space-between; align-items:center;">
+          <span>🦁 Animal Memory Match</span>
+          <span style="color:#10b981; font-weight:700;">120 pts • ⭐⭐⭐</span>
+        </div>
+      </div>
+
+      <div style="text-align:right; margin-top:1.5rem;">
+        <button class="btn btn-primary" onclick="closeScoreboardModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let allGames = [];
+    let currentGameId = 'alphabet_adventure';
+    let timerSeconds = 0;
+    let timerInterval = null;
+    let isZenMode = false;
+    let isCalmMode = false;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const res = await MindVerseAPI.getGames();
+        allGames = res.games || [];
+        renderCatalog(allGames);
+
+        const params = new URLSearchParams(window.location.search);
+        const gParam = params.get('game') || 'alphabet_adventure';
+        playGame(gParam);
+
+        setupKeyboardShortcuts();
+        startTimer();
+      } catch (err) {
+        console.error('Failed to load games catalog:', err);
+      }
+    });
+
+    function renderCatalog(games) {
+      const grid = document.getElementById('games-catalog-grid');
+      grid.innerHTML = '';
+
+      games.forEach(g => {
+        const card = document.createElement('div');
+        card.className = 'game-item-card';
+        card.dataset.id = g.id;
+        card.dataset.category = g.category;
+        card.innerHTML = `
+          <span class="game-num-badge">#${g.number || ''}</span>
+          <div style="font-size:2.8rem; margin-bottom:0.75rem;">${g.icon}</div>
+          <h3 style="font-size:1.25rem; font-weight:700; color:#fff; margin-bottom:0.4rem;">${g.title}</h3>
+          <span class="game-skills-tag">🎯 ${g.skills || 'Focus & Cognition'}</span>
+          <p style="font-size:0.9rem; color:var(--text-muted); line-height:1.5; flex:1; margin-bottom:1.25rem;">${g.description}</p>
+          <button class="btn btn-primary" style="width:100%;" onclick="playGame('${g.id}')">
+            <span>▶️</span> Play Game
+          </button>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function playGame(gameId) {
+      currentGameId = gameId;
+      const gameObj = allGames.find(g => g.id === gameId);
+
+      if (gameObj) {
+        document.getElementById('arena-game-icon').textContent = gameObj.icon;
+        document.getElementById('arena-game-title').textContent = `${gameObj.number ? gameObj.number + '. ' : ''}${gameObj.title}`;
+        document.getElementById('arena-game-skills').textContent = `🎯 Skills: ${gameObj.skills || ''}`;
+      }
+
+      // Hide hint on new game
+      document.getElementById('arena-hint-bubble').style.display = 'none';
+
+      // Reset timer
+      timerSeconds = 0;
+      updateTimerDisplay();
+
+      // Scroll smoothly to arena
+      document.getElementById('arena-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      // Mount game engine
+      if (typeof MindVerseGames !== 'undefined') {
+        MindVerseGames.launchGame(gameId, 'arena-viewport');
+      }
+    }
+
+    function askMindBotHint() {
+      if (typeof MindVerseGames !== 'undefined' && MindVerseGames.triggerMindBotHint) {
+        MindVerseGames.triggerMindBotHint();
+      }
+    }
+
+    function toggleZenMode() {
+      isZenMode = !isZenMode;
+      const zenBtn = document.getElementById('arena-zen-btn');
+      const timerDisplay = document.getElementById('arena-timer-display');
+
+      if (isZenMode) {
+        zenBtn.style.background = '#10b981';
+        zenBtn.style.color = '#060912';
+        timerDisplay.textContent = '🍃 Zen Play (No Timer)';
+      } else {
+        zenBtn.style.background = 'rgba(255,255,255,0.08)';
+        zenBtn.style.color = '#fff';
+        updateTimerDisplay();
+      }
+    }
+
+    function toggleCalmSensory() {
+      isCalmMode = !isCalmMode;
+      document.body.classList.toggle('calm-mode', isCalmMode);
+      const calmBtn = document.getElementById('arena-calm-btn');
+      if (isCalmMode) {
+        calmBtn.style.background = 'var(--primary)';
+        calmBtn.style.color = '#060912';
+      } else {
+        calmBtn.style.background = 'rgba(255,255,255,0.08)';
+        calmBtn.style.color = '#fff';
+      }
+    }
+
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        if (!isZenMode) {
+          timerSeconds++;
+          updateTimerDisplay();
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const min = Math.floor(timerSeconds / 60);
+      const sec = timerSeconds % 60;
+      document.getElementById('arena-timer-display').textContent = `⏱️ ${min}:${sec < 10 ? '0' : ''}${sec}`;
+    }
+
+    function playDailyChallenge() {
+      playGame('shape_puzzle');
+      if (typeof MindVerseAudio !== 'undefined') {
+        MindVerseAudio.speak("Welcome to the Daily Featured Quest! Have fun in Shape Puzzle World!");
+      }
+    }
+
+    function openScoreboardModal() {
+      document.getElementById('scoreboard-modal').classList.add('active');
+    }
+
+    function closeScoreboardModal() {
+      document.getElementById('scoreboard-modal').classList.remove('active');
+    }
+
+    function setupKeyboardShortcuts() {
+      window.addEventListener('keydown', (e) => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+        if (e.key === 'h' || e.key === 'H') {
+          askMindBotHint();
+        } else if (e.key === 'r' || e.key === 'R') {
+          playGame(currentGameId);
+        } else if (e.key === 'z' || e.key === 'Z') {
+          toggleZenMode();
+        } else if (e.key === 'c' || e.key === 'C') {
+          toggleCalmSensory();
+        }
+      });
+    }
+
+    function filterGames(category, btn) {
+      document.querySelectorAll('.catalog-pill').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('#games-catalog-grid .game-item-card');
+      cards.forEach(c => {
+        if (category === 'all' || c.dataset.category === category) {
+          c.style.display = 'flex';
+        } else {
+          c.style.display = 'none';
+        }
+      });
+    }
+
+    function handleSearch(query) {
+      const q = query.toLowerCase().trim();
+      const cards = document.querySelectorAll('#games-catalog-grid .game-item-card');
+      cards.forEach(c => {
+        const text = c.textContent.toLowerCase();
+        if (text.includes(q)) {
+          c.style.display = 'flex';
+        } else {
+          c.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kannada Varnamala & Kagunita — MindVerse Learning Lab</title>
+  
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+
+  <script src="js/api.js"></script>
+  <script src="js/speech.js"></script>
+  <script src="js/accessibility.js"></script>
+  <script src="js/mindbot.js"></script>
+</head>
+<body>
+  <a href="#kannada-main" class="skip-link">Skip to Kannada lesson</a>
+
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">ಕ</div>
+        <div class="brand-text">MindVerse <span>ಕನ್ನಡ ಕಲಿಕೆ (Kannada)</span></div>
+      </a>
+      <div class="header-actions">
+        <a href="classroom_3d.html" class="btn btn-secondary">🏫 3D Classroom</a>
+        <button class="btn-icon" id="open-a11y-btn" title="Accessibility settings">♿</button>
+        <a href="student_dashboard.html" class="btn btn-primary">My Dashboard</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="kannada-main" class="content-container">
+    <div style="margin-bottom:2rem;">
+      <div class="badge badge-green" style="margin-bottom:0.5rem;">ಕನ್ನಡ ವರ್ಣಮಾಲೆ ಮತ್ತು ಕಾಗುಣಿತ</div>
+      <h1 style="font-size:2.2rem; font-weight:800;">Kannada Varnamala & Kagunita Learning</h1>
+      <p style="color:var(--text-muted);">Explore Kannada vowels (ಸ್ವರಗಳು), consonants (ವ್ಯಂಜನಗಳು), and combinations (ಕಾಗುಣಿತ) with audio and examples.</p>
+    </div>
+
+    <!-- Tabs: Vowels, Consonants, Kagunita -->
+    <div style="display:flex; gap:1rem; border-bottom:1px solid var(--border-light); padding-bottom:1rem; margin-bottom:2rem;">
+      <button class="btn btn-primary" id="tab-vowels">1. ಸ್ವರಗಳು (Vowels)</button>
+      <button class="btn btn-secondary" id="tab-consonants">2. ವ್ಯಂಜನಗಳು (Consonants)</button>
+      <button class="btn btn-secondary" id="tab-kagunita">3. ಕಾಗುಣಿತ (Kagunita Builder)</button>
+    </div>
+
+    <!-- 1. Vowels Section -->
+    <section id="section-vowels">
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:1.5rem;" id="vowels-grid">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- 2. Consonants Section -->
+    <section id="section-consonants" style="display:none;">
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:1.25rem;" id="consonants-grid">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- 3. Kagunita Builder Section -->
+    <section id="section-kagunita" style="display:none;">
+      <div class="card" style="padding:2.5rem; max-width:900px; margin:0 auto;">
+        <h2 style="color:var(--primary); font-size:1.8rem; margin-bottom:0.5rem;">ಕಾಗುಣಿತ (Kagunita) Step-by-Step Combinations</h2>
+        <p style="color:var(--text-muted); margin-bottom:1.5rem;">See how adding vowel signs changes the shape and sound of the consonant 'ಕ'.</p>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(130px, 1fr)); gap:1rem;" id="kagunita-grid">
+          <!-- Rendered via JS -->
+        </div>
+
+        <div style="margin-top:2.5rem; text-align:center;">
+          <button class="btn btn-accent btn-lg" onclick="playAllKagunita()">
+            <span>🔊</span> Play Full Kagunita Pronunciation
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    let kannadaData = {};
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        kannadaData = await MindVerseAPI.getKannada();
+        renderVowels();
+        renderConsonants();
+        renderKagunita();
+        setupTabs();
+      } catch (err) {
+        console.error('Failed to load Kannada data:', err);
+      }
+    });
+
+    function setupTabs() {
+      const btnV = document.getElementById('tab-vowels');
+      const btnC = document.getElementById('tab-consonants');
+      const btnK = document.getElementById('tab-kagunita');
+
+      const secV = document.getElementById('section-vowels');
+      const secC = document.getElementById('section-consonants');
+      const secK = document.getElementById('section-kagunita');
+
+      btnV.onclick = () => {
+        btnV.className = 'btn btn-primary';
+        btnC.className = 'btn btn-secondary';
+        btnK.className = 'btn btn-secondary';
+        secV.style.display = 'block';
+        secC.style.display = 'none';
+        secK.style.display = 'none';
+      };
+
+      btnC.onclick = () => {
+        btnC.className = 'btn btn-primary';
+        btnV.className = 'btn btn-secondary';
+        btnK.className = 'btn btn-secondary';
+        secC.style.display = 'block';
+        secV.style.display = 'none';
+        secK.style.display = 'none';
+      };
+
+      btnK.onclick = () => {
+        btnK.className = 'btn btn-primary';
+        btnV.className = 'btn btn-secondary';
+        btnC.className = 'btn btn-secondary';
+        secK.style.display = 'block';
+        secV.style.display = 'none';
+        secC.style.display = 'none';
+      };
+    }
+
+    function renderVowels() {
+      const grid = document.getElementById('vowels-grid');
+      grid.innerHTML = '';
+      const vowels = kannadaData.vowels || [];
+
+      vowels.forEach(v => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.style.textAlign = 'center';
+        card.innerHTML = `
+          <div style="font-size:4.5rem; font-weight:800; color:var(--primary); text-shadow:0 0 15px var(--primary-glow); line-height:1.1;">${v.char}</div>
+          <div style="font-size:1.1rem; color:var(--text-muted); font-weight:700; margin-bottom:0.75rem;">(${v.translit})</div>
+          <div style="font-size:3rem; margin:0.5rem 0;">${v.icon}</div>
+          <div style="font-size:1.4rem; font-weight:800; color:#fff;">${v.word}</div>
+          <div style="color:var(--text-muted); font-size:0.95rem; margin-bottom:1rem;">${v.meaning}</div>
+          <button class="btn btn-secondary" style="width:100%;"><span>🔊</span> Pronounce</button>
+        `;
+
+        card.querySelector('button').onclick = () => {
+          if (typeof MindVerseAudio !== 'undefined') {
+            MindVerseAudio.speak(`${v.char}. ${v.word}. ${v.meaning}.`, 'kn-IN');
+          }
+        };
+
+        grid.appendChild(card);
+      });
+    }
+
+    function renderConsonants() {
+      const grid = document.getElementById('consonants-grid');
+      grid.innerHTML = '';
+      const consonants = kannadaData.consonants || [];
+
+      consonants.forEach(c => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.style.textAlign = 'center';
+        card.innerHTML = `
+          <div style="font-size:3.5rem; font-weight:800; color:#10b981; line-height:1.1;">${c.char}</div>
+          <div style="font-size:1rem; color:var(--text-muted); margin-bottom:0.5rem;">(${c.translit})</div>
+          <div style="font-size:2.2rem; margin:0.3rem 0;">${c.icon}</div>
+          <div style="font-size:1.25rem; font-weight:700; color:#fff;">${c.word}</div>
+          <div style="color:var(--text-muted); font-size:0.85rem; margin-bottom:0.75rem;">${c.meaning}</div>
+          <button class="btn btn-secondary" style="width:100%; font-size:0.85rem; padding:0.5rem;"><span>🔊</span> Listen</button>
+        `;
+
+        card.querySelector('button').onclick = () => {
+          if (typeof MindVerseAudio !== 'undefined') {
+            MindVerseAudio.speak(`${c.char}. ${c.word}.`, 'kn-IN');
+          }
+        };
+
+        grid.appendChild(card);
+      });
+    }
+
+    function renderKagunita() {
+      const grid = document.getElementById('kagunita-grid');
+      grid.innerHTML = '';
+      const combinations = kannadaData.kagunita?.combinations || [];
+
+      combinations.forEach(comb => {
+        const item = document.createElement('div');
+        item.className = 'card';
+        item.style.cssText = 'padding:1rem; text-align:center; cursor:pointer;';
+        item.innerHTML = `
+          <div style="font-size:2.8rem; font-weight:800; color:var(--primary);">${comb.char}</div>
+          <div style="font-size:0.85rem; color:var(--text-muted);">(${comb.sound})</div>
+          <div style="font-size:0.8rem; color:#10b981; margin-top:0.3rem;">Sign: ${comb.matra || 'None'}</div>
+        `;
+
+        item.onclick = () => {
+          if (typeof MindVerseAudio !== 'undefined') {
+            MindVerseAudio.playClickSound();
+            MindVerseAudio.speak(comb.char, 'kn-IN');
+          }
+        };
+
+        grid.appendChild(item);
+      });
+    }
+
+    function playAllKagunita() {
+      const combinations = kannadaData.kagunita?.combinations || [];
+      let i = 0;
+      function next() {
+        if (i < combinations.length) {
+          const item = combinations[i];
+          if (typeof MindVerseAudio !== 'undefined') {
+            MindVerseAudio.speak(item.char, 'kn-IN');
+          }
+          i++;
+          setTimeout(next, 900);
+        }
+      }
+      next();
+    }
+  </script>
+</body>
+</html>

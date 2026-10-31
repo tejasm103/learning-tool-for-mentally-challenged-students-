@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curriculum & Learning Stations — MindVerse Inclusive Learning Lab</title>
+
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+  <link rel="stylesheet" href="css/classroom.css">
+
+  <script src="js/api.js"></script>
+  <script src="js/speech.js"></script>
+  <script src="js/accessibility.js"></script>
+  <script src="js/mindbot.js"></script>
+  <style>
+    .filter-pills {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .filter-pill {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-light);
+      padding: 0.6rem 1.25rem;
+      border-radius: var(--radius-full);
+      color: var(--text-muted);
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: var(--transition-normal);
+    }
+
+    .filter-pill:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+    }
+
+    .filter-pill.active {
+      background: var(--primary);
+      color: #060912;
+      border-color: var(--primary);
+      box-shadow: 0 0 15px var(--primary-glow);
+    }
+  </style>
+</head>
+
+<body>
+  <a href="#curriculum-main" class="skip-link">Skip to curriculum stations</a>
+
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">📚</div>
+        <div class="brand-text">MindVerse <span>Curriculum</span></div>
+      </a>
+      <div class="header-actions">
+        <a href="videos.html" class="btn btn-secondary">🎬 Videos</a>
+        <a href="quiz.html" class="btn btn-accent">🏆 115-Q Master Quiz</a>
+        <a href="classroom_3d.html" class="btn btn-secondary">🏫 3D Classroom</a>
+        <button class="btn-icon" id="open-a11y-btn" title="Accessibility settings">♿</button>
+        <a href="student_dashboard.html" class="btn btn-primary">My Dashboard</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="curriculum-main" class="content-container">
+    <div
+      style="margin-bottom:2rem; display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1.5rem;">
+      <div>
+        <div class="badge badge-cyan" style="margin-bottom:0.5rem;">Inclusive Multi-Subject Curriculum</div>
+        <h1 style="font-size:2.4rem; font-weight:800;">16 Learning Stations & Working Places</h1>
+        <p style="color:var(--text-muted);">Self-paced, sensory-friendly modules designed for children of all abilities.
+        </p>
+      </div>
+
+      <a href="classroom_3d.html" class="btn btn-primary btn-lg">
+        <span>🌐</span> Launch in 3D Virtual Classroom
+      </a>
+    </div>
+
+    <!-- Featured Master Quiz Arena Banner -->
+    <div class="card"
+      style="margin-bottom: 2rem; padding: 1.75rem 2rem; background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(168,85,247,0.15)); border: 1px solid rgba(245,158,11,0.4); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; border-radius: var(--radius-xl);">
+      <div>
+        <div class="badge badge-amber" style="margin-bottom: 0.5rem;">🌟 Complete Comprehensive Evaluation</div>
+        <h2 style="font-size: 1.8rem; font-weight: 800; color: #fff; margin: 0 0 0.5rem 0;">115-Question Master Quiz
+          Arena</h2>
+        <p style="color: var(--text-muted); margin: 0; max-width: 680px;">
+          Includes English Alphabet (1–20), Kannada Varnamala (21–40), Hindi Varnamala (41–60), Math & Tables (61–80),
+          Cross-Language Trivia (81–85), and Road Safety Rules (86–115).
+        </p>
+      </div>
+      <div style="display: flex; gap: 1rem;">
+        <a href="quiz.html" class="btn btn-accent btn-lg" style="box-shadow: 0 0 20px rgba(245,158,11,0.4);">
+          <span>🏆</span> Start 115-Q Quiz
+        </a>
+      </div>
+    </div>
+
+    <!-- Category Filters -->
+    <div class="filter-pills" role="tablist">
+      <button class="filter-pill active" onclick="filterStations('all', this)">All 15 Stations</button>
+      <button class="filter-pill" onclick="filterStations('languages', this)">Languages (Kannada, Hindi,
+        English)</button>
+      <button class="filter-pill" onclick="filterStations('math', this)">Mathematics & Numbers</button>
+      <button class="filter-pill" onclick="filterStations('lifeskills', this)">Life Skills & Social Emotional</button>
+      <button class="filter-pill" onclick="filterStations('play', this)">Cognitive Games & Chess</button>
+    </div>
+
+    <!-- Stations Grid -->
+    <div class="classroom-grid" id="stations-directory-grid">
+      <!-- Station 1 -->
+      <a href="alphabet.html" class="station-card" data-category="languages">
+        <div class="station-card-icon">🔤</div>
+        <div class="station-card-title">1. English Alphabet A-Z</div>
+        <div class="station-card-desc">Uppercase, lowercase, phonics, and multi-word illustrations for every letter.
+        </div>
+        <span class="badge badge-cyan">Open Lesson</span>
+      </a>
+
+      <!-- Station 2 -->
+      <a href="kannada.html" class="station-card" data-category="languages">
+        <div class="station-card-icon">ಅ</div>
+        <div class="station-card-title">2. Kannada Varnamala</div>
+        <div class="station-card-desc">Learn Swaragalu, Vyanjanagalu, and Yogavahakagalu with native Kannada audio.
+        </div>
+        <span class="badge badge-green">Open Lesson</span>
+      </a>
+
+      <!-- Station 3 -->
+      <a href="kannada.html#kagunita" class="station-card" data-category="languages">
+        <div class="station-card-icon">ಕ</div>
+        <div class="station-card-title">3. Kannada Kagunita</div>
+        <div class="station-card-desc">Interactive consonant and vowel combinations (ಕ್ + ಅ = ಕ) with audio
+          pronunciation.</div>
+        <span class="badge badge-green">Open Lesson</span>
+      </a>
+
+      <!-- Station 4 -->
+      <a href="hindi.html" class="station-card" data-category="languages">
+        <div class="station-card-icon">अ</div>
+        <div class="station-card-title">4. Hindi Varnamala</div>
+        <div class="station-card-desc">Complete Hindi alphabet including Swar and Vyanjan with phonetic examples.</div>
+        <span class="badge badge-amber">Open Lesson</span>
+      </a>
+
+      <!-- Station 5 -->
+      <a href="hindi.html#matras" class="station-card" data-category="languages">
+        <div class="station-card-icon">का</div>
+        <div class="station-card-title">5. Hindi Matras</div>
+        <div class="station-card-desc">Vowel marks and sounds that combine with consonants to build Hindi words.</div>
+        <span class="badge badge-amber">Open Lesson</span>
+      </a>
+
+      <!-- Station 6 -->
+      <a href="math.html" class="station-card" data-category="math">
+        <div class="station-card-icon">🔢</div>
+        <div class="station-card-title">6. Math & Numbers 1-100</div>
+        <div class="station-card-desc">Visual counting beads, addition, subtraction, and 2D/3D geometric shapes.</div>
+        <span class="badge badge-cyan">Open Lesson</span>
+      </a>
+
+      <!-- Station 7 -->
+      <a href="multiplication.html" class="station-card" data-category="math">
+        <div class="station-card-icon">✖️</div>
+        <div class="station-card-title">7. Multiplication Tables 1-20</div>
+        <div class="station-card-desc">Step-by-step tables, practice quizzes, and missing number interactive challenges.
+        </div>
+        <span class="badge badge-cyan">Open Lesson</span>
+      </a>
+
+      <!-- Station 8 -->
+      <a href="alphabet.html#vocab" class="station-card" data-category="languages">
+        <div class="station-card-icon">🍎</div>
+        <div class="station-card-title">8. English Vocabulary</div>
+        <div class="station-card-desc">Everyday household, animal, and fruit vocabulary with picture cards.</div>
+        <span class="badge badge-cyan">Open Lesson</span>
+      </a>
+
+      <!-- Station 9 -->
+      <a href="stories.html" class="station-card" data-category="lifeskills">
+        <div class="station-card-icon">📖</div>
+        <div class="station-card-title">9. Rhymes & Stories</div>
+        <div class="station-card-desc">Spoken storybooks with sentence highlighting and comprehension quizzes.</div>
+        <span class="badge badge-purple">Open Lesson</span>
+      </a>
+
+      <!-- Station 10 -->
+      <a href="emotions.html" class="station-card" data-category="lifeskills">
+        <div class="station-card-icon">😊</div>
+        <div class="station-card-title">10. Facial Expressions & Feelings</div>
+        <div class="station-card-desc">Recognize and name emotional cues (happy, calm, sad, angry) with empathy tips.
+        </div>
+        <span class="badge badge-purple">Open Lesson</span>
+      </a>
+
+      <!-- Station 11 -->
+      <a href="body_parts.html" class="station-card" data-category="lifeskills">
+        <div class="station-card-icon">👤</div>
+        <div class="station-card-title">11. Human Body & Hygiene</div>
+        <div class="station-card-desc">Body exploration, safe touch boundaries, personal autonomy, and hygiene habits.
+        </div>
+        <span class="badge badge-cyan">Open Lesson</span>
+      </a>
+
+      <!-- Station 12 -->
+      <a href="traffic.html" class="station-card" data-category="lifeskills">
+        <div class="station-card-icon">🚦</div>
+        <div class="station-card-title">12. Traffic Rules & Road Safety</div>
+        <div class="station-card-desc">Interactive traffic lights, zebra crossings, car safety, and emergency vehicles.
+        </div>
+        <span class="badge badge-amber">Open Lesson</span>
+      </a>
+
+      <!-- Station 13 -->
+      <a href="games.html" class="station-card" data-category="play">
+        <div class="station-card-icon">🧩</div>
+        <div class="station-card-title">13. Picture & Word Matching</div>
+        <div class="station-card-desc">Connect images to their vocabulary names with rewarding star celebrations.</div>
+        <span class="badge badge-green">Open Game</span>
+      </a>
+
+      <!-- Station 14 -->
+      <a href="games.html#memory" class="station-card" data-category="play">
+        <div class="station-card-icon">🧠</div>
+        <div class="station-card-title">14. Memory Flip Cards & Word Search</div>
+        <div class="station-card-desc">Concentration cards and letter matrix word searches at 3 difficulty levels.</div>
+        <span class="badge badge-green">Open Game</span>
+      </a>
+
+      <!-- Station 15 -->
+      <a href="chess.html" class="station-card" data-category="play">
+        <div class="station-card-icon">♟️</div>
+        <div class="station-card-title">15. Playable Chess vs MindBot</div>
+        <div class="station-card-desc">Interactive chess with legal moves enforcement, undo support, and AI advice.
+        </div>
+        <span class="badge badge-cyan">Play Chess</span>
+      </a>
+
+      <!-- Station 16: Working Places -->
+      <a href="workplace.html" class="station-card" data-category="lifeskills">
+        <div class="station-card-icon">🏥</div>
+        <div class="station-card-title">16. Our Working Places & Helpers</div>
+        <div class="station-card-desc">Explore hospitals, fire stations, farms, bakeries, and community professions with
+          audio.</div>
+        <span class="badge badge-amber">Open Lesson</span>
+      </a>
+
+      <!-- Student Working Desk / Working Place -->
+      <a href="workspace.html" class="station-card" data-category="play"
+        style="border-color: rgba(0, 240, 255, 0.4); background: linear-gradient(135deg, rgba(0,240,255,0.06), rgba(15,23,42,0.8));">
+        <div class="station-card-icon">📝</div>
+        <div class="station-card-title">Student Working Place & Desk</div>
+        <div class="station-card-desc">Interactive drawing blackboard, focus bell timer, note-taking, and teacher
+          submission desk.</div>
+        <span class="badge badge-cyan">Open Working Place</span>
+      </a>
+    </div>
+  </main>
+
+  <script>
+    function filterStations(cat, btn) {
+      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('#stations-directory-grid .station-card');
+      cards.forEach(card => {
+        if (cat === 'all' || card.dataset.category === cat) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+
+</html>

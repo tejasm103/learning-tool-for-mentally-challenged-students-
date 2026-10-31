@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Human Body & Personal Safety — MindVerse Learning Lab</title>
+  
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+  <link rel="stylesheet" href="css/games.css">
+
+  <script src="js/api.js"></script>
+  <script src="js/speech.js"></script>
+  <script src="js/accessibility.js"></script>
+  <script src="js/mindbot.js"></script>
+  <style>
+    .body-part-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition-normal);
+    }
+    .body-part-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--primary);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(0, 240, 255, 0.2);
+    }
+    .safety-rule-card {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid var(--border-glow);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+    }
+    .habit-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      margin-bottom: 0.75rem;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+    .habit-item:hover {
+      background: rgba(0, 240, 255, 0.1);
+      border-color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+  <a href="#body-main" class="skip-link">Skip to body parts lesson</a>
+
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">👤</div>
+        <div class="brand-text">MindVerse <span>Body & Safety</span></div>
+      </a>
+      <div class="header-actions">
+        <a href="classroom_3d.html" class="btn btn-secondary">🏫 3D Classroom</a>
+        <button class="btn-icon" id="open-a11y-btn" title="Accessibility settings">♿</button>
+        <a href="student_dashboard.html" class="btn btn-primary">My Dashboard</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="body-main" class="content-container">
+    <div style="margin-bottom:2rem;">
+      <div class="badge badge-cyan" style="margin-bottom:0.5rem;">Life Skills & Health</div>
+      <h1 style="font-size:2.2rem; font-weight:800;">Human Body & Personal Safety</h1>
+      <p style="color:var(--text-muted);">Explore body parts, learn safe boundaries and autonomy, and practice everyday hygiene habits.</p>
+    </div>
+
+    <!-- Core Safety Banner -->
+    <div style="background:linear-gradient(135deg, rgba(0,240,255,0.1), rgba(168,85,247,0.15)); border:2px solid var(--primary); border-radius:var(--radius-xl); padding:1.75rem 2rem; margin-bottom:2.5rem; display:flex; align-items:center; gap:1.5rem;">
+      <div style="font-size:3.5rem;">🛡️</div>
+      <div>
+        <h2 style="color:var(--primary); font-size:1.4rem; margin-bottom:0.35rem; font-weight:800;">My Body Belongs to Me</h2>
+        <p style="color:#fff; font-size:1.1rem; margin:0;" id="core-safety-text">
+          Our bodies belong to us. We care for our health, and we speak to a trusted adult if anything ever feels unsafe.
+        </p>
+      </div>
+      <button class="btn btn-primary" onclick="readSafetyMessage()" style="flex-shrink:0;">
+        <span>🔊</span> Listen
+      </button>
+    </div>
+
+    <!-- Body Parts Grid -->
+    <h2 style="font-size:1.6rem; font-weight:800; color:#fff; margin-bottom:1.25rem; display:flex; align-items:center; gap:0.5rem;">
+      <span>👤</span> Body Parts Explorer
+    </h2>
+    <p style="color:var(--text-muted); margin-bottom:1.5rem;">Click any body part to hear its pronunciation and how it helps us every day.</p>
+    
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:1.25rem; margin-bottom:3rem;" id="body-parts-grid">
+      <!-- Injected by JS -->
+    </div>
+
+    <!-- 2 Column Section: Personal Safety Rules & Daily Hygiene -->
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem; margin-bottom:3rem;">
+      <!-- Personal Safety -->
+      <div>
+        <h2 style="font-size:1.5rem; font-weight:800; color:var(--accent); margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem;">
+          <span>🛑</span> Safe & Unsafe Boundaries
+        </h2>
+        <div class="safety-rule-card">
+          <div style="font-size:2.2rem;">🤝</div>
+          <div>
+            <h3 style="color:#fff; font-size:1.15rem; margin-bottom:0.25rem;">Safe Touch</h3>
+            <p style="color:var(--text-muted); font-size:0.95rem; margin:0;">
+              High-fives, holding a parent's hand across the street, or a warm hug from family that makes you feel safe and comfortable.
+            </p>
+          </div>
+        </div>
+
+        <div class="safety-rule-card">
+          <div style="font-size:2.2rem;">✋</div>
+          <div>
+            <h3 style="color:#ef4444; font-size:1.15rem; margin-bottom:0.25rem;">Saying "NO!"</h3>
+            <p style="color:var(--text-muted); font-size:0.95rem; margin:0;">
+              If any touch makes you feel uncomfortable, confused, or scared, you have the right to say "NO!" in a loud, firm voice.
+            </p>
+          </div>
+        </div>
+
+        <div class="safety-rule-card">
+          <div style="font-size:2.2rem;">🗣️</div>
+          <div>
+            <h3 style="color:#10b981; font-size:1.15rem; margin-bottom:0.25rem;">Tell a Trusted Adult</h3>
+            <p style="color:var(--text-muted); font-size:0.95rem; margin:0;">
+              Always talk to your parents, school teachers, or school nurse. Never keep secrets that make you feel worried or unsafe.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Healthy Habits -->
+      <div>
+        <h2 style="font-size:1.5rem; font-weight:800; color:var(--primary); margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem;">
+          <span>🧼</span> Healthy Daily Habits
+        </h2>
+
+        <div class="habit-item" onclick="speakHabit('Wash your hands with soap and water for 20 seconds before eating and after playing.')">
+          <div style="font-size:2rem;">🫧</div>
+          <div>
+            <div style="font-weight:700; color:#fff;">Handwashing</div>
+            <div style="font-size:0.9rem; color:var(--text-muted);">Wash with soap for 20 seconds.</div>
+          </div>
+        </div>
+
+        <div class="habit-item" onclick="speakHabit('Brush your teeth gently twice every day, morning and night.')">
+          <div style="font-size:2rem;">🪥</div>
+          <div>
+            <div style="font-weight:700; color:#fff;">Brushing Teeth</div>
+            <div style="font-size:0.9rem; color:var(--text-muted);">Brush twice daily for sparkling teeth.</div>
+          </div>
+        </div>
+
+        <div class="habit-item" onclick="speakHabit('Drink clean fresh water throughout the day to keep your body energetic.')">
+          <div style="font-size:2rem;">💧</div>
+          <div>
+            <div style="font-weight:700; color:#fff;">Hydration</div>
+            <div style="font-size:0.9rem; color:var(--text-muted);">Drink plenty of clean water.</div>
+          </div>
+        </div>
+
+        <div class="habit-item" onclick="speakHabit('Sleep eight to ten hours every night so your brain and body grow strong.')">
+          <div style="font-size:2rem;">🛌</div>
+          <div>
+            <div style="font-weight:700; color:#fff;">Restful Sleep</div>
+            <div style="font-size:0.9rem; color:var(--text-muted);">Get 8-10 hours of sleep for growth.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const bodyData = await MindVerseAPI.getBodyParts();
+        if (bodyData) {
+          if (bodyData.core_safety_message) {
+            document.getElementById('core-safety-text').textContent = bodyData.core_safety_message;
+          }
+          renderBodyParts(bodyData.parts || []);
+        }
+      } catch (err) {
+        console.error('Failed to load body parts:', err);
+      }
+    });
+
+    function renderBodyParts(parts) {
+      const grid = document.getElementById('body-parts-grid');
+      grid.innerHTML = '';
+
+      parts.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'body-part-card';
+        card.innerHTML = `
+          <div style="font-size:3.2rem; margin-bottom:0.75rem;">${p.icon || '👤'}</div>
+          <div style="font-size:1.3rem; font-weight:800; color:#fff; margin-bottom:0.4rem;">${p.name}</div>
+          <div style="font-size:0.9rem; color:var(--text-muted); line-height:1.5;">${p.function}</div>
+        `;
+        card.onclick = () => {
+          if (typeof MindVerseAudio !== 'undefined') {
+            MindVerseAudio.playClickSound();
+            MindVerseAudio.speak(`${p.name}. ${p.function}`);
+          }
+        };
+        grid.appendChild(card);
+      });
+    }
+
+    function readSafetyMessage() {
+      const text = document.getElementById('core-safety-text').textContent;
+      if (typeof MindVerseAudio !== 'undefined') {
+        MindVerseAudio.speak(text);
+      }
+    }
+
+    function speakHabit(text) {
+      if (typeof MindVerseAudio !== 'undefined') {
+        MindVerseAudio.playClickSound();
+        MindVerseAudio.speak(text);
+      }
+    }
+  </script>
+</body>
+</html>
+

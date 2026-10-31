@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hindi Varnamala & Matras — MindVerse Learning Lab</title>
+  
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+
+  <script src="js/api.js"></script>
+  <script src="js/speech.js"></script>
+  <script src="js/accessibility.js"></script>
+  <script src="js/mindbot.js"></script>
+</head>
+<body>
+  <a href="#hindi-main" class="skip-link">Skip to Hindi lesson</a>
+
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">अ</div>
+        <div class="brand-text">MindVerse <span>हिंदी वर्णमाला (Hindi)</span></div>
+      </a>
+      <div class="header-actions">
+        <a href="classroom_3d.html" class="btn btn-secondary">🏫 3D Classroom</a>
+        <button class="btn-icon" id="open-a11y-btn" title="Accessibility settings">♿</button>
+        <a href="student_dashboard.html" class="btn btn-primary">My Dashboard</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="hindi-main" class="content-container">
+    <div style="margin-bottom:2rem;">
+      <div class="badge badge-amber" style="margin-bottom:0.5rem;">हिंदी वर्णमाला एवं मात्रा ज्ञान</div>
+      <h1 style="font-size:2.2rem; font-weight:800;">Hindi Varnamala & Matra Learning</h1>
+      <p style="color:var(--text-muted);">Explore Hindi vowels (स्वर), consonants (व्यंजन), and matra combinations with audio pronunciation and examples.</p>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div style="display:flex; gap:1rem; border-bottom:1px solid var(--border-light); padding-bottom:1rem; margin-bottom:2rem;">
+      <button class="btn btn-primary" id="tab-vowels">1. स्वर (Vowels)</button>
+      <button class="btn btn-secondary" id="tab-consonants">2. व्यंजन (Consonants)</button>
+      <button class="btn btn-secondary" id="tab-matras">3. मात्रा ज्ञान (Matra Builder)</button>
+    </div>
+
+    <!-- 1. Vowels Section -->
+    <section id="section-vowels">
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:1.5rem;" id="vowels-grid">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- 2. Consonants Section -->
+    <section id="section-consonants" style="display:none;">
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:1.25rem;" id="consonants-grid">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- 3. Matras Section -->
+    <section id="section-matras" style="display:none;">
+      <div class="card" style="padding:2.5rem; max-width:900px; margin:0 auto;">
+        <h2 style="color:var(--primary); font-size:1.8rem; margin-bottom:0.5rem;">मात्रा ज्ञान (Hindi Matra Learning)</h2>
+        <p style="color:var(--text-muted); margin-bottom:1.5rem;">Notice how vowel signs attach to consonant 'क' to alter the sound.</p>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(130px, 1fr)); gap:1rem;" id="matras-grid">
+          <!-- Rendered via JS -->
+        </div>
+
+        <div style="margin-top:2.5rem; text-align:center;">
+          <button class="btn btn-accent btn-lg" onclick="playAllMatras()">
+            <span>🔊</span> Play Full Matra Series Audio
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    let hindiData = {};
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        hindiData = await MindVerseAPI.getHindi();
+        renderVowels();
+        renderConsonants();
+        renderMatras();
+        setupTabs();
+      } catch (err) {
+        console.error('Failed to load Hindi data:', err);
+      }
+    });
+
+    function setupTabs() {
+      const btnV = document.getElementById('tab-vowels');
+      const btnC = document.getElementById('tab-consonants');
+      const btnM = document.getElementById('tab-matras');
+
+      const secV = document.getElementById('section-vowels');
+      const secC = document.getElementById('section-consonants');
+      const secM = document.getElementById('section-matras');
+
+      btnV.onclick = () => {
+        btnV.className = 'btn btn-primary';
+        btnC.className = 'btn btn-secondary';
+        btnM.className = 'btn btn-secondary';
+        secV.style.display = 'block';
+        secC.style.display = 'none';
+        secM.style.display = 'none';
+      };
+
+      btnC.onclick = () => {
+        btnC.className = 'btn btn-primary';
+        btnV.className = 'btn btn-secondary';
+        btnM.className = 'btn btn-secondary';
+        secC.style.display = 'block';
+        secV.style.display = 'none';
+        secM.style.display = 'none';
+      };
+
+      btnM.onclick = () => {
+        btnM.className = 'btn btn-primary';
+        btnV.className = 'btn btn-secondary';
+        btnC.className = 'btn btn-secondary';
+        secM.style.display = 'block';
+        secV.style.display = 'none';
+        secC.style.display = 'none';
+      };
+    }
+
+    function renderVowels() {
+      const grid = document.getElementById('vowels-grid');
+      grid.innerHTML = '';
+      const vowels = hindiData.vowels || [];
+
+      vowels.forEach(v => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.style.textAlign = 'center';
+        card.innerHTML = `
+          <div style="font-size:4.5rem; font-weight:800; color:#f59e0b; line-height:1.1;">${v.char}</div>
+          <div style="font-size:1.1rem; color:var(--text-muted); font-weight:700; margin-bottom:0.75rem;">(${v.translit})</div>
+          <div style="font-size:3rem; margin:0.5rem 0;">${v.icon}</div>
+          <div style="font-size:1.4rem; font-weight:800; color:#fff;">${v.word}</div>
+          <div style="color:var(--text-muted); font-size:0.95rem; margin-bottom:1rem;">${v.meaning}</div>
+          <button class="btn btn-secondary" style="width:100%;"><span>🔊</span> उच्चारण (Pronounce)</button>
+        `;
+
+        card.querySelector('button').onclick = () => {
+          if (typeof MindVerseAudio !== 'undefined') {
+            MindVerseAudio.speak(`${v.audio}. ${v.meaning}.`, 'hi-IN');
+          }
+        };
+
+        grid.appendChild(card);
+      });
+    }
+
+    function renderConsonants() {
+      const grid = document.getElementById('consonants-grid');
+      grid.innerHTML = '';
+      const consonants = hindiData.consonants || [];
+
+      consonants.forEach(c => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.style.textAlign = 'center';
+        card.innerHTML = `
+          <div style="font-size:3.5rem; font-weight:800; color:var(--primary); line-height:1.1;">${c.char}</div>
+          <div style="font-size:1rem; color:var(--text-muted); margin-bottom:0.5rem;">(${c.translit})</div>
+          <div style="font-size:2.2rem; margin:0.3rem 0;">${c.icon}</div>
+          <div style="font-size:1.25rem; font-weight:700; color:#fff;">${c.word}</div>
+          <div style="color:var(--text-muted); font-size:0.85rem; margin-bottom:0.75rem;">${c.meaning}</div>
+          <button class="btn btn-secondary" style="width:100%; font-size:0.85rem; padding:0.5rem;"><span>🔊</span> सुनें</button>
+        `;
+
+        card.querySelector('button').onclick = () => {
+          if (typeof MindVerseAudio !== 'undefined') {
+            MindVerseAudio.speak(`${c.char} से ${c.word}.`, 'hi-IN');
+          }
+        };
+
+        grid.appendChild(card);
+      });
+    }
+
+    function renderMatras() {
+      const grid = document.getElementById('matras-grid');
+      grid.innerHTML = '';
+      const combinations = hindiData.matras?.combinations || [];
+
+      combinations.forEach(comb => {
+        const item = document.createElement('div');
+        item.className = 'card';
+        item.style.cssText = 'padding:1rem; text-align:center; cursor:pointer;';
+        item.innerHTML = `
+          <div style="font-size:2.8rem; font-weight:800; color:#f59e0b;">${comb.char}</div>
+          <div style="font-size:0.85rem; color:var(--text-muted);">(${comb.sound})</div>
+          <div style="font-size:0.8rem; color:var(--primary); margin-top:0.3rem;">Matra: ${comb.matra || 'None'}</div>
+        `;
+
+        item.onclick = () => {
+          if (typeof MindVerseAudio !== 'undefined') {
+            MindVerseAudio.playClickSound();
+            MindVerseAudio.speak(comb.char, 'hi-IN');
+          }
+        };
+
+        grid.appendChild(item);
+      });
+    }
+
+    function playAllMatras() {
+      const combinations = hindiData.matras?.combinations || [];
+      let i = 0;
+      function next() {
+        if (i < combinations.length) {
+          const item = combinations[i];
+          if (typeof MindVerseAudio !== 'undefined') {
+            MindVerseAudio.speak(item.char, 'hi-IN');
+          }
+          i++;
+          setTimeout(next, 900);
+        }
+      }
+      next();
+    }
+  </script>
+</body>
+</html>

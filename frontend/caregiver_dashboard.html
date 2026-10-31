@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caregiver & Family Portal — MindVerse Inclusive Learning Lab</title>
+  
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/accessibility.css">
+
+  <script src="js/api.js"></script>
+  <script src="js/speech.js"></script>
+  <script src="js/accessibility.js"></script>
+  <script src="js/mindbot.js"></script>
+  <style>
+    .activity-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      transition: var(--transition-normal);
+    }
+    .activity-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 240, 255, 0.15);
+    }
+    .tip-bullet {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 0.9rem 1.25rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <a href="#caregiver-main" class="skip-link">Skip to caregiver portal</a>
+
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🏡</div>
+        <div class="brand-text">MindVerse <span>Caregiver Portal</span></div>
+      </a>
+      <div class="header-actions">
+        <a href="classroom_3d.html" class="btn btn-secondary">🏫 3D Classroom</a>
+        <a href="student_dashboard.html" class="btn btn-secondary">Student View</a>
+        <button class="btn-icon" id="open-a11y-btn" title="Accessibility settings">♿</button>
+        <button class="btn btn-secondary" onclick="MindVerseAPI.logout()">Sign Out</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="caregiver-main" class="content-container">
+    <div style="margin-bottom:2rem; display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1.5rem;">
+      <div>
+        <div class="badge badge-purple" style="margin-bottom:0.5rem;">Home-School Partnership & Well-being</div>
+        <h1 style="font-size:2.2rem; font-weight:800;">Family & Caregiver Support</h1>
+        <p style="color:var(--text-muted);">See your child's learning journey, celebrated milestones, and easy offline reinforcement ideas.</p>
+      </div>
+
+      <button class="btn btn-primary" onclick="readCaregiverSummary()">
+        <span>🔊</span> Spoken Daily Summary
+      </button>
+    </div>
+
+    <!-- Child Snapshot Banner -->
+    <div class="card" style="padding:2rem; margin-bottom:2.5rem; background:linear-gradient(135deg, rgba(20,29,54,0.9), rgba(30,27,75,0.8)); border-color:var(--border-glow); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.5rem;">
+      <div style="display:flex; align-items:center; gap:1.5rem;">
+        <div style="font-size:3.5rem; background:rgba(168,85,247,0.2); width:80px; height:80px; border-radius:50%; display:flex; align-items:center; justify-content:center; border:2px solid #a855f7;">
+          🦁
+        </div>
+        <div>
+          <div style="font-size:1.6rem; font-weight:800; color:#fff;" id="child-name">Aarav Patel</div>
+          <p style="color:var(--text-muted); margin:0.25rem 0 0 0;" id="child-status">
+            Learning Profile: Visual & Audio Learner • Sensory Friendly Mode Active
+          </p>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:1.5rem; text-align:center;">
+        <div>
+          <div style="font-size:1.8rem; font-weight:800; color:#fbbf24;" id="caregiver-stars">48</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Stars Collected</div>
+        </div>
+        <div>
+          <div style="font-size:1.8rem; font-weight:800; color:#10b981;" id="caregiver-stations">12</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Stations Visited</div>
+        </div>
+        <div>
+          <div style="font-size:1.8rem; font-weight:800; color:var(--primary);" id="caregiver-time">35m</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Today's Screen Time</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 Column Section: At-Home Activities & Routine Tips -->
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem; margin-bottom:2.5rem;">
+      <!-- At-Home Activities -->
+      <div>
+        <h2 style="font-size:1.4rem; font-weight:800; color:var(--primary); margin-bottom:1.25rem; display:flex; align-items:center; gap:0.5rem;">
+          <span>🎯</span> Everyday Fun Reinforcements
+        </h2>
+        <div id="activities-container">
+          <!-- Injected by JS -->
+        </div>
+      </div>
+
+      <!-- Routine & Emotional Guidance -->
+      <div>
+        <h2 style="font-size:1.4rem; font-weight:800; color:#a855f7; margin-bottom:1.25rem; display:flex; align-items:center; gap:0.5rem;">
+          <span>🧘</span> Calming Routine & Regulation Tips
+        </h2>
+        <div id="tips-container">
+          <!-- Injected by JS -->
+        </div>
+
+        <!-- Sensory Peace Box -->
+        <div style="background:rgba(16,185,129,0.1); border:1px solid #10b981; border-radius:var(--radius-lg); padding:1.25rem 1.5rem; margin-top:1.5rem;">
+          <h3 style="color:#34d399; font-size:1.1rem; margin-bottom:0.4rem; display:flex; align-items:center; gap:0.5rem;">
+            <span>🍃</span> Sensory Regulation Note
+          </h3>
+          <p style="color:var(--text-muted); font-size:0.9rem; margin:0; line-height:1.5;">
+            If your child experiences visual overstimulation, click the <strong>♿ Accessibility Button</strong> at the top right to enable Reduced Motion, High Contrast, or switch the 3D Classroom into 2D Mode.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    let caregiverData = null;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        caregiverData = await MindVerseAPI.getCaregiverOverview();
+        if (caregiverData) {
+          if (caregiverData.student) {
+            document.getElementById('child-name').textContent = caregiverData.student.display_name;
+          }
+          if (caregiverData.summary) {
+            document.getElementById('caregiver-stars').textContent = caregiverData.summary.total_stars || 48;
+            document.getElementById('caregiver-stations').textContent = caregiverData.summary.completed_count || 12;
+          }
+          renderActivities(caregiverData.home_activities || []);
+          renderTips(caregiverData.routine_tips || []);
+        }
+      } catch (e) {
+        console.warn('Caregiver fetch failed, using defaults:', e);
+        renderActivities([
+          { title: 'Alphabet Scavenger Hunt', desc: 'Find 3 objects around the kitchen that start with the letter A or B.' },
+          { title: 'Counting Daily Objects', desc: 'Count 5 spoons or 10 colorful buttons together at snack time.' },
+          { title: 'Feelings Check-in', desc: 'Use emotion cards to ask: How was your energy today? Share a happy moment.' },
+          { title: 'Zebra Crossing Walk', desc: 'Practice looking Left-Right-Left together on the sidewalk before crossing.' }
+        ]);
+        renderTips([
+          'Keep a visual daily schedule on the wall or tablet.',
+          'Offer 5-minute transition warnings before switching activities.',
+          'Encourage deep calming breaths when feeling overwhelmed.',
+          'Celebrate small steps of persistence and kindness.'
+        ]);
+      }
+    });
+
+    function renderActivities(activities) {
+      const container = document.getElementById('activities-container');
+      container.innerHTML = activities.map(act => `
+        <div class="activity-card">
+          <div style="font-size:2.2rem; color:var(--primary);">🌟</div>
+          <div>
+            <div style="font-weight:700; color:#fff; font-size:1.1rem; margin-bottom:0.25rem;">${act.title}</div>
+            <div style="color:var(--text-muted); font-size:0.9rem; line-height:1.5;">${act.desc}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderTips(tips) {
+      const container = document.getElementById('tips-container');
+      container.innerHTML = tips.map(tip => `
+        <div class="tip-bullet">
+          <span style="color:#a855f7; font-size:1.2rem;">✓</span>
+          <span>${tip}</span>
+        </div>
+      `).join('');
+    }
+
+    function readCaregiverSummary() {
+      const name = document.getElementById('child-name').textContent;
+      const stars = document.getElementById('caregiver-stars').textContent;
+      const stations = document.getElementById('caregiver-stations').textContent;
+
+      if (typeof MindVerseAudio !== 'undefined') {
+        MindVerseAudio.speak(`Caregiver Summary: ${name} has collected ${stars} stars and visited ${stations} learning stations. Great consistency and steady progress this week!`);
+      }
+    }
+  </script>
+</body>
+</html>
+
