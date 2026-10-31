@@ -88,8 +88,10 @@ def create_app(config_class=Config):
 
     return app
 
+# Expose app at module level for WSGI servers like Gunicorn (Render / Heroku)
+app = create_app()
+
 if __name__ == '__main__':
-    app = create_app()
     port = int(os.environ.get('PORT', 5000))
     print(f"\n=======================================================")
     print(f"🚀 MindVerse Inclusive Learning Lab Backend Started!")
