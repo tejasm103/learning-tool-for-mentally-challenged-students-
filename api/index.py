@@ -11,3 +11,4 @@ from backend.app import app
 
 # Vercel serverless Python looks for WSGI 'app'
 __all__ = ['app']
+
