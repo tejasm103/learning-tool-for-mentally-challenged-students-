@@ -73,13 +73,20 @@ def register():
 
     db.commit()
 
+    # Mirror registered student to MongoDB Atlas if enabled
+    from backend.services import mongo_service
+    mongo_user_data = user.to_dict()
+    mongo_user_data['password_hash'] = user.password_hash
+    mongo_id = mongo_service.save_user(mongo_user_data)
+
     session['user_id'] = user.id
     session['role'] = user.role
     session['display_name'] = user.display_name
 
     return jsonify({
         'message': 'Registration successful.',
-        'user': user.to_dict()
+        'user': user.to_dict(),
+        'mongo_synced': mongo_id is not None
     }), 201
 
 @auth_bp.route('/api/auth/login', methods=['POST'])
@@ -93,6 +100,26 @@ def login():
 
     db = get_db()
     user = db.query(User).filter_by(username=username).first()
+
+    # If user not found in local SQL DB, check MongoDB Atlas and restore
+    if not user:
+        from backend.services import mongo_service
+        mongo_users = mongo_service.get_users({'username': username})
+        if mongo_users:
+            m_user = mongo_users[0]
+            user = User(
+                username=m_user['username'],
+                display_name=m_user.get('display_name', m_user['username']),
+                role=m_user.get('role', 'student'),
+                student_id=m_user.get('student_id'),
+                grade_level=m_user.get('grade_level', 'Primary')
+            )
+            user.password_hash = m_user.get('password_hash')
+            db.add(user)
+            db.commit()
+            if user.role == 'student':
+                db.add(StudentProfile(user_id=user.id))
+                db.commit()
 
     if not user or not user.check_password(password):
         return jsonify({'error': 'Invalid username or password.'}), 401

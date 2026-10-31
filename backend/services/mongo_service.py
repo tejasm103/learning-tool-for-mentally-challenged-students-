@@ -191,3 +191,51 @@ def sync_videos(video_list):
         logger.error(f"[MongoDB] Error syncing videos: {e}")
         return 0
 
+def save_user(user_data):
+    """
+    Saves or mirrors a registered user/student to the MongoDB 'users' collection.
+    Ensures registered students persist in the cloud database across deployments!
+    """
+    db = get_mongo_db()
+    if db is None:
+        return None
+
+    try:
+        doc = dict(user_data)
+        if 'created_at' not in doc or not doc['created_at']:
+            doc['created_at'] = datetime.utcnow().isoformat()
+        elif isinstance(doc['created_at'], datetime):
+            doc['created_at'] = doc['created_at'].isoformat()
+
+        username = doc.get('username')
+        if username:
+            db.users.update_one({'username': username}, {'$set': doc}, upsert=True)
+            logger.info(f"[MongoDB] Synced user '{username}' ({doc.get('role', 'student')}) to MongoDB Atlas")
+            return username
+        else:
+            res = db.users.insert_one(doc)
+            return str(res.inserted_id)
+    except Exception as e:
+        logger.error(f"[MongoDB] Error saving user to MongoDB: {e}")
+        return None
+
+def get_users(filter_query=None):
+    """
+    Retrieves users/registered students from MongoDB 'users' collection.
+    """
+    db = get_mongo_db()
+    if db is None:
+        return []
+
+    try:
+        query = filter_query or {}
+        cursor = db.users.find(query)
+        results = []
+        for doc in cursor:
+            doc['_id'] = str(doc['_id'])
+            results.append(doc)
+        return results
+    except Exception as e:
+        logger.error(f"[MongoDB] Error retrieving users from MongoDB: {e}")
+        return []
+
